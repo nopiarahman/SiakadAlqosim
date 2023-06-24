@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\SantriController;
 
 /*
@@ -18,6 +19,11 @@ use App\Http\Controllers\API\SantriController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('login',[LoginController::class,'loginApi']);
+
 Route::prefix('v1')->group(function(){ 
-    Route::apiResource('santri',SantriController::class);
+    Route::middleware(['auth:sanctum',config('jetstream.auth_session'),
+    'verified'])->group(function(){
+        Route::apiResource('santri',SantriController::class);
+    });
 });
