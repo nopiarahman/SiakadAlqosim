@@ -21,6 +21,6 @@
                     </x-jet-dropdown-link>
                 @endif
             </div>
+            <a href="/deleteToken">Delete Token</a>
         </div>
-    </div>
 </x-app-layout>

@@ -25,6 +25,6 @@ Route::prefix('v1')->group(function(){
     Route::middleware(['auth:sanctum',config('jetstream.auth_session'),
     'verified'])->group(function(){
         Route::apiResource('santri',SantriController::class);
+        Route::post('logout',[LoginController::class,'logout']);
     });
-    Route::get('logout',[LoginController::class,'logout']);
 });

@@ -20,8 +20,9 @@ class LoginController extends Controller
         }
         return response()->json(['messages' => 'Invalid credentials', 401]);
     }
-    protected function logout() {
-        Auth::logout();
+    public function logout(Request $request) {
+        // menghapus token login saat ini
+        $request->user()->currentAccessToken()->delete();
         return response()->json(['messages' => 'Berhasil Logout', 200]);
     }
 }
