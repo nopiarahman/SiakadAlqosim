@@ -26,4 +26,5 @@ Route::prefix('v1')->group(function(){
     'verified'])->group(function(){
         Route::apiResource('santri',SantriController::class);
     });
+    Route::get('logout',[LoginController::class,'logout']);
 });

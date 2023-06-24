@@ -20,4 +20,8 @@ class LoginController extends Controller
         }
         return response()->json(['messages' => 'Invalid credentials', 401]);
     }
+    protected function logout() {
+        Auth::logout();
+        return response()->json(['messages' => 'Berhasil Logout', 200]);
+    }
 }
