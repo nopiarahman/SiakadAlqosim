@@ -13,9 +13,7 @@
                 <form method="POST" action="{{ route('logout') }}" x-data>
                     @csrf
 
-                    <x-jet-dropdown-link @click.prevent="$root.submit();">
-                        {{ __('Log Out') }}
-                    </x-jet-dropdown-link>
+                    <button type="submit">Logout</button>
                 </form>
             </div>
         </div>
