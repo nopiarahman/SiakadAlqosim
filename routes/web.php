@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SantriController;
+use App\Http\Controllers\MarhalahController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,10 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    // Marhalah
+   Route::controller(MarhalahController::class)->group(function(){
+    Route::get('/marhalah','index');
+    Route::get('/marhalah/kelas','kelas');
+   });
 });

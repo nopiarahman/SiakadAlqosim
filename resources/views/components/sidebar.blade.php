@@ -17,15 +17,18 @@
 
         <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item active">
-                <a href="index.html" class="menu-link">
+            {{-- @php
+                dd(Request::path());
+            @endphp --}}
+            <li class="menu-item @if (Request::path() == 'dashboard') active @endif">
+                <a href="{{ url('/dashboard') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
                     <div data-i18n="Analytics">Dashboard</div>
                 </a>
             </li>
 
             <!-- Layouts -->
-            <li class="menu-item">
+            {{-- <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-layout"></i>
                     <div data-i18n="Layouts">Layouts</div>
@@ -58,25 +61,25 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
 
             <li class="menu-header small text-uppercase">
-                <span class="menu-header-text">Pages</span>
+                <span class="menu-header-text">YAYASAN</span>
             </li>
-            <li class="menu-item">
+            <li class="menu-item  @yield('menuMarhalah')">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                    <div data-i18n="Account Settings">Account Settings</div>
+                    <i class="menu-icon tf-icons bx bx-buildings"></i>
+                    <div data-i18n="marhalah">Marhalah/Jenjang</div>
                 </a>
-                <ul class="menu-sub">
-                    <li class="menu-item">
-                        <a href="pages-account-settings-account.html" class="menu-link">
-                            <div data-i18n="Account">Account</div>
+                <ul class="menu-sub ">
+                    <li class="menu-item @yield('submenuMarhalah1')">
+                        <a href="{{ url('/marhalah') }}" class="menu-link">
+                            <div data-i18n="marhalah">List Semua Marhalah</div>
                         </a>
                     </li>
-                    <li class="menu-item">
-                        <a href="pages-account-settings-notifications.html" class="menu-link">
-                            <div data-i18n="Notifications">Notifications</div>
+                    <li class="menu-item @yield('submenuMarhalah2')">
+                        <a href="{{ url('/marhalah/kelas') }}" class="menu-link">
+                            <div data-i18n="Notifications">Kelas</div>
                         </a>
                     </li>
                     <li class="menu-item">
