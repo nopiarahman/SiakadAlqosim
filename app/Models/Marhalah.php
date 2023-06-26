@@ -18,7 +18,7 @@ class Marhalah extends Model
      */
     public function kelas()
     {
-        return $this->hasMany(kelas::class);
+        return $this->hasMany(Kelas::class);
     }
     /**
      * Get all of the user for the Marhalah
@@ -27,7 +27,7 @@ class Marhalah extends Model
      */
     public function user()
     {
-        return $this->hasMany(user::class);
+        return $this->hasMany(User::class);
     }
     
 }
