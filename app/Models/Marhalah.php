@@ -20,5 +20,14 @@ class Marhalah extends Model
     {
         return $this->hasMany(kelas::class);
     }
+    /**
+     * Get all of the user for the Marhalah
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function user()
+    {
+        return $this->hasMany(user::class);
+    }
     
 }

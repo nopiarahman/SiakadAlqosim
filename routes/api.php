@@ -26,5 +26,7 @@ Route::prefix('v1')->group(function(){
     'verified'])->group(function(){
         Route::apiResource('santri',SantriController::class);
         Route::post('logout',[LoginController::class,'logout']);
+        Route::get('/kelas-santri',[SantriController::class,'kelasSantri']);
+        Route::get('/kelas-santri/{id}',[SantriController::class,'isiKelas']);
     });
 });

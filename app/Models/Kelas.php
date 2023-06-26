@@ -20,4 +20,13 @@ class Kelas extends Model
     {
         return $this->belongsTo(Marhalah::class);
     }
+    /**
+     * The santri that belong to the Kelas
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function santri()
+    {
+        return $this->belongsToMany(Santri::class);
+    }
 }

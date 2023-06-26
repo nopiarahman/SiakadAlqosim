@@ -9,12 +9,34 @@
             <h5 class="card-header">Tambah Admin Baru</h5>
             <div class="card-body">
                 <div>
-                    <form enctype="multipart/form-data" action="{{ url('kelas/simpan') }}" method="POST">
+                    <form enctype="multipart/form-data" action="{{ url('admin/simpan') }}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label class="form-label" for="basic-default-fullname">Email</label>
+                            <label class="form-label" for="basic-default-fullname">Nama</label>
                             <input type="text" class="form-control" id="basic-default-fullname"
-                                placeholder="Masukkan nama kelas" name="nama">
+                                placeholder="Masukkan nama" name="name">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="basic-default-fullname">Email</label>
+                            <input type="email" class="form-control" id="basic-default-fullname"
+                                placeholder="Masukkan email" name="email">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="basic-default-fullname">Password</label>
+                            <input type="password" class="form-control" id="basic-default-fullname"
+                                placeholder="Masukkan Password" name="password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlSelect1" class="form-label">Marhalah</label>
+                            <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example"
+                                required name="marhalah_id">
+                                <option selected="">Pilih Marhalah</option>
+                                @forelse ($marhalah as $m)
+                                    <option value="{{ $m->id }}">{{ $m->nama }}</option>
+                                @empty
+                                    Belum ada marhalah
+                                @endforelse
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>
@@ -30,16 +52,20 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
+                            <th>Email</th>
+                            <th>Marhalah</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        {{-- @foreach ($admin as $i)
+                        @foreach ($admin as $i)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td><i class="fab fa-angular fa-lg text-danger"></i>
-                                    <strong>{{ $i->nama }}</strong>
+                                    <strong>{{ $i->name }}</strong>
                                 </td>
+                                <td>{{ $i->email }}</td>
+                                <td>{{ $i->marhalah->nama }}</td>
                                 <td>
                                     <div class="dropdown">
                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -60,7 +86,7 @@
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>

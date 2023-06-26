@@ -13,4 +13,14 @@ class Santri extends Model
 
     protected $table = "santri";
     protected $guarded =['id','created_at','updated_at'];
+
+    /**
+     * The kelas that belong to the Santri
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function kelas()
+    {
+        return $this->belongsToMany(Kelas::class);
+    }
 }

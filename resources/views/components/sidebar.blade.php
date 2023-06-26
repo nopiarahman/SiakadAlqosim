@@ -62,24 +62,24 @@
                     </li>
                 </ul>
             </li> --}}
-
-            <li class="menu-header small text-uppercase">
-                <span class="menu-header-text">YAYASAN</span>
-            </li>
-            <li class="menu-item  @yield('menuMarhalah')">
-                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="menu-icon tf-icons bx bx-buildings"></i>
-                    <div data-i18n="marhalah">Marhalah/Jenjang</div>
-                </a>
-                <ul class="menu-sub ">
-                    <li class="menu-item @yield('submenuMarhalah1')">
-                        <a href="{{ url('/marhalah') }}" class="menu-link">
-                            <div data-i18n="marhalah">List Semua Marhalah</div>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            {{-- <li class="menu-item">
+            @role('Super-Admin')
+                <li class="menu-header small text-uppercase">
+                    <span class="menu-header-text">YAYASAN</span>
+                </li>
+                <li class="menu-item  @yield('menuMarhalah')">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-buildings"></i>
+                        <div data-i18n="marhalah">Marhalah/Jenjang</div>
+                    </a>
+                    <ul class="menu-sub ">
+                        <li class="menu-item @yield('submenuMarhalah1')">
+                            <a href="{{ url('/marhalah') }}" class="menu-link">
+                                <div data-i18n="marhalah">List Semua Marhalah</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {{-- <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
                     <div data-i18n="Authentications">Authentications</div>
@@ -120,10 +120,10 @@
                     </li>
                 </ul>
             </li> --}}
-            <!-- Components -->
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Admin</span></li>
-            <!-- User interface -->
-            {{-- <li class="menu-item">
+                <!-- Components -->
+                <li class="menu-header small text-uppercase"><span class="menu-header-text">Admin</span></li>
+                <!-- User interface -->
+                {{-- <li class="menu-item">
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-box"></i>
                     <div data-i18n="User interface">User interface</div>
@@ -227,68 +227,70 @@
                 </ul>
             </li> --}}
 
-            <!-- Extended components -->
-            <li class="menu-item @yield('menuUser') ">
-                <a href="javascript:void(0)" class="menu-link menu-toggle">
-                    <i class="menu-icon tf-icons bx bx-copy"></i>
-                    <div data-i18n="Extended UI">User</div>
-                </a>
-                <ul class="menu-sub">
-                    <li class="menu-item @yield('subMenuUser1')">
-                        <a href="{{ url('/user/admin') }}" class="menu-link">
-                            <div data-i18n="Perfect Scrollbar">Admin</div>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <!-- Forms & Tables -->
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Forms &amp;
-                    Tables</span></li>
-            <!-- Forms -->
-            <li class="menu-item">
-                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="menu-icon tf-icons bx bx-detail"></i>
-                    <div data-i18n="Form Elements">Form Elements</div>
-                </a>
-                <ul class="menu-sub">
-                    <li class="menu-item">
-                        <a href="forms-basic-inputs.html" class="menu-link">
-                            <div data-i18n="Basic Inputs">Basic Inputs</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="forms-input-groups.html" class="menu-link">
-                            <div data-i18n="Input groups">Input groups</div>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="menu-item">
-                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="menu-icon tf-icons bx bx-detail"></i>
-                    <div data-i18n="Form Layouts">Form Layouts</div>
-                </a>
-                <ul class="menu-sub">
-                    <li class="menu-item">
-                        <a href="form-layouts-vertical.html" class="menu-link">
-                            <div data-i18n="Vertical Form">Vertical Form</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="form-layouts-horizontal.html" class="menu-link">
-                            <div data-i18n="Horizontal Form">Horizontal Form</div>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <!-- Tables -->
-            <li class="menu-item">
-                <a href="tables-basic.html" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-table"></i>
-                    <div data-i18n="Tables">Tables</div>
-                </a>
-            </li>
+                <!-- Extended components -->
+                <li class="menu-item @yield('menuUser') ">
+                    <a href="javascript:void(0)" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-copy"></i>
+                        <div data-i18n="Extended UI">User</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item @yield('subMenuUser1')">
+                            <a href="{{ url('/user/admin') }}" class="menu-link">
+                                <div data-i18n="Perfect Scrollbar">Admin</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endrole
+            @role('Super-Admin|admin')
+                <!-- Forms & Tables -->
+                <li class="menu-header small text-uppercase"><span class="menu-header-text">Santri &amp;
+                        Nilai</span></li>
+                <!-- Forms -->
+                <li class="menu-item @yield('menuSantri')">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-detail"></i>
+                        <div data-i18n="Form Elements">Santri</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item @yield('subMenuSantri1')">
+                            <a href="{{ url('/santri') }}" class="menu-link">
+                                <div data-i18n="Input groups">Semua Santri</div>
+                            </a>
+                        </li>
+                        <li class="menu-item @yield('subMenuSantri2')">
+                            <a href="{{ url('/kelas-santri') }}" class="menu-link">
+                                <div data-i18n="Basic Inputs">Berdasarkan Kelas</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-detail"></i>
+                        <div data-i18n="Form Layouts">Form Layouts</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a href="form-layouts-vertical.html" class="menu-link">
+                                <div data-i18n="Vertical Form">Vertical Form</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="form-layouts-horizontal.html" class="menu-link">
+                                <div data-i18n="Horizontal Form">Horizontal Form</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Tables -->
+                <li class="menu-item">
+                    <a href="tables-basic.html" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-table"></i>
+                        <div data-i18n="Tables">Tables</div>
+                    </a>
+                </li>
+            @endrole
             <!-- Misc -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
             <li class="menu-item">

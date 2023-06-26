@@ -31,26 +31,33 @@ Route::middleware([
     })->name('dashboard');
 
     // Marhalah
-   Route::controller(MarhalahController::class)->group(function(){
-    Route::get('/marhalah','index');
-    Route::get('/marhalah/kelas','kelas');
-    Route::get('/marhalah/tambah','create');
-    Route::post('/marhalah/simpan','store');
-    Route::get('/marhalah/edit/{id}','edit')->name('edit-marhalah');
-    Route::patch('/marhalah/update/{id}','update')->name('update-marhalah');
-    Route::delete('/marhalah/delete/{id}','destroy');
-});
-//    Kelas
-Route::controller(KelasController::class)->group(function(){
-    Route::get('/marhalah/kelas/{marhalah}','index')->name('kelas-marhalah');
-    Route::post('/kelas/simpan','store');
-    Route::patch('/kelas/update/{id}','update');
-    Route::delete('/kelas/delete/{id}','destroy');
-   });
-Route::controller(UserController::class)->group(function(){
-    Route::get('/user/admin','admin');
-   });
-
-
-
+    Route::controller(MarhalahController::class)->group(function(){
+        Route::get('/marhalah','index');
+        Route::get('/marhalah/kelas','kelas');
+        Route::get('/marhalah/tambah','create');
+        Route::post('/marhalah/simpan','store');
+        Route::get('/marhalah/edit/{id}','edit')->name('edit-marhalah');
+        Route::patch('/marhalah/update/{id}','update')->name('update-marhalah');
+        Route::delete('/marhalah/delete/{id}','destroy');
+    });
+    //    Kelas
+    Route::controller(KelasController::class)->group(function(){
+        Route::get('/marhalah/kelas/{marhalah}','index')->name('kelas-marhalah');
+        Route::post('/kelas/simpan','store');
+        Route::patch('/kelas/update/{id}','update');
+        Route::delete('/kelas/delete/{id}','destroy');
+    });
+    // User
+    Route::controller(UserController::class)->group(function(){
+        Route::get('/user/admin','admin');
+        Route::post('/admin/simpan','store');
+    });
+    // Santri
+    Route::controller(SantriController::class)->group(function(){
+        Route::get('/santri','all');
+        Route::get('/santri/tambah/{kelas}','create')->name('santri-kelas-tambah');
+        Route::post('/santri/simpan/{kelas}','store')->name('santri-kelas-simpan');
+        Route::get('/kelas-santri','kelasSantri');
+        Route::get('/kelas-santri/{id}','isiKelas')->name('isi-kelas');
+    });
 });
