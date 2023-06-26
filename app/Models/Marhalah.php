@@ -10,4 +10,15 @@ class Marhalah extends Model
     use HasFactory;
     protected $table = "marhalah";
     protected $guarded =['id','created_at','updated_at'];
+
+    /**
+     * Get all of the kelas for the Marhalah
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function kelas()
+    {
+        return $this->hasMany(kelas::class);
+    }
+    
 }
