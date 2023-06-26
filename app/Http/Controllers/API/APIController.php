@@ -9,8 +9,5 @@ use App\Http\Resources\UserResource;
 
 class APIController extends Controller
 {
-    function allUser() {
-        $user = User::all();
-        return UserResource::collection($user);
-    }
+
 }

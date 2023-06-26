@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\LoginResource;
 
 class LoginController extends Controller
 {
@@ -16,7 +17,10 @@ class LoginController extends Controller
         ]);
         if (Auth::attempt($loginData)) {
             $token = Auth::user()->createToken('authToken')->plainTextToken;
-            return response()->json(['data' => Auth::user(), 'token' => $token], 200);
+            $data = Auth::user();
+            $data['token']=$token;
+            $data['role']=Auth::user()->getRoleNames()->first();
+            return LoginResource::collection([$data]);
         }
         return response()->json(['messages' => 'Invalid credentials', 401]);
     }
