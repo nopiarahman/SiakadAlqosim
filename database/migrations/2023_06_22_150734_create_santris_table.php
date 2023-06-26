@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('santri', function (Blueprint $table) {
             $table->id();
+            $table->string('nik')->nullable();
             $table->string('namaLengkap');
-            $table->string('namaPanggilan');
+            $table->string('namaPanggilan')->nullable();
             $table->string('tempatLahir')->nullable();
             $table->date('tanggalLahir')->nullable();
             $table->string('jenisKelamin')->nullable();

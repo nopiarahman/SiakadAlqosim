@@ -31,7 +31,7 @@ class SantriController extends Controller
             $santri->save();
             $kelas->santri()->attach($santri->id);
             DB::commit();
-            return redirect()->route('isi-kelas',['id'=>$kelas->id])->with('success','Marhalah Berhasil Disimpan');
+            return redirect()->route('isi-kelas',['id'=>$kelas->id])->with('success','Santri Berhasil Disimpan');
         } catch (\Exception $ex) {
             DB::rollback();
             return redirect()->back()->with('error','Gagal. Pesan Error: '.$ex->getMessage());
