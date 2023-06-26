@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SantriController;
 use App\Http\Controllers\MarhalahController;
@@ -46,6 +47,10 @@ Route::controller(KelasController::class)->group(function(){
     Route::patch('/kelas/update/{id}','update');
     Route::delete('/kelas/delete/{id}','destroy');
    });
+Route::controller(UserController::class)->group(function(){
+    Route::get('/user/admin','admin');
+   });
+
 
 
 });

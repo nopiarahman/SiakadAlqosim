@@ -77,19 +77,9 @@
                             <div data-i18n="marhalah">List Semua Marhalah</div>
                         </a>
                     </li>
-                    <li class="menu-item @yield('submenuMarhalah2')">
-                        <a href="{{ url('/marhalah/kelas') }}" class="menu-link">
-                            <div data-i18n="Notifications">Kelas</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="pages-account-settings-connections.html" class="menu-link">
-                            <div data-i18n="Connections">Connections</div>
-                        </a>
-                    </li>
                 </ul>
             </li>
-            <li class="menu-item">
+            {{-- <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
                     <div data-i18n="Authentications">Authentications</div>
@@ -129,18 +119,11 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
             <!-- Components -->
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
-            <!-- Cards -->
-            <li class="menu-item">
-                <a href="cards-basic.html" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-collection"></i>
-                    <div data-i18n="Basic">Cards</div>
-                </a>
-            </li>
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Admin</span></li>
             <!-- User interface -->
-            <li class="menu-item">
+            {{-- <li class="menu-item">
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-box"></i>
                     <div data-i18n="User interface">User interface</div>
@@ -242,33 +225,21 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
 
             <!-- Extended components -->
-            <li class="menu-item">
+            <li class="menu-item @yield('menuUser') ">
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-copy"></i>
-                    <div data-i18n="Extended UI">Extended UI</div>
+                    <div data-i18n="Extended UI">User</div>
                 </a>
                 <ul class="menu-sub">
-                    <li class="menu-item">
-                        <a href="extended-ui-perfect-scrollbar.html" class="menu-link">
-                            <div data-i18n="Perfect Scrollbar">Perfect scrollbar</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="extended-ui-text-divider.html" class="menu-link">
-                            <div data-i18n="Text Divider">Text Divider</div>
+                    <li class="menu-item @yield('subMenuUser1')">
+                        <a href="{{ url('/user/admin') }}" class="menu-link">
+                            <div data-i18n="Perfect Scrollbar">Admin</div>
                         </a>
                     </li>
                 </ul>
-            </li>
-
-            <li class="menu-item">
-                <a href="icons-boxicons.html" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-crown"></i>
-                    <div data-i18n="Boxicons">Boxicons</div>
-                </a>
             </li>
 
             <!-- Forms & Tables -->
