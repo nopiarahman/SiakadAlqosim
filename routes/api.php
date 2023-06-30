@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\APIController;
 use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\SantriController;
+use App\Http\Controllers\API\TugasTahfidzController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +33,8 @@ Route::prefix('v1')->group(function(){
 
         // halaqoh
         Route::get('/halaqoh',[APIController::class,'halaqoh']);
+
+        // Tugas
+        Route::apiResource('tugas',TugasTahfidzController::class);
     });
 });

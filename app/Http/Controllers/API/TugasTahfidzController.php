@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Controllers\API;
+
+use App\Models\TugasTahfidz;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+class TugasTahfidzController extends Controller
+{
+    function index() {
+        $tugas= TugasTahfidz::where('halaqoh_id',auth()->user()->guru->first()->halaqoh->first()->id)->get();
+        return response()->json($tugas, 200);
+    }
+    function store(Request $request) {
+        $tugas = new TugasTahfidz;
+        $tugas = TugasTahfidz::create($request->all());
+        $tugas['halaqoh_id']=auth()->user()->guru->first()->halaqoh->first()->id;
+        $tugas->save();
+        return response()->json('Tugas berhasil disimpan', 200);
+    }
+    public function update(Request $request, $tuga) {
+        $tugas = TugasTahfidz::findOrFail($tuga);
+        $tugas->update($request->all());
+        return response()->json($request);
+    }
+}
