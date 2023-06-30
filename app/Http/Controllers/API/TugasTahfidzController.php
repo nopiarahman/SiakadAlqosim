@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Models\TugasTahfidz;
 use Illuminate\Http\Request;
+use App\Http\Requests\TugasUpdate;
 use App\Http\Controllers\Controller;
 
 class TugasTahfidzController extends Controller
@@ -22,6 +23,10 @@ class TugasTahfidzController extends Controller
     public function update(Request $request, $tuga) {
         $tugas = TugasTahfidz::findOrFail($tuga);
         $tugas->update($request->all());
-        return response()->json($request);
+        return response()->json("berhasil");
+    }
+    function destroy(TugasTahfidz $tuga) {
+        $tuga->delete();
+        return response()->json("berhasil dihapus",200);
     }
 }
