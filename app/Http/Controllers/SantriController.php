@@ -42,4 +42,13 @@ class SantriController extends Controller
             return redirect()->back()->with('error','Gagal. Pesan Error: '.$ex->getMessage());
         }
     }
+    function cariSantri(Request $request) {
+        if($request->has('q')){
+            $cari = $request->q;
+            $data = Santri::select('id','namaLengkap')->where('namaLengkap','LIKE','%'.$cari.'%')
+            ->where('marhalah_id',auth()->user()->marhalah_id)->get();
+
+            return response()->json($data);
+        }
+    }
 }

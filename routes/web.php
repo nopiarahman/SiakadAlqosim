@@ -5,6 +5,7 @@ use App\Http\Controllers\GuruController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SantriController;
+use App\Http\Controllers\HalaqohController;
 use App\Http\Controllers\MarhalahController;
 
 /*
@@ -60,6 +61,8 @@ Route::middleware([
         Route::post('/santri/simpan/{kelas}','store')->name('santri-kelas-simpan');
         Route::get('/kelas-santri','kelasSantri');
         Route::get('/kelas-santri/{id}','isiKelas')->name('isi-kelas');
+        Route::get('/cariSantri','cariSantri');
+
     });
     // Guru
     Route::controller(GuruController::class)->group(function(){
@@ -67,5 +70,13 @@ Route::middleware([
         Route::get('/guru/tambah','create');
         Route::post('/guru/simpan','store')->name('guru-simpan');
         Route::delete('/guru/delete/{id}','destroy');
+    });
+    // Halaqoh
+    Route::controller(HalaqohController::class)->group(function(){
+        Route::get('/halaqoh','index');
+        Route::post('/halaqoh/simpan','store');
+        Route::get('/halaqoh/{id}','isi')->name('isi-halaqoh');
+        Route::post('/halaqoh/{id}/simpan','isiSantri')->name('halaqoh-isi-simpan');
+        Route::delete('/halaqoh/deleteSantri/{id}','deleteSantri');
     });
 });

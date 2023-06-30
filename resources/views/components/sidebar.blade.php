@@ -96,8 +96,8 @@
                                 <div data-i18n="Vertical Form">Semua Guru</div>
                             </a>
                         </li>
-                        <li class="menu-item">
-                            <a href="form-layouts-horizontal.html" class="menu-link">
+                        <li class="menu-item @yield('subMenuGuru2')">
+                            <a href="{{ url('/halaqoh') }}" class="menu-link">
                                 <div data-i18n="Horizontal Form">Pengampu Halaqoh</div>
                             </a>
                         </li>

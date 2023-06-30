@@ -23,4 +23,13 @@ class Santri extends Model implements HasMedia
     {
         return $this->belongsToMany(Kelas::class);
     }
+    /**
+     * The halaqoh that belong to the Santri
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function halaqoh()
+    {
+        return $this->belongsToMany(Halaqoh::class);
+    }
 }

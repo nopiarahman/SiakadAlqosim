@@ -23,5 +23,13 @@ class Guru extends Model implements HasMedia
     {
         return $this->belongsTo(User::class);
     }
-
+    /**
+     * Get all of the halaqoh for the Guru
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function halaqoh()
+    {
+        return $this->hasMany(Halaqoh::class);
+    }
 }
