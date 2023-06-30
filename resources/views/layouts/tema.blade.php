@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="{{ asset('template/vendor/libs/apex-charts/apex-charts.css') }}" />
 
     <!-- Page CSS -->
-
+    @yield('head')
     <!-- Helpers -->
     <script src="{{ asset('template/vendor/js/helpers.js') }}"></script>
 
@@ -78,6 +78,7 @@
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
+    @yield('script')
     <script src="{{ asset('template/vendor/libs/jquery/jquery.js') }}"></script>
     <script src="{{ asset('template/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('template/vendor/js/bootstrap.js') }}"></script>

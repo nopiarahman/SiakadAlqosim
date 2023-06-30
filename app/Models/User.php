@@ -68,4 +68,13 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Marhalah::class);
     }
+    /**
+     * Get all of the guru for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function guru()
+    {
+        return $this->hasMany(Guru::class);
+    }
 }

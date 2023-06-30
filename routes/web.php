@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GuruController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SantriController;
@@ -59,5 +60,12 @@ Route::middleware([
         Route::post('/santri/simpan/{kelas}','store')->name('santri-kelas-simpan');
         Route::get('/kelas-santri','kelasSantri');
         Route::get('/kelas-santri/{id}','isiKelas')->name('isi-kelas');
+    });
+    // Guru
+    Route::controller(GuruController::class)->group(function(){
+        Route::get('/guru','index')->name('guru');
+        Route::get('/guru/tambah','create');
+        Route::post('/guru/simpan','store')->name('guru-simpan');
+        Route::delete('/guru/delete/{id}','destroy');
     });
 });
