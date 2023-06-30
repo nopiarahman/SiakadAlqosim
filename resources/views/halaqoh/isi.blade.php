@@ -30,7 +30,7 @@
                                         return {
                                             results: $.map(data, function(item) {
                                                 return {
-                                                    text: item.namaLengkap,
+                                                    text: item.namaLengkap + " Kelas " + item.kelas[0].nama,
                                                     /* memasukkan text di option => <option>namaSurah</option> */
                                                     id: item.id /* memasukkan value di option => <option value=id> */
                                                 }

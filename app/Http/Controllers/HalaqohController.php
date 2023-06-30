@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guru;
+use App\Models\Santri;
 use App\Models\Halaqoh;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -32,6 +33,15 @@ class HalaqohController extends Controller
         }
     }
     function isi(Halaqoh $id) {
+        $cari = "a";
+        $data = Santri::select('id','namaLengkap')->where('namaLengkap','LIKE','%'.$cari.'%')
+        ->where('marhalah_id',auth()->user()->marhalah_id)->get();
+        
+        $data->filter(function($value){
+                $value['kelas']=$value->kelas->first()->nama;
+                return $value;
+            });
+        // dd($data);
         return view('halaqoh.isi',compact('id'));
     }
     function isiSantri(Halaqoh $id, Request $request) {   
