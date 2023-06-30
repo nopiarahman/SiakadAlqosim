@@ -37,6 +37,7 @@ class GuruController extends Controller
             $guru['marhalah_id'] = auth()->user()->marhalah_id;
             $guru['user_id']=$user->id;
             $guru->save();
+            $user->assignRole('guru');
             DB::commit();
             return redirect()->route('guru')->with('success','Guru Berhasil Disimpan');
         } catch (\Exception $ex) {
