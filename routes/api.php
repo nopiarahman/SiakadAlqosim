@@ -29,5 +29,8 @@ Route::prefix('v1')->group(function(){
         Route::post('logout',[LoginController::class,'logout']);
         Route::get('/kelas-santri',[SantriController::class,'kelasSantri']);
         Route::get('/kelas-santri/{id}',[SantriController::class,'isiKelas']);
+
+        // halaqoh
+        Route::get('/halaqoh',[APIController::class,'halaqoh']);
     });
 });
