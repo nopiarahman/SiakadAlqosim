@@ -80,7 +80,7 @@
                                         <div class="dropdown-menu">
                                             <button class="dropdown-item " data-bs-toggle="modal"
                                                 data-bs-target="#exampleModalCenter" data-id="{{ $id->id }}"
-                                                data-nama="{{ $i->namaLengkap }}">
+                                                data-santri="{{ $i->id }}" data-nama="{{ $i->namaLengkap }}">
                                                 <i class="bx bx-trash me-1" aria-hidden="true"></i> Hapus</button>
                                         </div>
                                     </div>
@@ -110,6 +110,7 @@
                         @method('delete')
                         @csrf
                         <p class="modal-text"></p>
+                        <input type="hidden" name="santri_id" id="santriDelete">
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-danger">Hapus!</button>
@@ -127,9 +128,11 @@
                 var button = $(event.relatedTarget) // Button that triggered the modal
                 var id = button.data('id') // Extract info from data-bs-* attributes
                 var nama = button.data('nama')
+                var santri = button.data('santri')
                 var modal = $(this)
                 modal.find('.modal-text').text('Yakin ingin menghapus nama ' + nama + ' ?')
                 document.getElementById('formHapus').action = '/halaqoh/deleteSantri/' + id;
+                $('#santriDelete').val(santri);
             })
         });
     </script>
