@@ -80,8 +80,8 @@
                         <li>
                             <form method="POST" action="{{ route('logout') }}" x-data>
                                 @csrf
-                                <button type="submit">
-                                    {{ __('Log Out') }}
+                                <button type="submit" class="dropdown-item">
+                                    <i class="bx bx-power-off me-2"></i> {{ __('Log Out') }}
                                 </button>
                             </form>
                         </li>

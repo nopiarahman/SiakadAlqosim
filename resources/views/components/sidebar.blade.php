@@ -265,20 +265,21 @@
                         </li>
                     </ul>
                 </li>
+                <li class="menu-header small text-uppercase"><span class="menu-header-text">Asatidz</span></li>
                 <li class="menu-item">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bx-detail"></i>
-                        <div data-i18n="Form Layouts">Form Layouts</div>
+                        <div data-i18n="Form Layouts">Asatidz</div>
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
                             <a href="form-layouts-vertical.html" class="menu-link">
-                                <div data-i18n="Vertical Form">Vertical Form</div>
+                                <div data-i18n="Vertical Form">Semua Asatidz</div>
                             </a>
                         </li>
                         <li class="menu-item">
                             <a href="form-layouts-horizontal.html" class="menu-link">
-                                <div data-i18n="Horizontal Form">Horizontal Form</div>
+                                <div data-i18n="Horizontal Form">Pengampu Halaqoh</div>
                             </a>
                         </li>
                     </ul>

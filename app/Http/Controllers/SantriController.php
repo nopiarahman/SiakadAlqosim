@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 
 class SantriController extends Controller
 {
+    function all() {
+        $santri =Santri::where('marhalah_id',auth()->user()->marhalah_id)->get();
+        return view('santri.index',compact('santri'));
+    }
     function kelasSantri() {
         $kelas = Kelas::where('marhalah_id',auth()->user()->marhalah_id)->get();
         return view('santri.kelasSantri',compact('kelas'));
@@ -28,6 +32,7 @@ class SantriController extends Controller
                 ]);
             $santri = new Santri;
             $santri = Santri::create($request->all());
+            $santri['marhalah_id'] = auth()->user()->marhalah_id;
             $santri->save();
             $kelas->santri()->attach($santri->id);
             DB::commit();

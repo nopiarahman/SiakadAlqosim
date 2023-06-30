@@ -3,16 +3,12 @@
 @section('subMenuSantri2', 'active')
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><a href="{{ url('/kelas-santri') }}"> Kelas</a> /
-            </span>Kelas {{ $id->nama }}</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">
+            </span>Daftar Santri</h4>
         <x-alert />
-        <a href="{{ route('santri-kelas-tambah', ['kelas' => $id->id]) }}" type="button" class="btn btn-success mb-3"> Tambah
-            Santri
-            Baru di Kelas ini
-        </a>
         <!-- Basic Bootstrap Table -->
         <div class="card">
-            <h5 class="card-header">Daftar Santri Kelas {{ $id->nama }}</h5>
+            <h5 class="card-header">Daftar Santri</h5>
             <div class="text-nowrap">
                 <table class="table table-responsive">
                     <thead>
@@ -20,14 +16,16 @@
                             <th>No</th>
                             <th>NISN</th>
                             <th>Nama</th>
+                            <th>Kelas</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        @foreach ($id->santri as $i)
+                        @foreach ($santri as $i)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $i->nisn }}</td>
+                                <td>{{ $i->kelas->first()->nama }}</td>
                                 <td><i class="fab fa-angular fa-lg text-danger"></i>
                                     <strong>{{ $i->namaLengkap }}</strong>
                                 </td>
@@ -41,7 +39,7 @@
                                             <a class="dropdown-item"
                                                 href="{{ route('edit-marhalah', ['id' => $i->id]) }}"><i
                                                     class="bx bx-edit-alt me-1"></i> Edit</a>
-                                            \ <button class="dropdown-item " data-bs-toggle="modal"
+                                            <button class="dropdown-item " data-bs-toggle="modal"
                                                 data-bs-target="#exampleModalCenter" data-id="{{ $i->id }}"
                                                 data-nama="{{ $i->nama }}">
                                                 <i class="bx bx-trash me-1" aria-hidden="true"></i> Hapus</button>
