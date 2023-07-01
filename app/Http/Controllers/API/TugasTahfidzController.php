@@ -27,7 +27,9 @@ class TugasTahfidzController extends Controller
     public function update(Request $request, $tuga) {
         $tugas = TugasTahfidz::findOrFail($tuga);
         $tugas->update($request->all());
-        return response()->json("berhasil");
+        return response()->json([
+            'pesan'=>'Tugas berhasil diedit!', 
+            'data'=>$tugas],200);
     }
     function destroy(TugasTahfidz $tuga) {
         $tuga->delete();
