@@ -31,7 +31,7 @@ class UserController extends Controller
             $user->save();
             $user->assignRole('admin');
             DB::commit();
-            return redirect()->back()->with('success','Marhalah Berhasil Disimpan');
+            return redirect()->back()->with('success','Admin Berhasil Disimpan');
         } catch (\Exception $ex) {
             DB::rollback();
             return redirect()->back()->with('error','Gagal. Pesan Error: '.$ex->getMessage());

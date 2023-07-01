@@ -12,7 +12,7 @@ class LoginController extends Controller
     protected function loginApi(Request $request)
     {
         $loginData = $request->validate([
-            'email' => 'required|string',
+            'username' => 'required|string',
             'password' => 'required|string',
         ]);
         if (Auth::attempt($loginData)) {

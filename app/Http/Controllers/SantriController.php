@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Wali;
 use App\Models\Kelas;
 use App\Models\Santri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class SantriController extends Controller
 {
@@ -30,11 +33,38 @@ class SantriController extends Controller
             $validasi = $this->validate($request,[
                 'namaLengkap'=> 'string|required',
                 ]);
+            // User Santri
+            $userSantri = new User;
+            $userSantri['name']=$request->namaLengkap;
+            $userSantri['username']=$request->nik;
+            $userSantri['marhalah_id']=auth()->user()->marhalah_id;
+            $userSantri['password']=Hash::make($request->tanggalLahir);
+            $userSantri->save();
+            
+            // User Wali Santri
+            $userWali = new User;
+            $userWali['name']=$request->namaIbu;
+            $userWali['username']=$request->nisn.$request->namaIbu;
+            $userWali['marhalah_id']=auth()->user()->marhalah_id;
+            $userWali['password']=Hash::make($request->tanggalLahir);
+            $userWali->save();
+            
+            // Data Santri
             $santri = new Santri;
             $santri = Santri::create($request->all());
             $santri['marhalah_id'] = auth()->user()->marhalah_id;
+            $santri['user_id']=$userSantri->id;
             $santri->save();
             $kelas->santri()->attach($santri->id);
+
+            // Data Wali
+            $wali = new Wali;
+            $wali = Wali::create([
+                'santri_id'=>$santri->id,
+                'user_id'=>$userWali->id,
+                'namaIbu'=>$request->namaIbu,
+            ]);
+            $wali->save();
             DB::commit();
             return redirect()->route('isi-kelas',['id'=>$kelas->id])->with('success','Santri Berhasil Disimpan');
         } catch (\Exception $ex) {

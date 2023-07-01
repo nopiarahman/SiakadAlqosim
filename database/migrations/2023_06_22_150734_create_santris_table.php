@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use App\Models\Marhalah;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -17,6 +18,7 @@ return new class extends Migration
         Schema::create('santri', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Marhalah::class)->onDelete('CASCADE')->nullable();
+            $table->foreignIdFor(User::class)->onDelete('CASCADE')->nullable();
             $table->string('nik')->nullable();
             $table->string('nisn')->nullable();
             $table->string('namaLengkap');
