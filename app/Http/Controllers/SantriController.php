@@ -40,6 +40,7 @@ class SantriController extends Controller
             $userSantri['marhalah_id']=auth()->user()->marhalah_id;
             $userSantri['password']=Hash::make($request->tanggalLahir);
             $userSantri->save();
+            $userSantri->assignRole('santri');
             
             // User Wali Santri
             $userWali = new User;
@@ -48,6 +49,7 @@ class SantriController extends Controller
             $userWali['marhalah_id']=auth()->user()->marhalah_id;
             $userWali['password']=Hash::make($request->tanggalLahir);
             $userWali->save();
+            $userWali->assignRole('waliSantri');
             
             // Data Santri
             $santri = new Santri;

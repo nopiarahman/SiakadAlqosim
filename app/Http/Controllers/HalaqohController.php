@@ -13,6 +13,7 @@ class HalaqohController extends Controller
     function index() {
         $halaqoh = Halaqoh::where('marhalah_id',auth()->user()->marhalah_id)->get();
         $guru = Guru::where('marhalah_id',auth()->user()->marhalah_id)->get();
+        // dd($guru);
         return view('halaqoh.index',compact('halaqoh','guru'));
     }
     function store(Request $request) {
