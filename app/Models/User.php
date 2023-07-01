@@ -26,7 +26,7 @@ class User extends Authenticatable
      * @var string<int, string>
      */
     protected $fillable = [
-        'name', 'email', 'password','marhalah_id'
+        'name', 'username', 'password','marhalah_id'
     ];
 
     /**
@@ -58,7 +58,15 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    public function getEmailAttribute()
+    {
+        return $this->username;
+    }
 
+    public function setEmailAttribute($value)
+    {
+        $this->username = $value;
+    }
     /**
      * Get the marhalah that owns the User
      *

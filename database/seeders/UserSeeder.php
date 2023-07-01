@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     {
         $user = \App\Models\User::factory()->create([
             'name' => 'Super-Admin',
-            'email' => 'superadmin@example.com',
+            'username' => 'superadmin123',
             'password'=>Hash::make('asdfasdf')
         ]);
         $user->assignRole('Super-Admin');

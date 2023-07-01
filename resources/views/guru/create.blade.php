@@ -15,10 +15,6 @@
                             <label class="form-label" for="basic-default-fullname">Nama</label>
                             <input type="text" class="form-control" name="nama">
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="basic-default-fullname">Email</label>
-                            <input type="email" class="form-control" name="email">
-                        </div>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>
                 </div>

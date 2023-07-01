@@ -17,9 +17,9 @@
                                 placeholder="Masukkan nama" name="name">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="basic-default-fullname">Email</label>
-                            <input type="email" class="form-control" id="basic-default-fullname"
-                                placeholder="Masukkan email" name="email">
+                            <label class="form-label" for="basic-default-fullname">Username</label>
+                            <input type="text" class="form-control" id="basic-default-fullname"
+                                placeholder="Masukkan Username untuk login" name="username">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">Password</label>
@@ -52,7 +52,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Email</th>
+                            {{-- <th>Email</th> --}}
                             <th>Marhalah</th>
                             <th>Aksi</th>
                         </tr>
@@ -64,7 +64,7 @@
                                 <td><i class="fab fa-angular fa-lg text-danger"></i>
                                     <strong>{{ $i->name }}</strong>
                                 </td>
-                                <td>{{ $i->email }}</td>
+                                {{-- <td>{{ $i->email }}</td> --}}
                                 <td>{{ $i->marhalah->nama }}</td>
                                 <td>
                                     <div class="dropdown">

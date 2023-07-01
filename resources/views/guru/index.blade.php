@@ -21,7 +21,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Email</th>
+                            <th>Username</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -32,7 +32,7 @@
                                 <td><i class="fab fa-angular fa-lg text-danger"></i>
                                     <strong>{{ $i->nama }}</strong>
                                 </td>
-                                <td>{{ $i->email }}</td>
+                                <td>{{ $i->user->username }}</td>
                                 <td>
                                     <div class="dropdown">
                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow"

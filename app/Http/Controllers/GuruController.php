@@ -18,7 +18,11 @@ class GuruController extends Controller
         return  view('guru.create');
     }
     function store(Request $request) {
-        $part = explode("@",$request->email);
+        // Mengubah ke huruf kecil
+        $string = strtolower($request->nama);
+
+        // Menghapus spasi
+        $string = str_replace(' ', '', $string);
         try {
             DB::beginTransaction();
             $validasi = $this->validate($request,[
@@ -27,9 +31,9 @@ class GuruController extends Controller
             // User Guru
             $user = new User;
             $user['name']=$request->nama;
-            $user['email']=$request->email;
+            $user['username']=$string;
             $user['marhalah_id']=auth()->user()->marhalah_id;
-            $user['password']=Hash::make($part[0]);
+            $user['password']=Hash::make('alqosimJambi');
             $user->save();
             // Data Guru
             $guru = new Guru;
