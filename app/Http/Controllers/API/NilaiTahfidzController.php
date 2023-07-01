@@ -12,4 +12,7 @@ class NilaiTahfidzController extends Controller
         $nilai = $tugas->nilai_tahfidz;
         return response()->json($nilai, 200);
     }
+    function kirim(Request $request) {
+        dd($request);
+    }
 }

@@ -28,6 +28,7 @@ class SantriController extends Controller
         return view('santri.create',compact('kelas'));
     }
     function store(Request $request, Kelas $kelas) {
+        // dd($request->tanggalLahir);
         try {
             DB::beginTransaction();
             $validasi = $this->validate($request,[
@@ -50,7 +51,7 @@ class SantriController extends Controller
             $userWali['password']=Hash::make($request->tanggalLahir);
             $userWali->save();
             $userWali->assignRole('waliSantri');
-            
+
             // Data Santri
             $santri = new Santri;
             $santri = Santri::create($request->all());

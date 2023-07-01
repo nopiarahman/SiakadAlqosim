@@ -38,5 +38,6 @@ Route::prefix('v1')->group(function(){
         Route::get('/list-tugas',[TugasTahfidzController::class,'list']);
         // Nilai
         Route::get('nilai/{tugas}',[NilaiTahfidzController::class,'index']);
+        Route::post('kirim/{tugas}',[NilaiTahfidzController::class,'kirim']);
     });
 });
