@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\APIController;
 use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\SantriController;
+use App\Http\Controllers\API\NilaiTahfidzController;
 use App\Http\Controllers\API\TugasTahfidzController;
 
 /*
@@ -30,11 +31,11 @@ Route::prefix('v1')->group(function(){
         Route::post('logout',[LoginController::class,'logout']);
         Route::get('/kelas-santri',[SantriController::class,'kelasSantri']);
         Route::get('/kelas-santri/{id}',[SantriController::class,'isiKelas']);
-
         // halaqoh
         Route::get('/halaqoh',[APIController::class,'halaqoh']);
-
         // Tugas
         Route::apiResource('tugas',TugasTahfidzController::class);
+        // Nilai
+        Route::get('nilai/{tugas}',[NilaiTahfidzController::class,'index']);
     });
 });
