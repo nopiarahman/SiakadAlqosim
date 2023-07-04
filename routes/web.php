@@ -57,9 +57,14 @@ Route::middleware([
     // Santri
     Route::controller(SantriController::class)->group(function(){
         Route::get('/santri','all');
+        Route::get('/santri/{id}','edit')->name('edit-santri');
+        Route::patch('/santri/{id}','update')->name('update-santri');
+        Route::delete('/santri/{id}','destroy');
         Route::get('/santri/tambah/{kelas}','create')->name('santri-kelas-tambah');
         Route::post('/santri/simpan/{kelas}','store')->name('santri-kelas-simpan');
         Route::get('/kelas-santri','kelasSantri');
+        Route::get('/kelas-santri-marhalah','kelasMarhalah');
+        Route::get('/santri-marhalah/{id}','isiKelasMarhalah')->name('isi-kelas-marhalah');
         Route::get('/kelas-santri/{id}','isiKelas')->name('isi-kelas');
         Route::get('/cariSantri','cariSantri');
 

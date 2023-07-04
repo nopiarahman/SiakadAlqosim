@@ -11,7 +11,11 @@ use Illuminate\Support\Facades\Hash;
 class GuruController extends Controller
 {
     function index() {
-        $asatidz = Guru::where('marhalah_id',auth()->user()->marhalah_id)->get();
+        if(auth()->user()->getRoleNames()->first()!= 'Super-Admin'){
+            $asatidz = Guru::where('marhalah_id',auth()->user()->marhalah_id)->get();
+        }else{
+            $asatidz = Guru::all();
+        }
         return view('guru.index',compact('asatidz'));
     }
     function create() {

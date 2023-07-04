@@ -77,11 +77,20 @@
                                 <div data-i18n="Input groups">Semua Santri</div>
                             </a>
                         </li>
-                        <li class="menu-item @yield('subMenuSantri2')">
-                            <a href="{{ url('/kelas-santri') }}" class="menu-link">
-                                <div data-i18n="Basic Inputs">Berdasarkan Kelas</div>
-                            </a>
-                        </li>
+                        @role('admin')
+                            <li class="menu-item @yield('subMenuSantri2')">
+                                <a href="{{ url('/kelas-santri') }}" class="menu-link">
+                                    <div data-i18n="Basic Inputs">Berdasarkan Kelas</div>
+                                </a>
+                            </li>
+                        @endrole
+                        @role('Super-Admin')
+                            <li class="menu-item @yield('subMenuSantri2')">
+                                <a href="{{ url('/kelas-santri-marhalah') }}" class="menu-link">
+                                    <div data-i18n="Basic Inputs">Berdasarkan Marhalah</div>
+                                </a>
+                            </li>
+                        @endrole
                     </ul>
                 </li>
                 <li class="menu-header small text-uppercase"><span class="menu-header-text">Guru</span></li>
@@ -96,11 +105,13 @@
                                 <div data-i18n="Vertical Form">Semua Guru</div>
                             </a>
                         </li>
-                        <li class="menu-item @yield('subMenuGuru2')">
-                            <a href="{{ url('/halaqoh') }}" class="menu-link">
-                                <div data-i18n="Horizontal Form">Pengampu Halaqoh</div>
-                            </a>
-                        </li>
+                        @role('admin')
+                            <li class="menu-item @yield('subMenuGuru2')">
+                                <a href="{{ url('/halaqoh') }}" class="menu-link">
+                                    <div data-i18n="Horizontal Form">Pengampu Halaqoh</div>
+                                </a>
+                            </li>
+                        @endrole
                     </ul>
                 </li>
                 <!-- Tables -->

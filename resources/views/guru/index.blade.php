@@ -9,9 +9,11 @@
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">
             </span>Daftar Asatidz</h4>
         <x-alert />
-        <a href="{{ url('/guru/tambah') }}" type="button" class="btn btn-primary mb-3"> Tambah
-            Guru Baru
-        </a>
+        @role('admin')
+            <a href="{{ url('/guru/tambah') }}" type="button" class="btn btn-primary mb-3"> Tambah
+                Guru Baru
+            </a>
+        @endrole
         <!-- Basic Bootstrap Table -->
         <div class="card">
             <h5 class="card-header">Daftar Asatidz</h5>
