@@ -57,16 +57,17 @@ class SantriController extends Controller
             // User Santri
             $userSantri = new User;
             $userSantri['name']=$request->namaLengkap;
-            $userSantri['username']=$request->nik;
+            $userSantri['username']='santri'.$request->nik;
             $userSantri['marhalah_id']=auth()->user()->marhalah_id;
             $userSantri['password']=Hash::make($password);
             $userSantri->save();
             $userSantri->assignRole('santri');
             
+            
             // User Wali Santri
             $userWali = new User;
             $userWali['name']=$request->namaWali;
-            $userWali['username']=$string;
+            $userWali['username']='wali'.$request->nik;
             $userWali['marhalah_id']=auth()->user()->marhalah_id;
             $userWali['password']=Hash::make($passwordWali);
             $userWali->save();
