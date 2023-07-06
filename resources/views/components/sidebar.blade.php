@@ -28,11 +28,11 @@
             </li>
             @role('Super-Admin')
                 <li class="menu-header small text-uppercase">
-                    <span class="menu-header-text">YAYASAN</span>
+                    <span class="menu-header-text">Master Data</span>
                 </li>
                 <li class="menu-item  @yield('menuMarhalah')">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <i class="menu-icon tf-icons bx bx-buildings"></i>
+                        <i class="menu-icon tf-icons bx bxs-school"></i>
                         <div data-i18n="marhalah">Marhalah/Jenjang</div>
                     </a>
                     <ul class="menu-sub ">
@@ -63,18 +63,17 @@
             @endrole
             @role('Super-Admin|admin')
                 <!-- Forms & Tables -->
-                <li class="menu-header small text-uppercase"><span class="menu-header-text">Santri &amp;
-                        Nilai</span></li>
+                <li class="menu-header small text-uppercase"><span class="menu-header-text">Master Data</span></li>
                 <!-- Forms -->
                 <li class="menu-item @yield('menuSantri')">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <i class="menu-icon tf-icons bx bx-detail"></i>
+                        <i class="menu-icon tf-icons bx bx-user"></i>
                         <div data-i18n="Form Elements">Santri</div>
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item @yield('subMenuSantri1')">
                             <a href="{{ url('/santri') }}" class="menu-link">
-                                <div data-i18n="Input groups">Semua Santri</div>
+                                <div data-i18n="Input groups">Santri Aktif</div>
                             </a>
                         </li>
                         @role('admin')
@@ -91,12 +90,16 @@
                                 </a>
                             </li>
                         @endrole
+                        <li class="menu-item @yield('subMenuSantri1')">
+                            <a href="{{ url('/santri') }}" class="menu-link">
+                                <div data-i18n="Input groups">Alumni</div>
+                            </a>
+                        </li>
                     </ul>
                 </li>
-                <li class="menu-header small text-uppercase"><span class="menu-header-text">Guru</span></li>
                 <li class="menu-item @yield('menuGuru')">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <i class="menu-icon tf-icons bx bx-detail"></i>
+                        <i class="menu-icon tf-icons bx bx-user-voice"></i>
                         <div data-i18n="Form Layouts">Guru</div>
                     </a>
                     <ul class="menu-sub">
@@ -114,13 +117,14 @@
                         @endrole
                     </ul>
                 </li>
-                <!-- Tables -->
                 <li class="menu-item">
                     <a href="tables-basic.html" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-table"></i>
-                        <div data-i18n="Tables">Tables</div>
+                        <div data-i18n="Tables">Kelas</div>
                     </a>
                 </li>
+                <li class="menu-header small text-uppercase"><span class="menu-header-text">Jadwal</span></li>
+
             @endrole
             <!-- Misc -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>

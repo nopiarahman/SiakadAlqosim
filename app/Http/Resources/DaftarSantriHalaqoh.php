@@ -21,7 +21,8 @@ class DaftarSantriHalaqoh extends JsonResource
             'namaLengkap'=>$this->namaLengkap,
             'tempatLahir'=>$this->tempatLahir,
             'tanggalLahir'=>$this->tanggalLahir,
-            'namaIbu'=>$this->namaIbu,
+            'namaWali'=>$this->namaWali,
+            'tanggalLahirWali'=>$this->tanggalLahirWali,
         ];
     }
 }
