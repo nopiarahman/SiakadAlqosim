@@ -125,8 +125,8 @@
                 @endrole
                 <li class="menu-header small text-uppercase"><span class="menu-header-text">Akademik</span></li>
                 @role('admin')
-                    <li class="menu-item">
-                        <a href="tables-basic.html" class="menu-link">
+                    <li class="menu-item @yield('menuJadwal')">
+                        <a href="{{ url('/jadwal') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-calendar"></i>
                             <div data-i18n="Tables">Jadwal Pelajaran</div>
                         </a>

@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Guru extends Model implements HasMedia
 {
@@ -31,5 +32,14 @@ class Guru extends Model implements HasMedia
     public function halaqoh()
     {
         return $this->hasMany(Halaqoh::class);
+    }
+    /**
+     * Get all of the jadwal for the Guru
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function jadwal(): HasMany
+    {
+        return $this->hasMany(Jadwal::class);
     }
 }

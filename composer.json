@@ -30,7 +30,7 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         },
-        "file":[
+        "files":[
             "app/Helpers/bantuan.php"
         ]
     },

@@ -66,4 +66,12 @@ class GuruController extends Controller
         }
 
     }
+    function cariGuru(Request $request) {
+        if($request->has('q')){
+            $cari = $request->q;
+            $data = Guru::select('id','nama')->where('nama','LIKE','%'.$cari.'%')
+            ->where('marhalah_id',auth()->user()->marhalah_id)->get();
+            return response()->json($data);
+        }
+    }
 }

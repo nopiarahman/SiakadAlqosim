@@ -5,6 +5,7 @@ use App\Http\Controllers\GuruController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\MapelController;
+use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\SantriController;
 use App\Http\Controllers\HalaqohController;
 use App\Http\Controllers\PeriodeController;
@@ -78,6 +79,7 @@ Route::middleware([
         Route::post('/guru/simpan','store')->name('guru-simpan');
         Route::get('/guru/edit/{id}','edit')->name('edit-guru');
         Route::delete('/guru/delete/{id}','destroy');
+        Route::get('/cariGuru','cariGuru');
     });
     // Halaqoh
     Route::controller(HalaqohController::class)->group(function(){
@@ -101,6 +103,16 @@ Route::middleware([
         Route::patch('/periode/update/{id}','update')->name('periode-update');
         Route::post('/periode/simpan','store')->name('periode-simpan');
         Route::get('/periode/edit/{id}','edit')->name('edit-periode');
+        Route::get('/periode/set/{id}','set')->name('set-periode');
         Route::delete('/periode/delete/{id}','destroy');
+    });
+    Route::controller(JadwalController::class)->group(function(){
+        Route::get('/jadwal','index')->name('jadwal-index');
+        Route::get('/jadwal/{kelas}','isiJadwal')->name('isi-jadwal');
+        Route::get('/jadwal/tambah','create');
+        Route::patch('/jadwal/update/{id}','update')->name('jadwal-update');
+        Route::post('/jadwal/simpan/{kelas}','store')->name('jadwal-simpan');
+        Route::get('/jadwal/edit/{id}','edit')->name('edit-jadwal');
+        Route::delete('/jadwal/delete/{id}','destroy');
     });
 });

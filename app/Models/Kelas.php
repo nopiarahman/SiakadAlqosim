@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Kelas extends Model
 {
@@ -28,5 +29,14 @@ class Kelas extends Model
     public function santri()
     {
         return $this->belongsToMany(Santri::class);
+    }
+    /**
+     * Get all of the jadwal for the Kelas
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function jadwal(): HasMany
+    {
+        return $this->hasMany(Jadwal::class);
     }
 }

@@ -25,8 +25,8 @@ return new class extends Migration
             $table->foreignIdFor(Mapel::class)->onDelete('CASCADE');
             $table->foreignIdFor(Periode::class)->onDelete('CASCADE');
             $table->string('hari');
-            $table->time('mulai');
-            $table->time('selesai');
+            $table->time('mulai')->nullable();
+            $table->time('selesai')->nullable();
             $table->foreignIdFor(Marhalah::class)->onDelete('CASCADE');
             $table->timestamps();
         });

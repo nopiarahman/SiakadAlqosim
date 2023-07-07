@@ -23,11 +23,12 @@ class PeriodeController extends Controller
             DB::beginTransaction();
             $validasi = $this->validate($request,[
                 'semester'=> 'string|required',
-                'tahun'=> 'string|required',
-                'status'=> 'string|required',
+                'tahun'=> 'string|required'
                 ]);
+            $requestData = $request->all();
+            $requestData['status']='nonaktif';
             $periode = new Periode;
-            $periode = Periode::create($request->all());
+            $periode = Periode::create($requestData);
             $periode->save();
             DB::commit();
             return redirect()->route('periode-index')->with('success','Periode Berhasil Disimpan');
@@ -53,5 +54,10 @@ class PeriodeController extends Controller
         $id->delete();
         return redirect()->back()->with('success','Periode Dihapus');
         
+    }
+    function set(Periode $id) {
+        $periodeLain = Periode::where('status','aktif')->update(['status'=>'nonaktif']);
+        $id->update(['status'=>'aktif']);
+        return redirect()->back()->with('success','Periode Diaktifkan');
     }
 }

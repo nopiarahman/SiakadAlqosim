@@ -30,19 +30,6 @@
                             <label class="form-label" for="basic-default-fullname">Tahun</label>
                             <input type="text" class="form-control" name="tahun" value="{{ $id->tahun }}">
                         </div>
-                        <div class="col-md">
-                            <label class="form-label d-block">Status</label>
-                            <div class="form-check form-check-inline ">
-                                <input class="form-check-input" type="radio" name="status" id="inlineRadio1"
-                                    value="aktif" @if ($id->status == 'aktif') checked @endif>
-                                <label class="form-check-label" for="inlineRadio1">Aktif</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="status" id="inlineRadio2"
-                                    value="nonaktif" @if ($id->status == 'nonaktif') checked @endif>
-                                <label class="form-check-label" for="inlineRadio2">Tidak Aktif</label>
-                            </div>
-                        </div>
                         <button type="submit" class="btn btn-primary mt-3">Simpan</button>
                     </form>
                 </div>
