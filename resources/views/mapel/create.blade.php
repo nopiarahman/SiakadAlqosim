@@ -17,6 +17,10 @@
                             <input type="text" class="form-control" name="nama">
                         </div>
                         <div class="mb-3">
+                            <label class="form-label" for="basic-default-fullname">Nama Mata Pelajaran (Arab) </label>
+                            <input type="text" class="form-control" name="namaArab">
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">KKM</label>
                             <input type="number" class="form-control" name="kkm">
                         </div>

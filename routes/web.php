@@ -7,6 +7,7 @@ use App\Http\Controllers\KelasController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\SantriController;
 use App\Http\Controllers\HalaqohController;
+use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\MarhalahController;
 
 /*
@@ -87,12 +88,19 @@ Route::middleware([
         Route::delete('/halaqoh/deleteSantri/{id}','deleteSantri');
     });
     Route::controller(MapelController::class)->group(function(){
-        Route::get('/mapel','index')->name('mapel-index');
+        Route::get('/mapel','index')->name('periode-index');
         Route::get('/mapel/tambah','create');
         Route::patch('/mapel/update/{id}','update')->name('update-mapel');
         Route::post('/mapel/simpan','store')->name('mapel-simpan');
         Route::get('/mapel/edit/{id}','edit')->name('edit-mapel');
         Route::delete('/mapel/delete/{id}','destroy');
-
+    });
+    Route::controller(PeriodeController::class)->group(function(){
+        Route::get('/periode','index')->name('periode-index');
+        Route::get('/periode/tambah','create');
+        Route::patch('/periode/update/{id}','update')->name('periode-update');
+        Route::post('/periode/simpan','store')->name('periode-simpan');
+        Route::get('/periode/edit/{id}','edit')->name('edit-periode');
+        Route::delete('/periode/delete/{id}','destroy');
     });
 });

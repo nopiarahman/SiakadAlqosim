@@ -2,55 +2,56 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mapel;
+use App\Models\Periode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class MapelController extends Controller
+class PeriodeController extends Controller
 {
     function index() {
-        $mapel = Mapel::all();
-        return view('mapel.index',compact('mapel'));
+        $periode = Periode::all();
+        return view('periode.index',compact('periode'));
     }
     function create() {
-        return view('mapel.create');
+        return view('periode.create');
     }
-    function edit(Mapel $id){
-        return view('mapel.edit',compact('id'));        
+    function edit(Periode $id){
+        return view('periode.edit',compact('id'));        
     }
     function store(Request $request) {
         try {
             DB::beginTransaction();
             $validasi = $this->validate($request,[
-                'nama'=> 'string|required',
-                'kkm'=> 'string|required',
+                'semester'=> 'string|required',
+                'tahun'=> 'string|required',
+                'status'=> 'string|required',
                 ]);
-            $marhalah = new Mapel;
-            $marhalah = Mapel::create($request->all());
-            $marhalah->save();
+            $periode = new Periode;
+            $periode = Periode::create($request->all());
+            $periode->save();
             DB::commit();
-            return redirect()->route('mapel-index')->with('success','Mapel Berhasil Disimpan');
+            return redirect()->route('periode-index')->with('success','Periode Berhasil Disimpan');
         } catch (\Exception $ex) {
             DB::rollback();
             return redirect()->back()->with('error','Gagal. Pesan Error: '.$ex->getMessage());
         }
     }
-    function update(Request $request, Mapel $id) {
+    function update(Request $request, Periode $id) {
         // dd($request);
         try {
             DB::beginTransaction();
             $requestData=$request->all();
             $id->update($requestData);
             DB::commit();
-            return redirect()->route('mapel-index')->with('success','Mapel Diedit');
+            return redirect()->route('periode-index')->with('success','Periode Diedit');
         } catch (\Exception $ex) {
             DB::rollback();
             return redirect()->back()->with('error','Gagal. Pesan Error: '.$ex->getMessage());
         }
     }
-    function destroy(Mapel $id) {
+    function destroy(Periode $id) {
         $id->delete();
-        return redirect()->back()->with('success','Mapel Dihapus');
+        return redirect()->back()->with('success','Periode Dihapus');
         
     }
 }

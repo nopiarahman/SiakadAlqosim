@@ -1,47 +1,49 @@
 @extends('layouts.tema')
-@section('menuMapel', 'active open')
+@section('menuPeriode', 'active open')
 @section('head')
     <link rel="stylesheet" href="{{ asset('template/css/vanilla-dataTables.min.css') }}">
 @endsection
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">
-            </span>Mata Pelajaran</h4>
+            </span>Periode</h4>
         <x-alert />
         @role('Super-Admin')
-            <a href="{{ url('/mapel/tambah') }}" type="button" class="btn btn-primary mb-3"> Tambah
-                Mata Pelajaran Baru
+            <a href="{{ url('/periode/tambah') }}" type="button" class="btn btn-primary mb-3"> Tambah
+                Periode Baru
             </a>
         @endrole
         <!-- Basic Bootstrap Table -->
         <div class="card">
-            <h5 class="card-header">Daftar Mata Pelajaran</h5>
+            <h5 class="card-header">Daftar Periode</h5>
             <div class="text-nowrap">
                 <table class="table table-responsive m-3" id="table">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama</th>
-                            <th>Nama (Arab)</th>
-                            <th>KKM</th>
-                            <th>Kategori</th>
-                            <th>Jenis</th>
+                            <th>Semester</th>
+                            <th>Tahun</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        @foreach ($mapel as $i)
+                        @foreach ($periode as $i)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td><i class="fab fa-angular fa-lg text-danger"></i>
-                                    <strong>{{ $i->nama }}</strong>
+                                    <strong>{{ ucfirst($i->semester) }}</strong>
                                 </td>
                                 <td><i class="fab fa-angular fa-lg text-danger"></i>
-                                    <strong>{{ $i->namaArab }}</strong>
+                                    <strong>{{ $i->tahun }}</strong>
                                 </td>
-                                <td>{{ $i->kkm }}</td>
-                                <td>{{ $i->kategori }}</td>
-                                <td>{{ $i->jenis }}</td>
+                                <td>
+                                    @if ($i->status == 'aktif')
+                                        <span class="badge bg-label-success me-1">{{ ucfirst($i->status) }} </span>
+                                    @else
+                                        <span class="badge bg-label-danger me-1">{{ ucfirst($i->status) }} </span>
+                                    @endif
+                                </td>
                                 <td>
                                     <div class="dropdown">
                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -49,12 +51,12 @@
                                             <i class="bx bx-dots-vertical-rounded"></i>
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="{{ route('edit-mapel', ['id' => $i->id]) }}"><i
+                                            <a class="dropdown-item" href="{{ route('edit-periode', ['id' => $i->id]) }}"><i
                                                     class="bx bx-edit-alt me-1"></i>
                                                 Edit</a>
                                             <button class="dropdown-item " data-bs-toggle="modal"
                                                 data-bs-target="#exampleModalCenter" data-id="{{ $i->id }}"
-                                                data-nama="{{ $i->nama }}">
+                                                data-nama="{{ $i->semester }}">
                                                 <i class="bx bx-trash me-1" aria-hidden="true"></i> Hapus</button>
                                         </div>
                                     </div>
@@ -72,7 +74,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Hapus Mapel </h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Hapus Periode </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -98,8 +100,8 @@
                 var id = button.data('id') // Extract info from data-bs-* attributes
                 var nama = button.data('nama')
                 var modal = $(this)
-                modal.find('.modal-text').text('Yakin ingin menghapus mapel ' + nama + ' ?')
-                document.getElementById('formHapus').action = '/mapel/delete/' + id;
+                modal.find('.modal-text').text('Yakin ingin menghapus Periode ' + nama + ' ?')
+                document.getElementById('formHapus').action = '/periode/delete/' + id;
             })
         });
     </script>

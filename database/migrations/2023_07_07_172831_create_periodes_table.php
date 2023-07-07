@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mapel', function (Blueprint $table) {
+        Schema::create('periode', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('namaArab')->nullable();
-            $table->integer('kkm');
-            $table->string('kategori');
-            $table->string('jenis');
+            $table->string('semester');
+            $table->string('tahun');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mapel');
+        Schema::dropIfExists('periode');
     }
 };

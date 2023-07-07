@@ -115,32 +115,44 @@
                         @endrole
                     </ul>
                 </li>
-                <li class="menu-item  @yield('menuMapel')">
-                    <a href="{{ url('/mapel') }}" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-food-menu"></i>
-                        <div data-i18n="Tables">Mata Pelajaran</div>
-                    </a>
-                </li>
+                @role('Super-Admin')
+                    <li class="menu-item  @yield('menuMapel')">
+                        <a href="{{ url('/mapel') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-food-menu"></i>
+                            <div data-i18n="Tables">Mata Pelajaran</div>
+                        </a>
+                    </li>
+                @endrole
                 <li class="menu-header small text-uppercase"><span class="menu-header-text">Akademik</span></li>
-                <li class="menu-item">
-                    <a href="tables-basic.html" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-calendar"></i>
-                        <div data-i18n="Tables">Jadwal Pelajaran</div>
-                    </a>
-                </li>
-                <li class="menu-item @yield('menuNilai')">
-                    <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <i class="menu-icon tf-icons bx bx-select-multiple"></i>
-                        <div data-i18n="Form Layouts">Nilai</div>
-                    </a>
-                    <ul class="menu-sub">
-                        <li class="menu-item @yield('subMenuGuru1')">
-                            <a href="{{ url('/guru') }}" class="menu-link">
-                                <div data-i18n="Vertical Form">Mata Pelajaran</div>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                @role('admin')
+                    <li class="menu-item">
+                        <a href="tables-basic.html" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-calendar"></i>
+                            <div data-i18n="Tables">Jadwal Pelajaran</div>
+                        </a>
+                    </li>
+                    <li class="menu-item @yield('menuNilai')">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-select-multiple"></i>
+                            <div data-i18n="Form Layouts">Nilai</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item @yield('subMenuGuru1')">
+                                <a href="{{ url('/guru') }}" class="menu-link">
+                                    <div data-i18n="Vertical Form">Mata Pelajaran</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endrole
+                @role('Super-Admin')
+                    <li class="menu-item @yield('menuPeriode')">
+                        <a href="{{ '/periode' }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-time"></i>
+                            <div data-i18n="Tables">Periode</div>
+                        </a>
+                    </li>
+                @endrole
                 <li class="menu-header small text-uppercase"><span class="menu-header-text">Laporan</span></li>
                 <li class="menu-item @yield('menuRaport')">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
