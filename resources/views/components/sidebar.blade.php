@@ -17,9 +17,7 @@
 
         <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            {{-- @php
-                dd(Request::path());
-            @endphp --}}
+
             <li class="menu-item @if (Request::path() == 'dashboard') active @endif">
                 <a href="{{ url('/dashboard') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
@@ -117,14 +115,60 @@
                         @endrole
                     </ul>
                 </li>
-                <li class="menu-item">
-                    <a href="tables-basic.html" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-table"></i>
-                        <div data-i18n="Tables">Kelas</div>
+                <li class="menu-item  @yield('menuMapel')">
+                    <a href="{{ url('/mapel') }}" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-food-menu"></i>
+                        <div data-i18n="Tables">Mata Pelajaran</div>
                     </a>
                 </li>
-                <li class="menu-header small text-uppercase"><span class="menu-header-text">Jadwal</span></li>
-
+                <li class="menu-header small text-uppercase"><span class="menu-header-text">Akademik</span></li>
+                <li class="menu-item">
+                    <a href="tables-basic.html" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-calendar"></i>
+                        <div data-i18n="Tables">Jadwal Pelajaran</div>
+                    </a>
+                </li>
+                <li class="menu-item @yield('menuNilai')">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-select-multiple"></i>
+                        <div data-i18n="Form Layouts">Nilai</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item @yield('subMenuGuru1')">
+                            <a href="{{ url('/guru') }}" class="menu-link">
+                                <div data-i18n="Vertical Form">Mata Pelajaran</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-header small text-uppercase"><span class="menu-header-text">Laporan</span></li>
+                <li class="menu-item @yield('menuRaport')">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-task"></i>
+                        <div data-i18n="Form Layouts">Raport Santri</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item @yield('subMenuGuru1')">
+                            <a href="{{ url('/guru') }}" class="menu-link">
+                                <div data-i18n="Vertical Form">Raport MID</div>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="menu-sub">
+                        <li class="menu-item @yield('subMenuGuru1')">
+                            <a href="{{ url('/guru') }}" class="menu-link">
+                                <div data-i18n="Vertical Form">Raport Semester</div>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="menu-sub">
+                        <li class="menu-item @yield('subMenuGuru1')">
+                            <a href="{{ url('/guru') }}" class="menu-link">
+                                <div data-i18n="Vertical Form">Raport Tahfidz</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             @endrole
             <!-- Misc -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>

@@ -2,48 +2,54 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kelas;
-use App\Models\Marhalah;
+use App\Models\Mapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class KelasController extends Controller
+class MapelController extends Controller
 {
-    function index(Marhalah $marhalah) {
-        $kelas = Kelas::where('marhalah_id',$marhalah->id)->get();
-        return view('kelas.index',compact('kelas','marhalah'));
+    function index() {
+        $mapel = Mapel::all();
+        return view('mapel.index',compact('mapel'));
+    }
+    function create() {
+        return view('mapel.create');
+    }
+    function edit(Mapel $id){
+        return view('mapel.edit',compact('id'));        
     }
     function store(Request $request) {
         try {
             DB::beginTransaction();
             $validasi = $this->validate($request,[
                 'nama'=> 'string|required',
+                'kkm'=> 'string|required',
                 ]);
-            $marhalah = new Kelas;
-            $marhalah = Kelas::create($request->all());
+            $marhalah = new Mapel;
+            $marhalah = Mapel::create($request->all());
             $marhalah->save();
             DB::commit();
-            return redirect()->back()->with('success','Kelas Berhasil Disimpan');
+            return redirect()->route('mapel-index')->with('success','Mapel Berhasil Disimpan');
         } catch (\Exception $ex) {
             DB::rollback();
             return redirect()->back()->with('error','Gagal. Pesan Error: '.$ex->getMessage());
         }
     }
-    function update(Request $request, Kelas $id) {
+    function update(Request $request, Mapel $id) {
         try {
             DB::beginTransaction();
             $requestData=$request->all();
             $id->update($requestData);
             DB::commit();
-            return redirect()->back()->with('success','Kelas Diedit');
+            return redirect()->route('mapel-index')->with('success','Mapel Diedit');
         } catch (\Exception $ex) {
             DB::rollback();
             return redirect()->back()->with('error','Gagal. Pesan Error: '.$ex->getMessage());
         }
     }
-    function destroy(Kelas $id) {
+    function destroy(Mapel $id) {
         $id->delete();
-        return redirect()->back()->with('success','Kelas Dihapus');
+        return redirect()->back()->with('success','Mapel Dihapus');
         
     }
 }
