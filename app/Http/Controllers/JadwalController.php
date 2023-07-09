@@ -45,4 +45,8 @@ class JadwalController extends Controller
             return redirect()->back()->with('error','Gagal. Pesan Error: '.$ex->getMessage());
         }
     }
+    function jadwalGuru() {
+        $jadwal = Jadwal::where('guru_id',auth()->user()->guru->first()->id)->get();
+        return view('jadwal.jadwal-guru',compact('jadwal'));
+    }
 }

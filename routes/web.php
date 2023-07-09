@@ -108,6 +108,7 @@ Route::middleware([
     });
     Route::controller(JadwalController::class)->group(function(){
         Route::get('/jadwal','index')->name('jadwal-index');
+        Route::get('/jadwal-guru','jadwalGuru')->name('jadwal-guru');
         Route::get('/jadwal/{kelas}','isiJadwal')->name('isi-jadwal');
         Route::get('/jadwal/tambah','create');
         Route::patch('/jadwal/update/{id}','update')->name('jadwal-update');

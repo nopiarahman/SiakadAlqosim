@@ -123,7 +123,17 @@
                         </a>
                     </li>
                 @endrole
+            @endrole
+            @role('admin|guru')
                 <li class="menu-header small text-uppercase"><span class="menu-header-text">Akademik</span></li>
+                @role('guru')
+                    <li class="menu-item @yield('menuJadwalGuru')">
+                        <a href="{{ url('/jadwal-guru') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-calendar"></i>
+                            <div data-i18n="Tables">Jadwal Guru</div>
+                        </a>
+                    </li>
+                @endrole
                 @role('admin')
                     <li class="menu-item @yield('menuJadwal')">
                         <a href="{{ url('/jadwal') }}" class="menu-link">
@@ -145,43 +155,43 @@
                         </ul>
                     </li>
                 @endrole
-                @role('Super-Admin')
-                    <li class="menu-item @yield('menuPeriode')">
-                        <a href="{{ '/periode' }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-time"></i>
-                            <div data-i18n="Tables">Periode</div>
-                        </a>
-                    </li>
-                @endrole
-                <li class="menu-header small text-uppercase"><span class="menu-header-text">Laporan</span></li>
-                <li class="menu-item @yield('menuRaport')">
-                    <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <i class="menu-icon tf-icons bx bx-task"></i>
-                        <div data-i18n="Form Layouts">Raport Santri</div>
+            @endrole
+            @role('Super-Admin')
+                <li class="menu-item @yield('menuPeriode')">
+                    <a href="{{ '/periode' }}" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-time"></i>
+                        <div data-i18n="Tables">Periode</div>
                     </a>
-                    <ul class="menu-sub">
-                        <li class="menu-item @yield('subMenuGuru1')">
-                            <a href="{{ url('/guru') }}" class="menu-link">
-                                <div data-i18n="Vertical Form">Raport MID</div>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="menu-sub">
-                        <li class="menu-item @yield('subMenuGuru1')">
-                            <a href="{{ url('/guru') }}" class="menu-link">
-                                <div data-i18n="Vertical Form">Raport Semester</div>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="menu-sub">
-                        <li class="menu-item @yield('subMenuGuru1')">
-                            <a href="{{ url('/guru') }}" class="menu-link">
-                                <div data-i18n="Vertical Form">Raport Tahfidz</div>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
             @endrole
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Laporan</span></li>
+            <li class="menu-item @yield('menuRaport')">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-task"></i>
+                    <div data-i18n="Form Layouts">Raport Santri</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item @yield('subMenuGuru1')">
+                        <a href="{{ url('/guru') }}" class="menu-link">
+                            <div data-i18n="Vertical Form">Raport MID</div>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="menu-sub">
+                    <li class="menu-item @yield('subMenuGuru1')">
+                        <a href="{{ url('/guru') }}" class="menu-link">
+                            <div data-i18n="Vertical Form">Raport Semester</div>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="menu-sub">
+                    <li class="menu-item @yield('subMenuGuru1')">
+                        <a href="{{ url('/guru') }}" class="menu-link">
+                            <div data-i18n="Vertical Form">Raport Tahfidz</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <!-- Misc -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
             <li class="menu-item">
