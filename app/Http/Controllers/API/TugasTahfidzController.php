@@ -26,8 +26,9 @@ class TugasTahfidzController extends Controller
     }
     public function update(Request $request, $tuga) {
         $tugas = TugasTahfidz::findOrFail($tuga);
-        $tugas['halaqoh_id']=auth()->user()->guru->first()->halaqoh->first()->id;
-        $tugas->update($request->all());
+        $requestData = $request->all();
+        $requestData['halaqoh_id']=auth()->user()->guru->first()->halaqoh->first()->id;
+        $tugas->update($requestData);
         return response()->json([
             'pesan'=>'Tugas berhasil diedit!', 
             'data'=>$tugas],200);

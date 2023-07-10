@@ -9,8 +9,8 @@
         <!-- Basic Bootstrap Table -->
         <div class="card">
             <h5 class="card-header">Daftar Kelas Marhalah {{ auth()->user()->marhalah->nama }}</h5>
-            <div class="text-nowrap">
-                <table class="table table-responsive">
+            <div class="text-nowrap table-responsive">
+                <table class="table">
                     <thead>
                         <tr>
                             <th>No</th>

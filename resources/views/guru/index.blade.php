@@ -17,8 +17,8 @@
         <!-- Basic Bootstrap Table -->
         <div class="card">
             <h5 class="card-header">Daftar Asatidz</h5>
-            <div class="text-nowrap">
-                <table class="table table-responsive m-3" id="table">
+            <div class="text-nowrap table-responsive">
+                <table class="table  m-3" id="table">
                     <thead>
                         <tr>
                             <th>No</th>

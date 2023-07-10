@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use App\Models\Mapel;
+use App\Models\Nilai;
 use App\Models\Jadwal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -48,5 +49,27 @@ class JadwalController extends Controller
     function jadwalGuru() {
         $jadwal = Jadwal::where('guru_id',auth()->user()->guru->first()->id)->get();
         return view('jadwal.jadwal-guru',compact('jadwal'));
+    }
+    function isiNilai(Jadwal $id) {
+        $santri = $id->kelas->santri;
+        return view('jadwal.nilai',compact('id','santri'));
+    }
+    function jadwalNilaiSimpan(Request $request, Jadwal $jadwal) {
+        try {
+            DB::beginTransaction();
+            $requestData = $request->all();
+            $requestData['jadwal_id']=$jadwal->id;
+            $nilai = new Nilai;
+            $nilai = Nilai::updateOrCreate(
+                ['santri_id'=>$request->santri_id,'jadwal_id'=>$jadwal->id],
+                ['uts'=>$request->uts,'uas'=>$request->uas,'harian'=>$request->harian,'akhlak'=>$request->akhlak]
+            );
+            $nilai->save();
+            DB::commit();
+            return redirect()->back()->with('success','Nilai Berhasil Disimpan');
+        } catch (\Exception $ex) {
+            DB::rollback();
+            return redirect()->back()->with('error','Gagal. Pesan Error: '.$ex->getMessage());
+        }
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -38,5 +39,14 @@ class Jadwal extends Model
     public function mapel(): BelongsTo
     {
         return $this->belongsTo(Mapel::class);
+    }
+    /**
+     * Get all of the nilai for the Jadwal
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function nilai(): HasMany
+    {
+        return $this->hasMany(Nilai::class);
     }
 }

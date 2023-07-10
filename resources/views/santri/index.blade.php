@@ -12,8 +12,8 @@
         <!-- Basic Bootstrap Table -->
         <div class="card">
             <h5 class="card-header">Daftar Santri</h5>
-            <div class="text-nowrap">
-                <table class="table table-responsive" id="table">
+            <div class="text-nowrap table-responsive">
+                <table class="table " id="table">
                     <thead>
                         <tr>
                             <th>No</th>
