@@ -1,7 +1,10 @@
 <?php
 
+use App\Models\Kelas;
+use App\Models\Mapel;
 use App\Models\Jadwal;
 use App\Models\Santri;
+use App\Models\Periode;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -18,6 +21,9 @@ return new class extends Migration
         Schema::create('nilai', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Santri::class)->onDelete('CASCADE')->nullable();
+            $table->foreignIdFor(Kelas::class)->onDelete('CASCADE')->nullable();
+            $table->foreignIdFor(Mapel::class)->onDelete('CASCADE')->nullable();
+            $table->foreignIdFor(Periode::class)->onDelete('CASCADE')->nullable();
             $table->foreignIdFor(Jadwal::class)->onDelete('CASCADE')->nullable();
             $table->integer('harian')->nullable();
             $table->integer('uts')->nullable();

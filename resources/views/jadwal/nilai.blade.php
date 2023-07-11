@@ -1,19 +1,33 @@
 @extends('layouts.tema')
-@section('menuSantri', 'active open')
-@section('subMenuSantri2', 'active')
+@section('menuJadwalGuru', 'active open')
 {{-- @section('head')
     <link rel="stylesheet" href="{{ asset('template/css/vanilla-dataTables.min.css') }}">
 @endsection --}}
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><a href="{{ url('/jadwal-guru') }}"> Jadwal</a> /
-            </span>{{ $id->mapel->nama }} Kelas {{ $id->kelas->nama }}</h4>
+            </span>Nilai {{ $id->mapel->nama }} Kelas {{ $id->kelas->nama }}</h4>
         <x-alert />
         <!-- Basic Bootstrap Table -->
+        <div class="card mb-3 custom-card-1">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5 class="card-title">{{ $id->mapel->nama }}</h5>
+                        <h6 class="card-subtitle mb-2 text-white fw-bold">{{ $id->mapel->namaArab }}</h6>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="card-text fw-bold text-primary">KKM: {{ $id->mapel->kkm }}</span> <br>
+                        <span class="card-text fw-bold text-primary">Rata-rata kelas: {{ rataRataKelas($id) }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="card">
             <h5 class="card-header">Daftar Santri Kelas {{ $id->kelas->nama }}</h5>
             <div class="card-body">
-                <small class="text-light fw-semibold d-block">Untuk menyimpan nilai, silahkan simpan per-nama santri satu per
+                <small class="text-light fw-semibold d-block">Untuk menyimpan nilai, silahkan simpan per-nama santri satu
+                    per
                     satu</small>
                 <div class="text-nowrap table-responsive">
                     <table class="table m-3">
@@ -42,7 +56,8 @@
                                         </td>
                                         <td>
                                             <input type="number" class="form-control form-control-sm" name="harian"
-                                                style="width: 70px !important" value="{{ nilaiHarianSantri($id, $i->id) }}">
+                                                style="width: 70px !important"
+                                                value="{{ nilaiHarianSantri($id, $i->id) }}">
                                         </td>
                                         <td>
                                             <input type="number" class="form-control form-control-sm" name="uts"
@@ -58,7 +73,11 @@
                                                 value="{{ nilaiAkhlakSantri($id, $i->id) }}">
                                         </td>
                                         <td>
-                                            <span class="text-primary fw-bold">{{ nilaiRaport($id, $i->id) }}</span>
+                                            @if (nilaiRaport($id, $i->id) >= $id->mapel->kkm)
+                                                <span class="text-primary fw-bold">{{ nilaiRaport($id, $i->id) }}</span>
+                                            @else
+                                                <span class="text-danger fw-bold">{{ nilaiRaport($id, $i->id) }}</span>
+                                            @endif
                                         </td>
                                         <td>
                                             <button type="submit" class="btn btn-primary">Simpan</button>

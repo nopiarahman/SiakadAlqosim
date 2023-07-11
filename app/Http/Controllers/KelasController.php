@@ -46,4 +46,9 @@ class KelasController extends Controller
         return redirect()->back()->with('success','Kelas Dihapus');
         
     }
+    function listKelas() {
+        $kelas = Kelas::where('marhalah_id',auth()->user()->marhalah_id)->get();
+        return view('kelas.listKelas',compact('kelas'));
+
+    }
 }

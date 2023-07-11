@@ -42,4 +42,13 @@ class Guru extends Model implements HasMedia
     {
         return $this->hasMany(Jadwal::class);
     }
+    /**
+     * Get all of the waliKelas for the Guru
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function waliKelas(): HasMany
+    {
+        return $this->hasMany(WaliKelas::class);
+    }
 }

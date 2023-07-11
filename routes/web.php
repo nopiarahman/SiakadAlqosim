@@ -10,6 +10,7 @@ use App\Http\Controllers\SantriController;
 use App\Http\Controllers\HalaqohController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\MarhalahController;
+use App\Http\Controllers\WaliKelasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,7 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::group(['middleware'=>['role:Super-Admin | admin']],function(){
+    Route::group(['middleware'=>['role:Super-Admin|admin']],function(){
         // Marhalah
         Route::controller(MarhalahController::class)->group(function(){
             Route::get('/marhalah','index');
@@ -47,6 +48,7 @@ Route::middleware([
         });
         //    Kelas
         Route::controller(KelasController::class)->group(function(){
+            Route::get('/kelas','listKelas')->name('list-kelas');
             Route::get('/marhalah/kelas/{marhalah}','index')->name('kelas-marhalah');
             Route::post('/kelas/simpan','store');
             Route::patch('/kelas/update/{id}','update');
@@ -90,7 +92,7 @@ Route::middleware([
             Route::delete('/halaqoh/deleteSantri/{id}','deleteSantri');
         });
         Route::controller(MapelController::class)->group(function(){
-            Route::get('/mapel','index')->name('periode-index');
+            Route::get('/mapel','index')->name('mapel-index');
             Route::get('/mapel/tambah','create');
             Route::patch('/mapel/update/{id}','update')->name('update-mapel');
             Route::post('/mapel/simpan','store')->name('mapel-simpan');
@@ -116,6 +118,12 @@ Route::middleware([
             Route::get('/jadwal/edit/{id}','edit')->name('edit-jadwal');
             Route::delete('/jadwal/delete/{id}','destroy');
         });
+        Route::controller(WaliKelasController::class)->group(function(){
+            Route::get('/waliKelas/{kelas}','create')->name('waliKelas-tambah');
+            Route::get('/waliKelas/edit/{kelas}','edit')->name('waliKelas-edit');
+            Route::post('/waliKelas/{kelas}','store')->name('waliKelas-simpan');
+            Route::patch('/waliKelas/{kelas}','update')->name('waliKelas-update');
+        });
     });
     Route::group(['middleware'=>['role:guru']],function(){
         Route::controller(JadwalController::class)->group(function(){
@@ -124,4 +132,12 @@ Route::middleware([
             Route::post('/jadwal-guru/simpan-nilai/{jadwal}','jadwalNilaiSimpan')->name('jadwal-nilai-simpan');
         });
     });
+    Route::group(['middleware'=>['role:waliKelas']],function(){
+        Route::controller(WalikelasController::class)->group(function(){
+            Route::get('/raport-kelas','raportKelas');
+            Route::get('/raport-kelas/{kelas}','isiKelas')->name('list-kelas-walikelas');
+            Route::get('/raport-mid/{santri}/{kelas}','raportMid')->name('raport-mid');
+        });
+    });
+
 });

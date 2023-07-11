@@ -106,14 +106,18 @@
                                 <div data-i18n="Vertical Form">Semua Guru</div>
                             </a>
                         </li>
-                        @role('admin')
-                            <li class="menu-item @yield('subMenuGuru2')">
-                                <a href="{{ url('/halaqoh') }}" class="menu-link">
-                                    <div data-i18n="Horizontal Form">Pengampu Halaqoh</div>
-                                </a>
-                            </li>
-                        @endrole
+                        <li class="menu-item @yield('subMenuGuru2')">
+                            <a href="{{ url('/halaqoh') }}" class="menu-link">
+                                <div data-i18n="Horizontal Form">Pengampu Halaqoh</div>
+                            </a>
+                        </li>
                     </ul>
+                </li>
+                <li class="menu-item @yield('menuKelas')">
+                    <a href="{{ url('/kelas') }}" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-calendar"></i>
+                        <div data-i18n="Tables">Kelas</div>
+                    </a>
                 </li>
                 @role('Super-Admin')
                     <li class="menu-item  @yield('menuMapel')">
@@ -161,6 +165,14 @@
                     <a href="{{ '/periode' }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-time"></i>
                         <div data-i18n="Tables">Periode</div>
+                    </a>
+                </li>
+            @endrole
+            @role('waliKelas')
+                <li class="menu-item @yield('menuRaportSantri')">
+                    <a href="{{ '/raport-kelas' }}" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-time"></i>
+                        <div data-i18n="Tables">Raport Santri</div>
                     </a>
                 </li>
             @endrole

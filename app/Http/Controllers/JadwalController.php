@@ -55,6 +55,7 @@ class JadwalController extends Controller
         return view('jadwal.nilai',compact('id','santri'));
     }
     function jadwalNilaiSimpan(Request $request, Jadwal $jadwal) {
+        
         try {
             DB::beginTransaction();
             $requestData = $request->all();
@@ -62,7 +63,15 @@ class JadwalController extends Controller
             $nilai = new Nilai;
             $nilai = Nilai::updateOrCreate(
                 ['santri_id'=>$request->santri_id,'jadwal_id'=>$jadwal->id],
-                ['uts'=>$request->uts,'uas'=>$request->uas,'harian'=>$request->harian,'akhlak'=>$request->akhlak]
+                [
+                    'uts'=>$request->uts,
+                    'uas'=>$request->uas,
+                    'harian'=>$request->harian,
+                    'akhlak'=>$request->akhlak,
+                    'kelas_id'=>$jadwal->kelas->id,
+                    'mapel_id'=>$jadwal->mapel->id,
+                    'periode_id'=>$jadwal->periode_id,
+                    ]
             );
             $nilai->save();
             DB::commit();

@@ -2,6 +2,8 @@
 @section('menuJadwal', 'active open')
 @section('head')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('template/css/vanilla-dataTables.min.css') }}">
+
 @endsection
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -86,16 +88,16 @@
         </div>
         <!-- Basic Bootstrap Table -->
         <div class="card">
-            <h5 class="card-header">Daftar Jadwal Kelas</h5>
+            <h5 class="card-header">Daftar Jadwal Kelas {{ $kelas->nama }}</h5>
             <div class="text-nowrap table-responsive">
-                <table class="table ">
+                <table class="table " id="table">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Mapel</th>
-                            <th>Pengampu</th>
                             <th>Hari</th>
                             <th>Jam</th>
+                            <th>Mapel</th>
+                            <th>Pengampu</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -103,13 +105,13 @@
                         @forelse ($jadwal as $i)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ ucfirst($i->hari) }}</td>
+                                <td><span class="text-primary">{{ substr($i->mulai, 0, 5) }} -
+                                        {{ substr($i->selesai, 0, 5) }}</span></td>
                                 <td><i class="fab fa-angular fa-lg text-danger"></i>
                                     <strong>{{ $i->mapel->nama }}</strong>
                                 </td>
                                 <td>{{ $i->guru->nama }}</td>
-                                <td>{{ ucfirst($i->hari) }}</td>
-                                <td><span class="text-primary">{{ substr($i->mulai, 0, 5) }} -
-                                        {{ substr($i->selesai, 0, 5) }}</span></td>
                                 <td>
                                     <div class="dropdown">
                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -127,7 +129,7 @@
                             </tr>
                         @empty
                             <td>
-                                belum ada santri
+                                belum ada jadwal
                             </td>
                         @endforelse
                     </tbody>
@@ -214,5 +216,12 @@
                 $('#namaEdit').val(nama);
             })
         });
+    </script>
+@endsection
+@section('script')
+    <script src="{{ asset('template/js/vanilla-dataTables.min.js') }}"></script>
+    <script>
+        var table = document.querySelector('#table');
+        var datatable = new DataTable(table);
     </script>
 @endsection

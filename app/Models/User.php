@@ -106,4 +106,13 @@ class User extends Authenticatable
     {
         return $this->hasOne(Wali::class);
     }
+    /**
+     * Get the waliKelas associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function waliKelas(): HasOne
+    {
+        return $this->hasOne(WaliKelas::class);
+    }
 }

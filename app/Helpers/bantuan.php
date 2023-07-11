@@ -50,3 +50,16 @@ function nilaiRaport($jadwal,$santri_id) {
     }
     return $nilaiAkhir;
 }
+function rataRataKelas($jadwal) {
+    $nilai= $jadwal->nilai;
+    $rataRata = [];
+    foreach ($nilai as $i) {
+        $rataRata[]=($i->uas*30)/100+($i->akhlak*30)/100+($i->uts*20)/100+($i->harian*20)/100;
+    }
+    if (count($rataRata)) {
+        $rataRataKelas = array_sum($rataRata)/count($rataRata);
+    }else{
+        $rataRataKelas = 0;
+    }
+    return round($rataRataKelas,2);
+}
