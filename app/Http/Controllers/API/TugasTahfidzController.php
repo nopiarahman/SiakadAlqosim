@@ -31,7 +31,7 @@ class TugasTahfidzController extends Controller
         $tugas->update($requestData);
         return response()->json([
             'pesan'=>'Tugas berhasil diedit!', 
-            'data'=>$request->all()],200);
+            'data'=>$tugas],200);
     }
     function destroy(TugasTahfidz $tuga) {
         $tuga->delete();
