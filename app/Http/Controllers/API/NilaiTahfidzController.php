@@ -63,4 +63,10 @@ class NilaiTahfidzController extends Controller
             'pesan'=>'Berhasil Diberi nilai', 
             'data'=>$nilai],200);
     }
+    function lihat() {
+        $nilai = NilaiTahfidz::where('santri_id',auth()->user()->santri->first()->id)->get();
+        return response()->json([
+            'pesan'=>'List Nilai', 
+            'data'=>$nilai],200);
+    }
 }
