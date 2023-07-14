@@ -43,6 +43,7 @@ class NilaiTahfidzController extends Controller
         $url = $nilai->getFirstMediaUrl('audio');
         $data = $nilai->tugasTahfidz;
         $data['url']=$url;
+        $data['nilai_id']=$nilai->id;
 
         return response()->json([
             'pesan'=>'Hasil Tugas Santri', 
