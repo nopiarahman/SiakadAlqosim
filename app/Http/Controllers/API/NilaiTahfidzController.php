@@ -41,7 +41,12 @@ class NilaiTahfidzController extends Controller
     }
     function koreksi(Request $request, NilaiTahfidz $nilai){
         $url = $nilai->getFirstMediaUrl('audio');
-        return response()->json($url, 200);
+        $data = $nilai->tugasTahfidz;
+        $data['url']=$url;
+
+        return response()->json([
+            'pesan'=>'Hasil Tugas Santri', 
+            'data'=>$data],200);
 
     }
 }
