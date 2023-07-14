@@ -19,15 +19,15 @@ class NilaiTahfidzController extends Controller
         $validasi = $this->validate($request,[
             'audio'=> 'required',
             ]);
-        $requestData = $request->all();
-        $requestData['santri_id']=$santri;
-        $requestData['tugas_tahfidz_id']=$tugas->id;
-        $nilai = NilaiTahfidz::create($requestData);
-        if($request->hasFile('audio')){
-            $nilai->addMediaFromRequest('audio')
-            ->toMediaCollection('audio');
-        }
-        $nilai->save();
+        // $requestData = $request->all();
+        // $requestData['santri_id']=$santri;
+        // $requestData['tugas_tahfidz_id']=$tugas->id;
+        // $nilai = NilaiTahfidz::create($requestData);
+        // if($request->hasFile('audio')){
+        //     $nilai->addMediaFromRequest('audio')
+        //     ->toMediaCollection('audio');
+        // }
+        // $nilai->save();
         return response()->json([
             'pesan'=>'Tugas berhasil dikirim', 
             'data'=>$santri],200);
