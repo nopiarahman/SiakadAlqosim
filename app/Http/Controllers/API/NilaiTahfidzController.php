@@ -19,6 +19,12 @@ class NilaiTahfidzController extends Controller
         $validasi = $this->validate($request,[
             'audio'=> 'required',
             ]);
+        $cekData = NilaiTahfidz::where('santri_id',$santri->id)->where('tugas_tahfidz_id',$tugas->id)->first();
+        if($cekData){
+            return response()->json([
+                'pesan'=>'Tugas sudah pernah dikumpulkan', 
+                'data'=>$nilai],401);
+        }
         $requestData = $request->all();
         $requestData['santri_id']=$santri->id;
         $requestData['tugas_tahfidz_id']=$tugas->id;

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Marhalah;
+use App\Models\NilaiTahfidz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -38,7 +39,8 @@ class UserController extends Controller
         }
     }
     function test() {
-        dd(auth()->user());
+        $santri=auth()->user()->santri->first();
+        $cekData = NilaiTahfidz::where('santri_id',$santri->id)->where('tugas_tahfidz_id',15)->first();
         return view('user.create');
     }
     function testSimpan(Request $request) {
