@@ -39,7 +39,7 @@ class NilaiTahfidzController extends Controller
 
     }
     function koreksi(Request $request, NilaiTahfidz $nilai){
-        $url = asset($nilai->getFirstMediaUrl('audio'));
+        $url = asset($nilai->getFirstMedia('audio'));
         return response()->json($url, 200);
 
     }
