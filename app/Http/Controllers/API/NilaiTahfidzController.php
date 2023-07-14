@@ -20,7 +20,7 @@ class NilaiTahfidzController extends Controller
             ]);
         $requestData = $request->all();
         $requestData['santri_id']=$santri->id;
-        $requestData['tugasTahfidz_id']=$tugas->id;
+        $requestData['tugas_tahfidz_id']=$tugas->id;
         $nilai = NilaiTahfidz::create($requestData);
         if($request->hasFile('audio')){
             $nilai->addMediaFromRequest('audio')
@@ -33,7 +33,9 @@ class NilaiTahfidzController extends Controller
     }
     function pengumpulan(TugasTahfidz $tugas) {
         $kumpul = $tugas->nilaiTahfidz;
-        return response()->json($kumpul, 200);
+        return response()->json([
+            'pesan'=>'List Pengumpulan Tugas Santri', 
+            'data'=>$kumpul],200);
 
     }
 }
