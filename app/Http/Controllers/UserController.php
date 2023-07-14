@@ -38,7 +38,7 @@ class UserController extends Controller
         }
     }
     function test() {
-        dd(auth()->user()->santri->first()->id);
+        dd(auth()->user());
         return view('user.create');
     }
     function testSimpan(Request $request) {

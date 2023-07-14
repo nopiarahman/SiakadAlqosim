@@ -15,7 +15,7 @@ class NilaiTahfidzController extends Controller
         return response()->json($nilai, 200);
     }
     function kirim(Request $request, TugasTahfidz $tugas) {
-        $santri=auth()->user()->santri;
+        $santri=auth()->user();
         $validasi = $this->validate($request,[
             'audio'=> 'required',
             ]);
