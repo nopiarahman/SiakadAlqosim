@@ -6,6 +6,7 @@ use App\Models\NilaiTahfidz;
 use App\Models\TugasTahfidz;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class NilaiTahfidzController extends Controller
 {
@@ -39,7 +40,7 @@ class NilaiTahfidzController extends Controller
 
     }
     function koreksi(Request $request, NilaiTahfidz $nilai){
-        $url = asset($nilai->getFirstMedia('audio'));
+        $url = Storage::url($nilai->getFirstMedia('audio'));
         return response()->json($url, 200);
 
     }
