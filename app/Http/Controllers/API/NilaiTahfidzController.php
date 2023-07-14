@@ -21,9 +21,8 @@ class NilaiTahfidzController extends Controller
             ]);
         $cekData = NilaiTahfidz::where('santri_id',$santri->id)->where('tugas_tahfidz_id',$tugas->id)->first();
         if($cekData){
-            return response()->json([
-                'pesan'=>'Tugas sudah pernah dikumpulkan', 
-                'data'=>$nilai],401);
+            return response()->json(
+                'pesan'=>'Tugas sudah pernah dikumpulkan',401);
         }
         $requestData = $request->all();
         $requestData['santri_id']=$santri->id;
