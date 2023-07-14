@@ -58,7 +58,6 @@ Route::middleware([
         Route::controller(UserController::class)->group(function(){
             Route::get('/user/admin','admin');
             Route::post('/admin/simpan','store');
-            Route::get('/test','test');
             Route::post('/test','testSimpan')->name('test-simpan');
         });
         // Santri
@@ -141,5 +140,7 @@ Route::middleware([
             Route::get('/raport-mid/{santri}/{kelas}','raportMid')->name('raport-mid');
         });
     });
-
+    Route::controller(UserController::class)->group(function(){
+        Route::get('/test','test');
+    });
 });

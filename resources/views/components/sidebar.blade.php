@@ -145,19 +145,6 @@
                             <div data-i18n="Tables">Jadwal Pelajaran</div>
                         </a>
                     </li>
-                    <li class="menu-item @yield('menuNilai')">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons bx bx-select-multiple"></i>
-                            <div data-i18n="Form Layouts">Nilai</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item @yield('subMenuGuru1')">
-                                <a href="{{ url('/test') }}" class="menu-link">
-                                    <div data-i18n="Vertical Form">test</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
                 @endrole
             @endrole
             @role('Super-Admin')
@@ -200,6 +187,19 @@
                     <li class="menu-item @yield('subMenuGuru1')">
                         <a href="{{ url('/guru') }}" class="menu-link">
                             <div data-i18n="Vertical Form">Raport Tahfidz</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="menu-item @yield('menuNilai')">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-select-multiple"></i>
+                    <div data-i18n="Form Layouts">Test</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item @yield('subMenuGuru1')">
+                        <a href="{{ url('/test') }}" class="menu-link">
+                            <div data-i18n="Vertical Form">test</div>
                         </a>
                     </li>
                 </ul>
