@@ -35,10 +35,12 @@ Route::prefix('v1')->group(function(){
         Route::get('/halaqoh',[APIController::class,'halaqoh']);
         // Tugas
         Route::apiResource('tugas',TugasTahfidzController::class);
-        // Santri
+        // User Santri
         Route::get('/list-tugas',[TugasTahfidzController::class,'list']);
         // Nilai
         Route::get('nilai/{tugas}',[NilaiTahfidzController::class,'index']);
         Route::post('kirim/{tugas}',[NilaiTahfidzController::class,'kirim']);
+        // User Guru
+        Route::get('nilai/pengumpulan/{tugas}',[NilaiTahfidzController::class,'pengumpulan']);
     });
 });

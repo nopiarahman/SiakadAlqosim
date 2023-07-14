@@ -64,4 +64,13 @@ class Santri extends Model implements HasMedia
     {
         return $this->hasOne(Wali::class);
     }
+    /**
+     * Get all of the nilaiTahfidz for the Santri
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function nilaiTahfidz(): HasMany
+    {
+        return $this->hasMany(NilaiTahfidz::class);
+    }
 }
