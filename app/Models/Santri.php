@@ -69,7 +69,7 @@ class Santri extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function nilaiTahfidz(): HasMany
+    public function nilai_tahfidz(): HasMany
     {
         return $this->hasMany(NilaiTahfidz::class);
     }
