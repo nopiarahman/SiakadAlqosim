@@ -15,7 +15,7 @@ class NilaiTahfidzController extends Controller
         return response()->json($nilai, 200);
     }
     function kirim(Request $request, TugasTahfidz $tugas) {
-        $santri=auth()->user()->santri->first()->id;
+        $santri=auth()->user()->santri->first();
         $validasi = $this->validate($request,[
             'audio'=> 'required',
             ]);
@@ -30,7 +30,7 @@ class NilaiTahfidzController extends Controller
         $nilai->save();
         return response()->json([
             'pesan'=>'Tugas berhasil dikirim', 
-            'data'=>$nilai],200);
+            'data'=>$santri],200);
     }
     function pengumpulan(TugasTahfidz $tugas) {
         $kumpul = $tugas->nilaiTahfidz;
