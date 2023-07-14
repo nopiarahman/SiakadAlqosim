@@ -15,6 +15,6 @@ class NilaiTahfidzController extends Controller
     function kirim(Request $request, TugasTahfidz $tugas) {
         return response()->json([
             'pesan'=>'Tugas berhasil dikirim', 
-            'data'=>$request->file],200);
+            'data'=>$request->file('audio')],200);
     }
 }
