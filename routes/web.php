@@ -58,6 +58,8 @@ Route::middleware([
         Route::controller(UserController::class)->group(function(){
             Route::get('/user/admin','admin');
             Route::post('/admin/simpan','store');
+            Route::get('/test','test');
+            Route::post('/test','testSimpan')->name('test-simpan');
         });
         // Santri
         Route::controller(SantriController::class)->group(function(){

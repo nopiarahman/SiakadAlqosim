@@ -37,4 +37,15 @@ class UserController extends Controller
             return redirect()->back()->with('error','Gagal. Pesan Error: '.$ex->getMessage());
         }
     }
+    function test() {
+        return view('user.create');
+    }
+    function testSimpan(Request $request) {
+        // dd($request->file('audio'));
+        $dataAudio = $request->file('audio')->getClientOriginalName();
+        // dd($dataAudio);
+        return response()->json([
+            'pesan'=>'Tugas berhasil dikirim', 
+            'data'=>$dataAudio],200);
+    }
 }

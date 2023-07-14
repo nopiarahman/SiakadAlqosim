@@ -152,8 +152,8 @@
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item @yield('subMenuGuru1')">
-                                <a href="{{ url('/guru') }}" class="menu-link">
-                                    <div data-i18n="Vertical Form">Mata Pelajaran</div>
+                                <a href="{{ url('/test') }}" class="menu-link">
+                                    <div data-i18n="Vertical Form">test</div>
                                 </a>
                             </li>
                         </ul>

@@ -13,8 +13,21 @@ class NilaiTahfidzController extends Controller
         return response()->json($nilai, 200);
     }
     function kirim(Request $request, TugasTahfidz $tugas) {
+        $santri=auth()->user()->santri;
+        $validasi = $this->validate($request,[
+            'audio'=> 'required',
+            ]);
+        $requestData = $request->all();
+        $requestData['santri_id']=$santri->id;
+        $requestData['tugasTahfidz_id']=$tugas->id;
+        $nilai = NilaiTahfidz::create($requestData);
+        if($request->hasFile('audio')){
+            $nilai->addMediaFromRequest('audio')
+            ->toMediaCollection('audio');
+        }
+        $nilai->save();
         return response()->json([
             'pesan'=>'Tugas berhasil dikirim', 
-            'data'=>$request->file('audio')],200);
+            'data'=>$nilai],200);
     }
 }
