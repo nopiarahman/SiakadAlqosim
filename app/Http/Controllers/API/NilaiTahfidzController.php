@@ -15,12 +15,12 @@ class NilaiTahfidzController extends Controller
         return response()->json($nilai, 200);
     }
     function kirim(Request $request, TugasTahfidz $tugas) {
-        $santri=auth()->user()->santri->first();
+        $santri=auth()->user()->santri->first()->id;
         $validasi = $this->validate($request,[
             'audio'=> 'required',
             ]);
         $requestData = $request->all();
-        $requestData['santri_id']=$santri->id;
+        $requestData['santri_id']=$santri;
         $requestData['tugas_tahfidz_id']=$tugas->id;
         $nilai = NilaiTahfidz::create($requestData);
         if($request->hasFile('audio')){
