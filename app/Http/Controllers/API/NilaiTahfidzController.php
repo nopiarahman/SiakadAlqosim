@@ -30,7 +30,7 @@ class NilaiTahfidzController extends Controller
         $nilai->save();
         return response()->json([
             'pesan'=>'Tugas berhasil dikirim', 
-            'data'=>$santri],200);
+            'data'=>$nilai],200);
     }
     function pengumpulan(TugasTahfidz $tugas) {
         $kumpul = $tugas->nilaiTahfidz;
