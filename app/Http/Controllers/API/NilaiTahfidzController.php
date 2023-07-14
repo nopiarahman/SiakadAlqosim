@@ -31,4 +31,9 @@ class NilaiTahfidzController extends Controller
             'pesan'=>'Tugas berhasil dikirim', 
             'data'=>$nilai],200);
     }
+    function pengumpulan(TugasTahfidz $tugas) {
+        $kumpul = $tugas->nilaiTahfidz;
+        return response()->json($kumpul, 200);
+
+    }
 }
