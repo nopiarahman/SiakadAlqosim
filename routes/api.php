@@ -37,6 +37,7 @@ Route::prefix('v1')->group(function(){
         Route::apiResource('tugas',TugasTahfidzController::class);
         // User Santri
         Route::get('/list-tugas',[TugasTahfidzController::class,'list']);
+        Route::get('nilai/lihat',[NilaiTahfidzController::class,'lihat']);
         // Nilai
         Route::get('nilai/{tugas}',[NilaiTahfidzController::class,'index']);
         Route::post('kirim/{tugas}',[NilaiTahfidzController::class,'kirim']);
@@ -44,7 +45,6 @@ Route::prefix('v1')->group(function(){
         Route::get('nilai/pengumpulan/{tugas}',[NilaiTahfidzController::class,'pengumpulan']);
         Route::get('nilai/koreksi/{nilai}',[NilaiTahfidzController::class,'koreksi']);
         Route::patch('nilai/koreksi-nilai/{nilai}',[NilaiTahfidzController::class,'simpanKoreksi']);
-        Route::get('nilai/lihat',[NilaiTahfidzController::class,'lihat']);
         
     });
 });
