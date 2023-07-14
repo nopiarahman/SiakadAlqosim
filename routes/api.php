@@ -43,5 +43,7 @@ Route::prefix('v1')->group(function(){
         // User Guru
         Route::get('nilai/pengumpulan/{tugas}',[NilaiTahfidzController::class,'pengumpulan']);
         Route::get('nilai/koreksi/{nilai}',[NilaiTahfidzController::class,'koreksi']);
+        Route::patch('nilai/koreksi-nilai/{nilai}',[NilaiTahfidzController::class,'simpanKoreksi']);
+        
     });
 });

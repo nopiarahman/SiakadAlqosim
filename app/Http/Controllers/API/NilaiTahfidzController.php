@@ -50,4 +50,12 @@ class NilaiTahfidzController extends Controller
             'data'=>$data],200);
 
     }
+    function simpanKoreksi(NilaiTahfidz $nilai, Request $request) {
+        $nilai->update([
+            'nilai'=>$request->nilai
+        ]);
+        return response()->json([
+            'pesan'=>'Berhasil Diberi nilai', 
+            'data'=>$nilai],200);
+    }
 }
