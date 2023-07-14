@@ -19,7 +19,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Santri::class)->onDelete('CASCADE')->nullable();
             $table->foreignIdFor(TugasTahfidz::class)->onDelete('CASCADE')->nullable();
-            $table->string('nilai')->nullable();
+            $table->integer('nilai')->nullable();
             $table->timestamps();
         });
     }
