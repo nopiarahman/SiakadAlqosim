@@ -50,7 +50,7 @@ class NilaiTahfidzController extends Controller
 
     }
     function listPengumpulan() {
-        $tugas= TugasTahfidz::all();
+        $tugas= TugasTahfidz::where('halaqoh_id',auth()->user()->guru->first()->halaqoh->first()->id)->get();
         return ListTugasResource::collection($tugas);
     }
     function koreksi(Request $request, TugasTahfidz $tugas, NilaiTahfidz $nilai){
