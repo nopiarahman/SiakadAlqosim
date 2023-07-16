@@ -40,6 +40,7 @@ class NilaiTahfidzController extends Controller
     }
     function pengumpulanTugas(TugasTahfidz $tugas) {
         $kumpul = $tugas->nilaiTahfidz;
+        $kumpul['audio']=$kumpul->getFirstMediaUrl('audio');
         return response()->json([
             'pesan'=>'List Pengumpulan Tugas Santri', 
             'data'=>$kumpul],200);
@@ -53,7 +54,6 @@ class NilaiTahfidzController extends Controller
         $data = $nilai->tugasTahfidz;
         $data['url']=$url;
         $data['nilai_id']=$nilai->id;
-
         return response()->json([
             'pesan'=>'Hasil Tugas Santri', 
             'data'=>$data],200);
