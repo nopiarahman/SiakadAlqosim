@@ -48,7 +48,7 @@ class NilaiTahfidzController extends Controller
         $tugas= TugasTahfidz::all();
         return ListTugasResource::collection($tugas);
     }
-    function koreksi(Request $request, NilaiTahfidz $nilai){
+    function koreksi(Request $request, TugasTahfidz $tugas, NilaiTahfidz $nilai){
         $url = $nilai->getFirstMediaUrl('audio');
         $data = $nilai->tugasTahfidz;
         $data['url']=$url;
