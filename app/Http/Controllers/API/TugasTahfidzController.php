@@ -13,7 +13,6 @@ class TugasTahfidzController extends Controller
     function index() {
         $tugas= TugasTahfidz::where('halaqoh_id',auth()->user()->guru->first()->halaqoh->first()->id)->get();
         return ListTugasResource::collection($tugas);
-        // return response()->json($tugas, 200);
     }
     function store(Request $request) {
         $tugas = new TugasTahfidz;
