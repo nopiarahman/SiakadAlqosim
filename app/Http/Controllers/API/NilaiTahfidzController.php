@@ -42,9 +42,8 @@ class NilaiTahfidzController extends Controller
         $kumpul = $tugas->nilaiTahfidz;
         $data = [];
         foreach ($kumpul as $i) {
-            $data[]=$i;
-            $data['namaLengkap']=$i->santri->namaLengkap;
-            $data['nisn']=$i->santri->nisn;
+            $i['namaLengkap']=$i->santri->namaLengkap;
+            $i['nisn']=$i->santri->nisn;
         }
         return response()->json([
             'pesan'=>'List Pengumpulan Tugas Santri', 
