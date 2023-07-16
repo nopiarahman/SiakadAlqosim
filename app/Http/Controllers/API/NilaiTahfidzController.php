@@ -40,9 +40,12 @@ class NilaiTahfidzController extends Controller
     }
     function pengumpulanTugas(TugasTahfidz $tugas) {
         $kumpul = $tugas->nilaiTahfidz;
-        $data = $kumpul;
-        $data['namaSantri']=$kumpul->santri->namaLengkap;
-        $data['nisn']=$kumpul->santri->nisn;
+        $data = [];
+        foreach ($kumpul as $i) {
+            $data=$i;
+            $data['namaLengkap']=$i->santri->namaLengkap;
+            $data['nisn']=$i->santri->nisn;
+        }
         return response()->json([
             'pesan'=>'List Pengumpulan Tugas Santri', 
             'data'=>$data],200);
