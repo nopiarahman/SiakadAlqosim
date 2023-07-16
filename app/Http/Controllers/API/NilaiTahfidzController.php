@@ -40,10 +40,12 @@ class NilaiTahfidzController extends Controller
     }
     function pengumpulanTugas(TugasTahfidz $tugas) {
         $kumpul = $tugas->nilaiTahfidz;
-        $kumpul['audio']=$kumpul->getFirstMediaUrl('audio');
+        $data = $kumpul->map(function (int $item, int $key) {
+            return $item['audio'] = $item->getFirstMediaUrl('audio');
+        });
         return response()->json([
             'pesan'=>'List Pengumpulan Tugas Santri', 
-            'data'=>$kumpul],200);
+            'data'=>$data],200);
     }
     function listPengumpulan() {
         $tugas= TugasTahfidz::all();
