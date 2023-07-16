@@ -34,7 +34,7 @@ Route::prefix('v1')->group(function(){
         // halaqoh
         Route::get('/halaqoh',[APIController::class,'halaqoh']);
         // Tugas
-        Route::apiResource('tugas',TugasTahfidzController::class);
+        // Route::apiResource('tugas',TugasTahfidzController::class);
         // User Santri
         Route::get('/list-tugas',[TugasTahfidzController::class,'list']);
         Route::get('nilai/lihat',[NilaiTahfidzController::class,'lihat']);
