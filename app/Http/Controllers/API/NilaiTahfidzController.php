@@ -42,8 +42,7 @@ class NilaiTahfidzController extends Controller
         $kumpul = $tugas->nilaiTahfidz;
         $data = [];
         foreach ($kumpul as $i) {
-            // $data = $i;
-            $data['audio']=$i->getFirstMediaUrl('audio');
+            $i['audio']=$i->getFirstMediaUrl('audio');
         }
         return response()->json([
             'pesan'=>'List Pengumpulan Tugas Santri', 
