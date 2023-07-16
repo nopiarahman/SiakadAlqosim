@@ -47,7 +47,7 @@ class NilaiTahfidzController extends Controller
         }
         return response()->json([
             'pesan'=>'List Pengumpulan Tugas Santri', 
-            'data'=>$data],200);
+            'data'=>$kumpul],200);
     }
     function listPengumpulan() {
         $tugas= TugasTahfidz::all();
