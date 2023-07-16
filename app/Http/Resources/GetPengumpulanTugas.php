@@ -19,6 +19,7 @@ class GetPengumpulanTugas extends JsonResource
             'namaLengkap'=>$this->santri->namaLengkap,
             'nisn'=>$this->santri->nisn,
             'nilai'=>$this->nilai,
+            'audio'=>$this->getFirstMediaUrl('audio'),
         ];
     }
     
