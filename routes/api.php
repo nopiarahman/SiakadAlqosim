@@ -45,7 +45,7 @@ Route::prefix('v1')->group(function(){
         Route::get('pengumpulan',[NilaiTahfidzController::class,'listPengumpulan']);
         Route::get('pengumpulan/{tugas}',[NilaiTahfidzController::class,'pengumpulanTugas']);
         Route::get('pengumpulan/{tugas}/{nilai}',[NilaiTahfidzController::class,'koreksi']);
-        Route::patch('nilai/koreksi-nilai/{nilai}',[NilaiTahfidzController::class,'simpanKoreksi']);
+        Route::patch('pengumpulan/{tugas}/{nilai}',[NilaiTahfidzController::class,'simpanKoreksi']);
         
     });
 });
