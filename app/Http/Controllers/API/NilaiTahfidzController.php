@@ -40,10 +40,6 @@ class NilaiTahfidzController extends Controller
     }
     function pengumpulanTugas(TugasTahfidz $tugas) {
         $kumpul = $tugas->nilaiTahfidz;
-        $data = [];
-        foreach ($kumpul as $i) {
-            $i['audio']=$i->getFirstMediaUrl('audio');
-        }
         return response()->json([
             'pesan'=>'List Pengumpulan Tugas Santri', 
             'data'=>$kumpul],200);
