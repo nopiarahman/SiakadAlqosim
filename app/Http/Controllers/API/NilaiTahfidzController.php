@@ -44,7 +44,7 @@ class NilaiTahfidzController extends Controller
             'pesan'=>'List Pengumpulan Tugas Santri', 
             'data'=>$kumpul],200);
     }
-    function pengumpulan() {
+    function listPengumpulan() {
         $tugas= TugasTahfidz::where('halaqoh_id',auth()->user()->guru->first()->halaqoh->first()->id)->get();
         return response()->json([
             'pesan'=>'List Tugas Santri', 
