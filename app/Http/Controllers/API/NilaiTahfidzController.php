@@ -58,7 +58,7 @@ class NilaiTahfidzController extends Controller
             'data'=>$data],200);
 
     }
-    function simpanKoreksi(Request $request, TugasTahfidz $tugas, NilaiTahfidz $nilai) {
+    function simpanKoreksi(Request $request, NilaiTahfidz $nilai) {
         $nilai->update([
             'nilai'=>$request->nilai
         ]);

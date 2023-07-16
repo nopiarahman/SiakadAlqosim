@@ -43,9 +43,9 @@ Route::prefix('v1')->group(function(){
         Route::post('kirim/{tugas}',[NilaiTahfidzController::class,'kirim']);
         // User Guru
         Route::get('pengumpulan',[NilaiTahfidzController::class,'listPengumpulan']);
-        Route::get('pengumpulan/{tugas}',[NilaiTahfidzController::class,'pengumpulanTugas']);
-        Route::get('pengumpulan/{tugas}/{nilai}',[NilaiTahfidzController::class,'koreksi']);
-        Route::patch('pengumpulan/{tugas}/{nilai}',[NilaiTahfidzController::class,'simpanKoreksi']);
+        // Route::get('pengumpulan/{tugas}',[NilaiTahfidzController::class,'pengumpulanTugas']);
+        // Route::get('pengumpulan/{tugas}/{nilai}',[NilaiTahfidzController::class,'koreksi']);
+        Route::patch('pengumpulan/{nilai}',[NilaiTahfidzController::class,'simpanKoreksi']);
         
     });
 });
