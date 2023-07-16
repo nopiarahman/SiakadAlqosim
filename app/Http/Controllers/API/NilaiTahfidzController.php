@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\ListTugasResource;
+use App\Http\Resources\GetPengumpulanTugas;
 
 class NilaiTahfidzController extends Controller
 {
@@ -45,9 +46,8 @@ class NilaiTahfidzController extends Controller
             $i['namaLengkap']=$i->santri->namaLengkap;
             $i['nisn']=$i->santri->nisn;
         }
-        return response()->json([
-            'pesan'=>'List Pengumpulan Tugas Santri', 
-            'data'=>$kumpul],200);
+        return GetPengumpulanTugas::collection($kumpul);
+
     }
     function listPengumpulan() {
         $tugas= TugasTahfidz::all();
