@@ -45,7 +45,7 @@ class NilaiTahfidzController extends Controller
             'data'=>$kumpul],200);
     }
     function listPengumpulan() {
-        $tugas= TugasTahfidz::where('halaqoh_id',15)->get();
+        $tugas= TugasTahfidz::where('halaqoh_id',1)->get();
         return response()->json([
             'pesan'=>'List Tugas Santri', 
             'data'=>$tugas],200);
