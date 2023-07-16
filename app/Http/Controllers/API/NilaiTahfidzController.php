@@ -47,7 +47,6 @@ class NilaiTahfidzController extends Controller
     function listPengumpulan() {
         $tugas= TugasTahfidz::where('halaqoh_id',auth()->user()->guru->first()->halaqoh->first()->id)->get();
         return ListTugasResource::collection($tugas);
-
     }
     function koreksi(Request $request, NilaiTahfidz $nilai){
         $url = $nilai->getFirstMediaUrl('audio');
