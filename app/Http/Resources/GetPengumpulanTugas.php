@@ -21,5 +21,5 @@ class GetPengumpulanTugas extends JsonResource
             'nilai'=>$this->nilai,
         ];
     }
-    }
+    
 }
