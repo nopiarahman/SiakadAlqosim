@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class TugasTahfidz extends Model
 {
     use HasFactory;
-    protected $table = "tugasTahfidz";
+    protected $table = "tugas_tahfidz";
     protected $guarded =['id','created_at','updated_at'];
 
     /**
