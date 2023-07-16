@@ -16,8 +16,8 @@ class GetPengumpulanTugas extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'namaLengkap'=>$this->namaLengkap,
-            'nisn'=>$this->nisn,
+            'namaLengkap'=>$this->santri->namaLengkap,
+            'nisn'=>$this->santri->nisn,
             'nilai'=>$this->nilai,
         ];
     }

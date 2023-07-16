@@ -41,11 +41,6 @@ class NilaiTahfidzController extends Controller
     }
     function pengumpulanTugas(TugasTahfidz $tugas) {
         $kumpul = $tugas->nilaiTahfidz;
-        $data = [];
-        foreach ($kumpul as $i) {
-            $i['namaLengkap']=$i->santri->namaLengkap;
-            $i['nisn']=$i->santri->nisn;
-        }
         return GetPengumpulanTugas::collection($kumpul);
 
     }
