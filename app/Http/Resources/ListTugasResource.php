@@ -20,7 +20,7 @@ class ListTugasResource extends JsonResource
             'jenisSurah'=>$this->jenisSurah,
             'mulai'=>$this->mulai,
             'selesai'=>$this->selesai,
-            'listSantri'=>GetPengumpulanTugas::collection($this->nilaiTahfidz),
+            // 'listSantri'=>GetPengumpulanTugas::collection($this->nilaiTahfidz),
         ];
     }
 }
