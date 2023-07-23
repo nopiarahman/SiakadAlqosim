@@ -6,6 +6,7 @@ use App\Models\TugasTahfidz;
 use Illuminate\Http\Request;
 use App\Http\Requests\TugasUpdate;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\GetListTugas;
 use App\Http\Resources\ListTugasResource;
 
 class TugasTahfidzController extends Controller

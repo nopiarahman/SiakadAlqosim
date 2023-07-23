@@ -14,6 +14,12 @@ class GetListTugas extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id'=>$this->id,
+            'namaTugas'=>$this->namaTugas,
+            'jenisSurah'=>$this->jenisSurah,
+            'mulai'=>$this->mulai,
+            'selesai'=>$this->selesai,
+        ];
     }
 }
