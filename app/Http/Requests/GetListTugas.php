@@ -2,9 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class GetListTugas extends FormRequest
+use Illuminate\Http\Resources\Json\JsonResource;
+class GetListTugas extends JsonResource
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,6 +24,16 @@ class GetListTugas extends FormRequest
     {
         return [
             //
+        ];
+    }
+    public function toArray($request)
+    {
+        return [
+            'id'=>$this->id,
+            'namaTugas'=>$this->namaTugas,
+            'jenisSurah'=>$this->jenisSurah,
+            'mulai'=>$this->mulai,
+            'selesai'=>$this->selesai,
         ];
     }
 }

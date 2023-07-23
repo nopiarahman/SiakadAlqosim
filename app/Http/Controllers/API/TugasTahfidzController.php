@@ -38,6 +38,6 @@ class TugasTahfidzController extends Controller
     }
     function list() {
         $tugas= TugasTahfidz::where('halaqoh_id',auth()->user()->santri->first()->halaqoh->first()->id)->get();
-        return ListTugasResource::collection($tugas);
+        return GetListTugas::collection($tugas);
     }
 }
