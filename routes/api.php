@@ -47,5 +47,8 @@ Route::prefix('v1')->group(function(){
         Route::get('pengumpulan/{tugas}/{nilai}',[NilaiTahfidzController::class,'koreksi']);
         Route::patch('pengumpulan/{nilai}',[NilaiTahfidzController::class,'simpanKoreksi']);
         
+        // User Wali
+        Route::get('/nilai-anak',[NilaiTahfidzController::class,'nilaiAnak']);
+
     });
 });
