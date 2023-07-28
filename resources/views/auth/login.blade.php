@@ -82,7 +82,11 @@
               <!-- /Logo -->
               <h4 class="mb-2">Selamat Datang 👋</h4>
               <p class="mb-4">Silahkan masukkan email dan password untuk melanjutkan</p>
-
+              @if (session('error'))
+<div class="alert alert-danger">
+                  {{ session('error') }}
+              </div>
+@endif
               <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
