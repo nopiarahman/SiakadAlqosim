@@ -73,4 +73,13 @@ class Santri extends Model implements HasMedia
     {
         return $this->hasMany(NilaiTahfidz::class);
     }
+    /**
+     * Get all of the hafalan for the Santri
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function hafalan(): HasMany
+    {
+        return $this->hasMany(Hafalan::class);
+    }
 }
