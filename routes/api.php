@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\APIController;
+use App\Http\Controllers\HafalanController;
 use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\SantriController;
 use App\Http\Controllers\API\NilaiTahfidzController;
@@ -33,6 +34,8 @@ Route::prefix('v1')->group(function(){
         Route::get('/kelas-santri/{id}',[SantriController::class,'isiKelas']);
         // halaqoh
         Route::get('/halaqoh',[APIController::class,'halaqoh']);
+        // hafalan
+        Route::get('/halaqoh/{santri}',[HafalanController::class,'index']);
         // Tugas
         Route::apiResource('tugas',TugasTahfidzController::class);
         // User Santri
