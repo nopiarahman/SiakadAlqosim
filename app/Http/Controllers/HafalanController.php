@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Santri;
+use App\Models\Hafalan;
 use Illuminate\Http\Request;
 
 class HafalanController extends Controller
