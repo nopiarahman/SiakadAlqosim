@@ -12,4 +12,13 @@ class HafalanController extends Controller
             'pesan'=>'Tugas berhasil diedit!', 
             'data'=>$hafalan],200);
     }
+    function create(Request $request, Santri $santri) {
+        $hafalan = new Hafalan;
+        $hafalan = Hafalan::create($request->all());
+        $hafalan['santri_id']=$santri->id;
+        $hafalan->save();
+        return response()->json([
+            'pesan'=>'Hafalan berhasil disimpan', 
+            'data'=>$hafalan],200);
+    }
 }

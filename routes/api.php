@@ -36,6 +36,7 @@ Route::prefix('v1')->group(function(){
         Route::get('/halaqoh',[APIController::class,'halaqoh']);
         // hafalan
         Route::get('/halaqoh/{santri}',[HafalanController::class,'index']);
+        Route::post('/halaqoh/{santri}',[HafalanController::class,'store']);
         // Tugas
         Route::apiResource('tugas',TugasTahfidzController::class);
         // User Santri
