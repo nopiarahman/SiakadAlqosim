@@ -11,7 +11,7 @@ class HafalanController extends Controller
     function index(Santri $santri) {
         $hafalan = Hafalan::where('santri_id',$santri->id)->get();
         return response()->json([
-            'pesan'=>'Tugas berhasil diedit!', 
+            'pesan'=>'Data Hafalan Santri ini', 
             'data'=>$hafalan],200);
     }
     function create(Request $request, Santri $santri) {
