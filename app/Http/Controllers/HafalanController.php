@@ -14,7 +14,7 @@ class HafalanController extends Controller
             'pesan'=>'Data Hafalan Santri ini', 
             'data'=>$hafalan],200);
     }
-    function create(Request $request, Santri $santri) {
+    function store(Request $request, Santri $santri) {
         $hafalan = new Hafalan;
         $hafalan = Hafalan::create($request->all());
         $hafalan['santri_id']=$santri->id;
