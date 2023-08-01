@@ -131,10 +131,10 @@
               </form>
 
             </div>
+              </div>
+              <!-- /Register -->
+            </div>
           </div>
-          <!-- /Register -->
-        </div>
-      </div>
     </div>
 
 

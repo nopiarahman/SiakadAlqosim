@@ -17,11 +17,11 @@ class RestrictApiUsers
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user() && !Auth::user()->hasRole('admin') || !Auth::user()->hasRole('Super-Admin')) {
+        if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('Super-Admin')) {
+            return $next($request);
+        }else{
             Auth::guard('web')->logout(); // Force logout the user
             return redirect('/login')->with('error', 'API users are not allowed to access the web interface.');
         }
-    
-        return $next($request);
     }
 }
