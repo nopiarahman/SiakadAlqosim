@@ -147,7 +147,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="basic-default-fullname">Tanggal Lahir</label>
-                                            <input type="date" class="form-control" name="tanggalLahirWali" required>
+                                            <input type="date" class="form-control" name="tanggalLahirWali">
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="basic-default-fullname">Pendidikan</label>

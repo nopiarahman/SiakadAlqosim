@@ -69,7 +69,7 @@ class SantriController extends Controller
             $userWali['name']=$request->namaWali;
             $userWali['username']='wali'.$request->nik;
             $userWali['marhalah_id']=auth()->user()->marhalah_id;
-            $userWali['password']=Hash::make($passwordWali);
+            $userWali['password']=Hash::make('wali'.$request->nik);
             $userWali->save();
             $userWali->assignRole('waliSantri');
 
