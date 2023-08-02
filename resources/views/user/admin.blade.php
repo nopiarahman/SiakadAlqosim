@@ -52,7 +52,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            {{-- <th>Email</th> --}}
+                            <th>Username</th>
                             <th>Marhalah</th>
                             <th>Aksi</th>
                         </tr>
@@ -64,7 +64,7 @@
                                 <td><i class="fab fa-angular fa-lg text-danger"></i>
                                     <strong>{{ $i->name }}</strong>
                                 </td>
-                                {{-- <td>{{ $i->email }}</td> --}}
+                                <td>{{ $i->username }}</td>
                                 <td>{{ $i->marhalah->nama }}</td>
                                 <td>
                                     <div class="dropdown">
