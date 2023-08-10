@@ -11,11 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class GuruController extends Controller
 {
     function index() {
-        if(auth()->user()->getRoleNames()->first()!= 'Super-Admin'){
-            $asatidz = Guru::where('marhalah_id',auth()->user()->marhalah_id)->get();
-        }else{
-            $asatidz = Guru::all();
-        }
+        $asatidz = Guru::all();
         return view('guru.index',compact('asatidz'));
     }
     function create() {
@@ -69,8 +65,7 @@ class GuruController extends Controller
     function cariGuru(Request $request) {
         if($request->has('q')){
             $cari = $request->q;
-            $data = Guru::select('id','nama')->where('nama','LIKE','%'.$cari.'%')
-            ->where('marhalah_id',auth()->user()->marhalah_id)->get();
+            $data = Guru::select('id','nama')->where('nama','LIKE','%'.$cari.'%')->get();
             return response()->json($data);
         }
     }

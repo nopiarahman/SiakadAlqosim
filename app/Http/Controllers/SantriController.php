@@ -144,10 +144,10 @@ class SantriController extends Controller
     function cariSantri(Request $request) {
         if($request->has('q')){
             $cari = $request->q;
-            $data = Santri::select('id','namaLengkap')->where('namaLengkap','LIKE','%'.$cari.'%')
-            ->where('marhalah_id',auth()->user()->marhalah_id)->get();
-            $dataKelas = $data->filter(function($value){
-                $value['kelas']=$value->kelas->first()->nama;
+            $data = Santri::where('namaLengkap','LIKE','%'.$cari.'%')->select('id','namaLengkap','marhalah_id')->get();
+            $dataKelas = $data->map(function ($value) {
+                $value['namaKelas'] = $value->kelas->first()->nama;
+                $value['namaMarhalah'] = $value->marhalah->nama;
                 return $value;
             });
             return response()->json($dataKelas);

@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Kelas;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Marhalah extends Model
 {
@@ -28,6 +30,15 @@ class Marhalah extends Model
     public function user()
     {
         return $this->hasMany(User::class);
+    }
+    /**
+     * Get all of the santri for the Marhalah
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function santri()
+    {
+        return $this->hasMany(Santri::class);
     }
     
 }

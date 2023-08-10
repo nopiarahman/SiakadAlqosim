@@ -11,9 +11,8 @@ use Illuminate\Support\Facades\DB;
 class HalaqohController extends Controller
 {
     function index() {
-        $halaqoh = Halaqoh::where('marhalah_id',auth()->user()->marhalah_id)->get();
-        $guru = Guru::where('marhalah_id',auth()->user()->marhalah_id)->get();
-        // dd($guru);
+        $halaqoh = Halaqoh::all();
+        $guru = Guru::all();
         return view('halaqoh.index',compact('halaqoh','guru'));
     }
     function store(Request $request) {
@@ -34,15 +33,6 @@ class HalaqohController extends Controller
         }
     }
     function isi(Halaqoh $id) {
-        $cari = "a";
-        $data = Santri::select('id','namaLengkap')->where('namaLengkap','LIKE','%'.$cari.'%')
-        ->where('marhalah_id',auth()->user()->marhalah_id)->get();
-        
-        $data->filter(function($value){
-                $value['kelas']=$value->kelas->first()->nama;
-                return $value;
-            });
-        // dd($data);
         return view('halaqoh.isi',compact('id'));
     }
     function isiSantri(Halaqoh $id, Request $request) {   

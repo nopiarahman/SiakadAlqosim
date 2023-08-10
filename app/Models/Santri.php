@@ -82,4 +82,13 @@ class Santri extends Model implements HasMedia
     {
         return $this->hasMany(Hafalan::class);
     }
+    /**
+     * Get the marhalah that owns the Santri
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function marhalah()
+    {
+        return $this->belongsTo(Marhalah::class);
+    }
 }

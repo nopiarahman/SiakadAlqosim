@@ -32,19 +32,25 @@ Route::prefix('v1')->group(function(){
         Route::post('logout',[LoginController::class,'logout']);
         Route::get('/kelas-santri',[SantriController::class,'kelasSantri']);
         Route::get('/kelas-santri/{id}',[SantriController::class,'isiKelas']);
+        
         // halaqoh
         Route::get('/halaqoh',[APIController::class,'halaqoh']);
+        
         // hafalan
         Route::get('/halaqoh/{santri}',[HafalanController::class,'index']);
         Route::post('/halaqoh/{santri}',[HafalanController::class,'store']);
+        
         // Tugas
         Route::apiResource('tugas',TugasTahfidzController::class);
+        
         // User Santri
         Route::get('/list-tugas',[TugasTahfidzController::class,'list']);
         Route::get('nilai/lihat',[NilaiTahfidzController::class,'lihat']);
+        
         // Nilai
         Route::get('nilai/{tugas}',[NilaiTahfidzController::class,'index']);
         Route::post('kirim/{tugas}',[NilaiTahfidzController::class,'kirim']);
+
         // User Guru
         Route::get('pengumpulan',[NilaiTahfidzController::class,'listPengumpulan']);
         Route::get('pengumpulan/{tugas}',[NilaiTahfidzController::class,'pengumpulanTugas']);

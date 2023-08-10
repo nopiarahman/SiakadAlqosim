@@ -13,7 +13,6 @@ class APIController extends Controller
 {
     function halaqoh() {
         $halaqoh = Halaqoh::where('guru_id',auth()->user()->guru->first()->id)->first();
-        // return response()->json($halaqoh, 200);
         return DaftarSantriHalaqoh::collection($halaqoh->santri);
     }
 }
