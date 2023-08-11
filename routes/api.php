@@ -50,12 +50,13 @@ Route::prefix('v1')->group(function(){
         // Nilai
         Route::get('nilai/{tugas}',[NilaiTahfidzController::class,'index']);
         Route::post('kirim/{tugas}',[NilaiTahfidzController::class,'kirim']);
-
+        
         // User Guru
         Route::get('pengumpulan',[NilaiTahfidzController::class,'listPengumpulan']);
         Route::get('pengumpulan/{tugas}',[NilaiTahfidzController::class,'pengumpulanTugas']);
         Route::get('pengumpulan/{tugas}/{nilai}',[NilaiTahfidzController::class,'koreksi']);
         Route::patch('pengumpulan/{nilai}',[NilaiTahfidzController::class,'simpanKoreksi']);
+        Route::get('/list-santri',[NilaiTahfidzController::class,'list']);
         
         // User Wali
         Route::get('/nilai-anak',[NilaiTahfidzController::class,'nilaiAnak']);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\Halaqoh;
 use App\Models\NilaiTahfidz;
 use App\Models\TugasTahfidz;
 use Illuminate\Http\Request;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\GetLihatNilai;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\ListTugasResource;
+use App\Http\Resources\DaftarSantriHalaqoh;
 use App\Http\Resources\GetPengumpulanTugas;
 
 class NilaiTahfidzController extends Controller
@@ -82,5 +84,9 @@ class NilaiTahfidzController extends Controller
         return response()->json([
             'pesan'=>'List Nilai', 
             'data'=>$nilai],200);
+    }
+    function list() {
+        $list = Halaqoh::where('guru_id',auth()->user()->guru->first()->id)->first();
+        return DaftarSantriHalaqoh::collection($list->santri);
     }
 }
