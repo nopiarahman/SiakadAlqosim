@@ -71,9 +71,7 @@ class NilaiTahfidzController extends Controller
         if($nilai == null){
             return response()->json('tidak ada data', 200);
         }
-        return response()->json([
-            'pesan'=>'List Nilai', 
-            'data'=>$nilai],200);
+        return GetLihatNilai::collection($nilai);
     }
     function nilaiAnak() {
         $nilai = NilaiTahfidz::where('santri_id',auth()->user()->wali->santri->id)->get();
