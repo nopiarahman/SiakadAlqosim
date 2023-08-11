@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\Santri;
 use App\Models\Halaqoh;
 use App\Models\NilaiTahfidz;
 use App\Models\TugasTahfidz;
