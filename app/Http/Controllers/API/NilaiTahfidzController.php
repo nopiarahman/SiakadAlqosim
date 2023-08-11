@@ -82,9 +82,7 @@ class NilaiTahfidzController extends Controller
         if($nilai == null){
             return response()->json('tidak ada data', 200);
         }
-        return response()->json([
-            'pesan'=>'List Nilai', 
-            'data'=>$nilai],200);
+        return GetLihatNilai::collection($nilai);
     }
     function list() {
         $list = Halaqoh::where('guru_id',auth()->user()->guru->first()->id)->first();
