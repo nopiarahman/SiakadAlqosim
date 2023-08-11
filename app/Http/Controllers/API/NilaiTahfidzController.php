@@ -92,7 +92,7 @@ class NilaiTahfidzController extends Controller
     }
     function listTugasSantri(Santri $santri) {
         $nilai = NilaiTahfidz::where('santri_id',$santri->id)->get();
-        if($nilai->first() == null){
+        if($nilai == null){
             return response()->json('tidak ada data', 200);
         }
         return GetLihatNilai::collection($nilai);
