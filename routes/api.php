@@ -57,6 +57,7 @@ Route::prefix('v1')->group(function(){
         Route::get('pengumpulan/{tugas}/{nilai}',[NilaiTahfidzController::class,'koreksi']);
         Route::patch('pengumpulan/{nilai}',[NilaiTahfidzController::class,'simpanKoreksi']);
         Route::get('/list-santri',[NilaiTahfidzController::class,'list']);
+        Route::get('/list-santri/{santri}',[NilaiTahfidzController::class,'listTugasSantri']);
         
         // User Wali
         Route::get('/nilai-anak',[NilaiTahfidzController::class,'nilaiAnak']);

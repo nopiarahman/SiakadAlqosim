@@ -89,4 +89,11 @@ class NilaiTahfidzController extends Controller
         $list = Halaqoh::where('guru_id',auth()->user()->guru->first()->id)->first();
         return DaftarSantriHalaqoh::collection($list->santri);
     }
+    function listTugasSantri(Santri $santri) {
+        $nilai = NilaiTahfidz::where('santri_id',$santri->id)->get();
+        if($nilai == null){
+            return response()->json('tidak ada data', 200);
+        }
+        return GetLihatNilai::collection($nilai);
+    }
 }
