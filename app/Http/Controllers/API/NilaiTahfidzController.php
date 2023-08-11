@@ -6,6 +6,7 @@ use App\Models\NilaiTahfidz;
 use App\Models\TugasTahfidz;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\GetLihatNilai;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\ListTugasResource;
 use App\Http\Resources\GetPengumpulanTugas;
