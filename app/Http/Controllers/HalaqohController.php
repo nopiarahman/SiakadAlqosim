@@ -43,4 +43,10 @@ class HalaqohController extends Controller
         $id->santri()->detach($request->santri_id);
         return redirect()->back()->with('success','Santri Berhasil Dihilangkan dari Halaqoh');
     }
+    function destroy(Halaqoh $id) {
+        $id->santri()->detach();
+        $id->delete();
+        return redirect('/halaqoh')->with('success','Halaqoh Berhasil Dihapus');
+
+    }
 }

@@ -90,7 +90,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Hapus Kelas </h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Hapus Halaqoh </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -117,7 +117,7 @@
                 var nama = button.data('nama')
                 var modal = $(this)
                 modal.find('.modal-text').text('Yakin ingin menghapus kelas ' + nama + ' ?')
-                document.getElementById('formHapus').action = '/kelas/delete/' + id;
+                document.getElementById('formHapus').action = '/halaqoh/delete/' + id;
             })
         });
     </script>

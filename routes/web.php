@@ -91,6 +91,7 @@ Route::middleware([
             Route::get('/halaqoh/{id}','isi')->name('isi-halaqoh');
             Route::post('/halaqoh/{id}/simpan','isiSantri')->name('halaqoh-isi-simpan');
             Route::delete('/halaqoh/deleteSantri/{id}','deleteSantri');
+            Route::delete('/halaqoh/delete/{id}','destroy');
         });
         Route::controller(MapelController::class)->group(function(){
             Route::get('/mapel','index')->name('mapel-index');
