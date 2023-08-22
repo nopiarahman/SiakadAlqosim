@@ -16,7 +16,7 @@ class GetLihatNilai extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'namaTugas'=>$this->tugasTahfidz()->namaTugas,
+            'namaTugas'=>$this->tugasTahfidz->namaTugas,
             'jenisSurah'=>$this->tugasTahfidz->jenisSurah,
             'nilai'=>$this->nilai,
         ];

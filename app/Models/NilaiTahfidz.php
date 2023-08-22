@@ -20,7 +20,7 @@ class NilaiTahfidz extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function tugasTahfidz(): BelongsTo
+    public function tugasTahfidz()
     {
         return $this->belongsTo(TugasTahfidz::class);
     }
