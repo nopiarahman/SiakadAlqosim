@@ -469,7 +469,7 @@
                 <div class="w-16 h-1 bg-teal-light my-3 md:my-6"></div>
 
                 <p class="text-grey-darker text-2xl md:text-3xl font-light mb-8 leading-normal">
-                    Afwan, Kami sedang melakukan perawatan sistem, silahkan kembali beberapa saat lagi.
+                    'Afwan, Kami sedang melakukan perawatan sistem, silahkan kembali beberapa saat lagi.
                 </p>
 
                 {{-- <a href="{{ url('/') }}">
