@@ -35,6 +35,7 @@ class TugasTahfidzController extends Controller
     }
     function destroy(TugasTahfidz $tuga) {
         $tuga->delete();
+        $tuga->nilaiTahfidz->delete();
         return response()->json("berhasil dihapus",200);
     }
     function list() {

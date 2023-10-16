@@ -26,6 +26,9 @@ use App\Http\Controllers\WaliKelasController;
 Route::get('/', function () {
     return redirect('login');
 });
+Route::get('/pendaftaran', function () {
+    return 'halo';
+});
 
 Route::middleware([
     'auth:sanctum','restrict.api.users',
