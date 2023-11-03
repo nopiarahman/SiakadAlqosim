@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\UserController;
@@ -11,6 +11,7 @@ use App\Http\Controllers\HalaqohController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\MarhalahController;
 use App\Http\Controllers\WaliKelasController;
+use App\Http\Controllers\PendaftaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,10 @@ Route::get('/', function () {
     return redirect('login');
 });
 Route::get('/pendaftaran', function () {
-    return 'halo';
+    return view('pendaftaran');
+});
+Route::controller(PendaftaranController::class)->group(function(){
+    Route::get('/formulir','form')->name('form-pendaftaran');
 });
 
 Route::middleware([
