@@ -721,7 +721,7 @@
                                 <tr>
                                     <td>Marhalah Salafiyah Wushta Putri</td>
                                     <td><a
-                                            href="https://wa.me/+6281228031228?text=Assalamualaikum%2C%20saya%20ingin%20bertanya%20tentang%20PSB%20Alqosim.">Hubungi
+                                            href="https://wa.me/+6285366095503?text=Assalamualaikum%2C%20saya%20ingin%20bertanya%20tentang%20PSB%20Alqosim.">Hubungi
                                             via WhatsApp</a>
                                     </td>
                                 </tr>
@@ -735,7 +735,7 @@
                                 <tr>
                                     <td>Marhalah Salafiyah Ulya Putri</td>
                                     <td><a
-                                            href="https://wa.me/+6281228031228?text=Assalamualaikum%2C%20saya%20ingin%20bertanya%20tentang%20PSB%20Alqosim.">Hubungi
+                                            href="https://wa.me/+6285366095503?text=Assalamualaikum%2C%20saya%20ingin%20bertanya%20tentang%20PSB%20Alqosim.">Hubungi
                                             via WhatsApp</a>
                                     </td>
                                 </tr>
