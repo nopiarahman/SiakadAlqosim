@@ -389,7 +389,7 @@
                         <div class="col-12">
                             <div class="button_align align_center"> <a
                                     class="button has-icon button_right button_size_2"
-                                    href="index-consultant.html"><span class="button_label">PENDAFTARAN</span></a>
+                                    href="{{ url('/formulir') }}"><span class="button_label">PENDAFTARAN</span></a>
                             </div>
                             <div class="col-12">
                                 <hr class="no_line" style="margin:0 auto 20px">
