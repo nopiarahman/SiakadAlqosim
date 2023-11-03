@@ -30,6 +30,15 @@
     <!-- Revolution Slider -->
     <link rel="stylesheet" href='{{ asset('asset2/plugins/rs-plugin-6.custom/css/rs6.css') }}'>
 </head>
+<style>
+    .daftar {
+        position: fixed;
+        top: 2%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100;
+    }
+</style>
 
 <body
     class="home page template-slider style-simple button-custom layout-full-width no-shadows header-transparent header-fw sticky-header sticky-tb-color ab-hide subheader-both-center menu-line-below-80 menuo-right menuo-no-borders footer-copy-center mobile-tb-hide mobile-side-slide mobile-mini-mr-lc tablet-sticky mobile-header-mini mobile-sticky">
@@ -37,17 +46,19 @@
         <div id="Header_wrapper">
             <header id="Header">
                 {{-- MENU --}}
-                <div id="Top_bar">
-                    <div class="row">
+                <a href="{{ url('/pendaftaran') }}" type="button"
+                    class="daftar btn btn-success d-md-block px-5 py-2">Kembali</a>
+                <div id="Top_bar" class="d-none">
+                    <div class="row d-none d-md-block">
                         <div class="column one">
                             <div class="top_bar_left clearfix">
-                                <div class="logo">
+                                <div class="logo d-none d-md-block">
                                     <a id="logo" href="" title="PK-PPS Alqosim Jambi" data-height="60"
                                         data-padding="30"><img class="logo-main scale-with-grid"
                                             src="{{ asset('asset2/images/favicon.png') }}" data-height="60"
                                             alt="Alqosim Jambi" data-no-retina /></a>
                                 </div>
-                                {{-- <div class="menu_wrapper">
+                                <div class="menu_wrapper">
                                     <nav id="menu" style="color: #ffff !important">
                                         <ul id="menu-main-menu" class="menu menu-main">
                                             <li class=" current-menu-item page_item current_page_item"> <a
@@ -64,7 +75,7 @@
                                         </ul>
                                     </nav><a class="responsive-menu-toggle" href="#"><i
                                             class="icon-menu-fine"></i></a>
-                                </div> --}}
+                                </div>
                             </div>
                             <div class="top_bar_right mt-5">
                                 <div class="top_bar_right_wrapper"> <a href="{{ url('/pendaftaran') }}"

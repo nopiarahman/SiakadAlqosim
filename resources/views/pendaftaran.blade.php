@@ -23,6 +23,7 @@
     <link rel='stylesheet'
         href='https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,400italic,500,600,700,700italic,900'>
     <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="{{ asset('asset2/css/bootstrap.min.css') }}" rel="stylesheet">
     <!--CSS -->
     <link rel='stylesheet' href='{{ asset('asset2/css/structure.css') }}'>
@@ -30,6 +31,15 @@
     <!-- Revolution Slider -->
     <link rel="stylesheet" href='{{ asset('asset2/plugins/rs-plugin-6.custom/css/rs6.css') }}'>
 </head>
+<style>
+    .daftar {
+        position: fixed;
+        top: 85%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100;
+    }
+</style>
 
 <body
     class="home page template-slider style-simple button-custom layout-full-width no-shadows header-transparent header-fw sticky-header sticky-tb-color ab-hide subheader-both-center menu-line-below-80 menuo-right menuo-no-borders footer-copy-center mobile-tb-hide mobile-side-slide mobile-mini-mr-lc tablet-sticky mobile-header-mini mobile-sticky">
@@ -37,11 +47,14 @@
         <div id="Header_wrapper">
             <header id="Header">
                 {{-- MENU --}}
+                <a href="{{ url('/formulir') }}" type="button"
+                    class="daftar btn btn-success d-md-none px-5 py-2">DAFTAR
+                    DISINI</a>
                 <div id="Top_bar">
                     <div class="row">
                         <div class="column one">
-                            <div class="top_bar_left clearfix">
-                                <div class="logo">
+                            <div class="top_bar_left clearfix ">
+                                <div class="logo d-none d-md-block">
                                     <a id="logo" href="" title="PK-PPS Alqosim Jambi" data-height="60"
                                         data-padding="30"><img class="logo-main scale-with-grid"
                                             src="{{ asset('asset2/images/favicon.png') }}" data-height="60"
@@ -63,7 +76,7 @@
                                             </li>
                                         </ul>
                                     </nav><a class="responsive-menu-toggle" href="#"><i
-                                            class="icon-menu-fine"></i></a>
+                                            class="bi bi-layout-text-sidebar-reverse bg-light p-2 rounded"></i></a>
                                 </div>
                             </div>
                             <div class="top_bar_right mt-5">
@@ -744,11 +757,9 @@
         </footer>
     </div>
     <div id="Side_slide" class="right dark" data-width="250">
-        <div class="close-wrapper"> <a href="#" class="close"><i class="icon-cancel-fine"></i></a> </div>
-        <div class="extras"> <a href="content/consultant/contact.html" class="action_button"><i
-                    class="icon-mobile"></i> 383 766 284</a>
-            <div class="extras-wrapper"></div>
-        </div>
+        <div class="close-wrapper"> <a href="#" class="close">
+                <i class="bi bi-x-lg"></i>
+            </a> </div>
         <div class="menu_wrapper"></div>
     </div>
     <div id="body_overlay"></div>
