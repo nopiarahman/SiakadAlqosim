@@ -137,6 +137,12 @@
                             <div data-i18n="Tables">Jadwal Guru</div>
                         </a>
                     </li>
+                    <li class="menu-item @yield('menuKD')">
+                        <a href="{{ url('/jadwal') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-calendar"></i>
+                            <div data-i18n="Tables">Kompetensi Dasar</div>
+                        </a>
+                    </li>
                 @endrole
                 @role('admin')
                     <li class="menu-item @yield('menuJadwal')">
@@ -146,12 +152,24 @@
                         </a>
                     </li>
                 @endrole
+                <li class="menu-item @yield('menuJadwal')">
+                    <a href="{{ url('/jadwal') }}" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-calendar"></i>
+                        <div data-i18n="Tables">Jadwal Pelajaran</div>
+                    </a>
+                </li>
             @endrole
             @role('Super-Admin')
                 <li class="menu-item @yield('menuPeriode')">
                     <a href="{{ '/periode' }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-time"></i>
                         <div data-i18n="Tables">Periode</div>
+                    </a>
+                </li>
+                <li class="menu-item @yield('menuKurikulum')">
+                    <a href="{{ '/kurikulum' }}" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-time"></i>
+                        <div data-i18n="Tables">Kurikulum</div>
                     </a>
                 </li>
             @endrole

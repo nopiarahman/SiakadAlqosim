@@ -10,6 +10,7 @@ use App\Http\Controllers\SantriController;
 use App\Http\Controllers\HalaqohController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\MarhalahController;
+use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\WaliKelasController;
 use App\Http\Controllers\PendaftaranController;
 
@@ -132,6 +133,13 @@ Route::middleware([
             Route::get('/waliKelas/edit/{kelas}','edit')->name('waliKelas-edit');
             Route::post('/waliKelas/{kelas}','store')->name('waliKelas-simpan');
             Route::patch('/waliKelas/{kelas}','update')->name('waliKelas-update');
+        });
+        Route::controller(KurikulumController::class)->group(function(){
+            Route::get('/kurikulum','index')->name('kurikulum-index');
+            Route::post('/kurikulum','store')->name('kurikulum-simpan');
+            Route::get('/kurikulum/tambah','create')->name('kurikulum-tambah');
+            Route::get('/kurikulum/edit/{id}','edit')->name('edit-kurikulum');
+            Route::delete('/kurikulum/delete/{id}','destroy')->name('kurikulum-delete');
         });
     });
     Route::group(['middleware'=>['role:guru']],function(){
