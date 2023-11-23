@@ -1,6 +1,5 @@
 @extends('layouts.tema')
-@section('menuSantri', 'active open')
-@section('subMenuSantri2', 'active')
+@section('menuRaportSantri', 'active open')
 @section('head')
     <link rel="stylesheet" href="{{ asset('template/css/vanilla-dataTables.min.css') }}">
 @endsection
@@ -33,7 +32,8 @@
                                         href="{{ route('raport-mid', ['santri' => $i->id, 'kelas' => $kelas->id]) }}"><i
                                             class="bx bx-edit-alt me-1"></i>
                                         Raport MID</a>
-                                    <a class="btn btn-primary" href="{{ route('edit-santri', ['id' => $i->id]) }}"><i
+                                    <a class="btn btn-primary"
+                                        href="{{ route('raport-semesterk13', ['santri' => $i->id, 'kelas' => $kelas->id]) }}"><i
                                             class="bx bx-edit-alt me-1"></i>
                                         Raport Semester</a>
                                 </td>

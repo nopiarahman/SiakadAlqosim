@@ -49,4 +49,13 @@ class Jadwal extends Model
     {
         return $this->hasMany(Nilai::class);
     }
+    /**
+     * Get all of the nilai for the Jadwal
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function nilak13(): HasMany
+    {
+        return $this->hasMany(NilaiK13::class);
+    }
 }

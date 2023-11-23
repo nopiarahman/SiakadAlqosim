@@ -1,42 +1,40 @@
 @extends('layouts.tema')
-@section('menuJadwalGuru', 'active open')
+@section('menuKD', 'active open')
 @section('head')
     <link rel="stylesheet" href="{{ asset('template/css/vanilla-dataTables.min.css') }}">
 @endsection
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">
-                Jadwal</span></h4>
+                Kompetensi Dasar</span></h4>
 
         <!-- Basic Bootstrap Table -->
         <div class="card">
-            <h5 class="card-header">Daftar Jadwal</h5>
+            <h5 class="card-header">Daftar Mata Pelajaran</h5>
             <div class="text-nowrap table-responsive">
                 <table class="table " id="table">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Hari</th>
                             <th>Kelas</th>
                             <th>Mapel</th>
-                            <th>Jam</th>
-                            {{-- <th>Nilai</th> --}}
+                            <th>KD</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        @foreach ($jadwal as $i)
+                        @foreach ($list as $i)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td><i class="fab fa-angular fa-lg text-danger"></i>
-                                    <strong>{{ ucfirst($i->hari) }}</strong>
+                                <td><i class="fab fa-angular fa-lg text-warning">
+                                        <strong>{{ $i->kelas->nama }}</strong></i>
                                 </td>
-                                <td>{{ $i->kelas->nama }}</td>
-                                <td>{{ $i->mapel->nama }}</td>
-                                <td><span class="text-primary">{{ substr($i->mulai, 0, 5) }} -
-                                        {{ substr($i->selesai, 0, 5) }}</span></td>
-                                {{-- <td><a href="{{ route('isi-nilai', ['id' => $i->id]) }}"><span
+                                <td><i class="fab fa-angular fa-lg text-primary">
+                                        <strong>{{ $i->mapel->nama }}</strong></i>
+                                </td>
+                                <td><a
+                                        href="{{ route('isi-kd-guru', ['kelas' => $i->kelas_id, 'mapel' => $i->mapel_id]) }}"><span
                                             class="badge bg-label-primary me-1">Isi
-                                            Nilai</span></a></td> --}}
+                                            Kompetensi Dasar</span></a></td>
                             </tr>
                         @endforeach
                     </tbody>

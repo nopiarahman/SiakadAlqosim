@@ -38,7 +38,6 @@ class KurikulumController extends Controller
     function update(Request $request, Kurikulum $id) {
         // dd($request);
         try {
-            DB::beginTransaction();
             $requestData=$request->all();
             $id->update($requestData);
             DB::commit();

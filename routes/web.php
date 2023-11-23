@@ -3,13 +3,16 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\KDK13Controller;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\RaportController;
 use App\Http\Controllers\SantriController;
 use App\Http\Controllers\HalaqohController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\MarhalahController;
+use App\Http\Controllers\NilaiK13Controller;
 use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\WaliKelasController;
 use App\Http\Controllers\PendaftaranController;
@@ -123,6 +126,7 @@ Route::middleware([
             Route::get('/jadwal-guru','jadwalGuru')->name('jadwal-guru');
             Route::get('/jadwal/{kelas}','isiJadwal')->name('isi-jadwal');
             Route::get('/jadwal/tambah','create');
+            Route::post('/jadwal/kurikulum/{id}','pilihKurikulum');
             Route::patch('/jadwal/update/{id}','update')->name('jadwal-update');
             Route::post('/jadwal/simpan/{kelas}','store')->name('jadwal-simpan');
             Route::get('/jadwal/edit/{id}','edit')->name('edit-jadwal');
@@ -139,6 +143,7 @@ Route::middleware([
             Route::post('/kurikulum','store')->name('kurikulum-simpan');
             Route::get('/kurikulum/tambah','create')->name('kurikulum-tambah');
             Route::get('/kurikulum/edit/{id}','edit')->name('edit-kurikulum');
+            Route::patch('/kurikulum/{id}','update')->name('kurikulum-update');
             Route::delete('/kurikulum/delete/{id}','destroy')->name('kurikulum-delete');
         });
     });
@@ -146,7 +151,22 @@ Route::middleware([
         Route::controller(JadwalController::class)->group(function(){
             Route::get('/jadwal-guru','jadwalGuru')->name('jadwal-guru');
             Route::get('/jadwal-guru/nilai/{id}','isinilai')->name('isi-nilai');
-            Route::post('/jadwal-guru/simpan-nilai/{jadwal}','jadwalNilaiSimpan')->name('jadwal-nilai-simpan');
+        });
+        Route::controller(KDK13Controller::class)->group(function(){
+            Route::get('/kd-guru','index')->name('kd-guru');
+            Route::post('/kd-guru/simpan','store')->name('kd-guru-simpan');
+            Route::get('/kd-guru/list/{kelas}/{mapel}','isi')->name('isi-kd-guru');
+        });
+        Route::controller(NilaiK13Controller::class)->group(function(){
+            Route::get('/nilai-guru','index')->name('nilai-guru');
+            Route::get('/nilai-pengetahuan/{kelas}/{mapel}','pengetahuan')->name('isi-nilai-pengetahuan');
+            Route::get('/nilai-keterampilan/{kelas}/{mapel}','keterampilan')->name('isi-nilai-keterampilan');
+            Route::get('/nilai-pts/{kelas}/{mapel}','pts')->name('isi-nilai-pts');
+            Route::get('/nilai-pas/{kelas}/{mapel}','pas')->name('isi-nilai-pas');
+            Route::post('/nilai-harian/simpan','store')->name('nilaiK13-harian-simpan');
+            Route::post('/nilai-keterampilan/simpan','storeKeterampilan')->name('nilaiK13-keterampilan-simpan');
+            Route::post('/nilai-pts/simpan','storePTS')->name('nilaiK13-pts-simpan');
+            Route::post('/nilai-pas/simpan','storePAS')->name('nilaiK13-pas-simpan');
         });
     });
     Route::group(['middleware'=>['role:waliKelas']],function(){
@@ -154,6 +174,9 @@ Route::middleware([
             Route::get('/raport-kelas','raportKelas');
             Route::get('/raport-kelas/{kelas}','isiKelas')->name('list-kelas-walikelas');
             Route::get('/raport-mid/{santri}/{kelas}','raportMid')->name('raport-mid');
+        });
+        Route::controller(RaportController::class)->group(function(){
+            Route::get('/raport-semesterk13/{santri}/{kelas}','semesterk13')->name('raport-semesterk13');
         });
     });
     Route::controller(UserController::class)->group(function(){

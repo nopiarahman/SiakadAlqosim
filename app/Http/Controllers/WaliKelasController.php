@@ -25,22 +25,16 @@ class WaliKelasController extends Controller
             $validasi = $this->validate($request,[
                 'guru_id'=> 'string|required',
                 ]);
-            // User Wali Kelas
-            $user = new User;
-            $user['name']=$guru->nama;
-            $user['username']='walikelas'.$kelas->nama;
-            $user['marhalah_id']=auth()->user()->marhalah_id;
-            $user['password']=Hash::make('walikelas');
-            $user->save();
+            // Role Wali Kelas
+            $guru->user->assignRole('waliKelas');
             // Data Wali Kelas
             $waliKelas = new WaliKelas;
             $waliKelas = WaliKelas::create([
-                'user_id'=>$user->id,
+                'user_id'=>$guru->user_id,
                 'kelas_id'=>$kelas->id,
                 'guru_id'=>$guru->id
             ]);
             $waliKelas->save();
-            $user->assignRole('waliKelas');
             DB::commit();
             return redirect()->route('list-kelas')->with('success','Wali Kelas Berhasil Disimpan');
         } catch (\Exception $ex) {
@@ -58,17 +52,12 @@ class WaliKelasController extends Controller
             $validasi = $this->validate($request,[
                 'guru_id'=> 'string|required',
                 ]);
-            // User Wali Kelas
-            $user = User::updateOrCreate(
-                ['username'=>'walikelas'.$kelas->nama],
-                ['name'=>$guru->nama,'password'=>Hash::make('walikelas'),'marhalah_id'=>auth()->user()->marhalah_id]
-            );
             $waliKelas = WaliKelas::updateOrCreate(
                 ['kelas_id'=>$kelas->id],
-                ['user_id'=>$user->id,'guru_id'=>$guru->id]
+                ['user_id'=>$guru->user_id,'guru_id'=>$guru->id]
             );
             // Data Wali Kelas
-            $user->assignRole('waliKelas');
+            $guru->user->assignRole('waliKelas');
             DB::commit();
             return redirect()->route('list-kelas')->with('success','Wali Kelas Berhasil Disimpan');
         } catch (\Exception $ex) {
@@ -84,6 +73,7 @@ class WaliKelasController extends Controller
         return view('waliKelas.isiKelas',compact('kelas'));
     }
     function raportMid(Santri $santri, Kelas $kelas) {
+        return redirect()->back()->with('error',"'afwan,  fitur sedang dikembangkan");
         $nilai = Nilai::where('periode_id',getPeriodeAktif()->id)
         ->where('kelas_id',$kelas->id)
         ->where('santri_id',$santri->id)->get();

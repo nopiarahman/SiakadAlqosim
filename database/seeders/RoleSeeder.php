@@ -22,9 +22,6 @@ class RoleSeeder extends Seeder
          $guru = Role::create(['name' => 'guru']);
          $santri = Role::create(['name' => 'santri']);
          $waliSantri = Role::create(['name' => 'waliSantri']);
-         $waliKelas = Role::create(['name' => 'waliKelas']);
          $superAdmin = Role::create(['name' => 'Super-Admin']);
-         $yayasan = Role::create(['name' => 'yayasan']);
-         $kepsek = Role::create(['name' => 'kepsek']);
     }
 }

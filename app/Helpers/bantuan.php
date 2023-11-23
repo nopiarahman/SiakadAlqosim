@@ -1,46 +1,101 @@
 <?php
 
 use App\Models\Periode;
+use App\Models\NilaiK13;
 
 function getPeriodeAktif() {
     $periode = Periode::where('status','aktif')->first();
     return $periode;
 }
-function nilaiHarianSantri($jadwal,$santri_id) {
-    $nilai = $jadwal->nilai->where('santri_id',$santri_id)->first();
+function nilaiSantriHarianK13($santriId,$kelasId,$mapelId,$periodeId,$kurikulumId,$key) {
+    $nilai = NilaiK13::where('santri_id',$santriId)
+                        ->where('kelas_id',$kelasId)
+                        ->where('mapel_id',$mapelId)
+                        ->where('periode_id',$periodeId)
+                        ->where('kurikulum_id',$kurikulumId)
+                        ->first();
     if ($nilai) {
-        if($nilai->harian){
-            return $nilai->harian;
-        }
+        return $nilai->$key;
     }
-    return 0;
+    return "";
 }
-function nilaiUtsSantri($jadwal,$santri_id) {
-    $nilai = $jadwal->nilai->where('santri_id',$santri_id)->first();
+function nilaiSantriPTSK13($santriId,$kelasId,$mapelId,$periodeId,$kurikulumId) {
+    $nilai = NilaiK13::where('santri_id',$santriId)
+                        ->where('kelas_id',$kelasId)
+                        ->where('mapel_id',$mapelId)
+                        ->where('periode_id',$periodeId)
+                        ->where('kurikulum_id',$kurikulumId)
+                        ->first();
     if ($nilai) {
-        if($nilai->uts){
-            return $nilai->uts;
-        }
+        return $nilai->PTS;
     }
-    return 0;
+    return "";
 }
-function nilaiUasSantri($jadwal,$santri_id) {
-    $nilai = $jadwal->nilai->where('santri_id',$santri_id)->first();
+function nilaiSantriPASK13($santriId,$kelasId,$mapelId,$periodeId,$kurikulumId) {
+    $nilai = NilaiK13::where('santri_id',$santriId)
+                        ->where('kelas_id',$kelasId)
+                        ->where('mapel_id',$mapelId)
+                        ->where('periode_id',$periodeId)
+                        ->where('kurikulum_id',$kurikulumId)
+                        ->first();
     if ($nilai) {
-        if($nilai->uas){
-            return $nilai->uas;
-        }
+        return $nilai->PAS;
     }
-    return 0;
+    return "";
 }
-function nilaiAkhlakSantri($jadwal,$santri_id) {
-    $nilai = $jadwal->nilai->where('santri_id',$santri_id)->first();
-    if ($nilai) {
-        if($nilai->akhlak){
-            return $nilai->akhlak;
-        }
-    }
-    return 0;
+function nilaiRPH($santriId,$kelasId,$mapelId,$periodeId,$kurikulumId) {
+    $nilai = NilaiK13::where('santri_id',$santriId)
+            ->where('kelas_id',$kelasId)
+            ->where('mapel_id',$mapelId)
+            ->where('periode_id',$periodeId)
+            ->where('kurikulum_id',$kurikulumId)
+            ->first();
+            if ($nilai) {
+                $nilaiH = collect([
+                    $nilai->h1,
+                    $nilai->h2,
+                    $nilai->h3,
+                    $nilai->h4,
+                    $nilai->h5,
+                    $nilai->h6,
+                    $nilai->h7,
+                    $nilai->h8,
+                ])->filter(function ($nilai) {
+                    return $nilai !== null;
+                });
+                
+                // Menghitung rata-rata
+                $rataRata = $nilaiH->avg();
+                return $rataRata;                
+            }
+            return "";
+}
+function nilaiRPHKeterampilan($santriId,$kelasId,$mapelId,$periodeId,$kurikulumId) {
+    $nilai = NilaiK13::where('santri_id',$santriId)
+            ->where('kelas_id',$kelasId)
+            ->where('mapel_id',$mapelId)
+            ->where('periode_id',$periodeId)
+            ->where('kurikulum_id',$kurikulumId)
+            ->first();
+            if ($nilai) {
+                $nilaiH = collect([
+                    $nilai->k1,
+                    $nilai->k2,
+                    $nilai->k3,
+                    $nilai->k4,
+                    $nilai->k5,
+                    $nilai->k6,
+                    $nilai->k7,
+                    $nilai->k8,
+                ])->filter(function ($nilai) {
+                    return $nilai !== null;
+                });
+                
+                // Menghitung rata-rata
+                $rataRata = $nilaiH->avg();
+                return $rataRata;                
+            }
+            return "";
 }
 function nilaiRaport($jadwal,$santri_id) {
     $nilai = $jadwal->nilai->where('santri_id',$santri_id)->first();

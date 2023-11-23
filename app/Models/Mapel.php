@@ -21,4 +21,22 @@ class Mapel extends Model
     {
         return $this->hasMany(Jadwal::class);
     }
+    /**
+     * Get all of the kdk13 for the Mapel
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function kdk13(): HasMany
+    {
+        return $this->hasMany(KDK13::class);
+    }
+    /**
+     * Get all of the nilaik13 for the Mapel
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function nilaik13(): HasMany
+    {
+        return $this->hasMany(NilaiK13::class);
+    }
 }

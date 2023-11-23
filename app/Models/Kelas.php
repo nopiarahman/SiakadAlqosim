@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Kurikulum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Kelas extends Model
 {
@@ -48,5 +50,22 @@ class Kelas extends Model
     public function waliKelas(): HasOne
     {
         return $this->hasOne(WaliKelas::class);
+    }
+    /**
+     * The kurikulum that belong to the Kelas
+     *
+     * @return BelongsToMany
+     */
+    public function kurikulums()
+    {
+        return $this->belongsToMany(Kurikulum::class, 'kelas_kurikulum')
+            ->using(KelasKurikulum::class)
+            ->withPivot('periode_id');
+    }
+    public function addOrUpdateKurikulum($kurikulumId, $periodeId)
+    {
+        return $this->kurikulum()->syncWithoutDetaching([
+            $kurikulumId => ['periode_id' => $periodeId]
+        ]);
     }
 }

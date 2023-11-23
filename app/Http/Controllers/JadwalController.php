@@ -6,6 +6,7 @@ use App\Models\Kelas;
 use App\Models\Mapel;
 use App\Models\Nilai;
 use App\Models\Jadwal;
+use App\Models\Kurikulum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,7 +14,8 @@ class JadwalController extends Controller
 {
     function index() {
         $kelas = Kelas::where('marhalah_id',auth()->user()->marhalah_id)->get();
-        return view('jadwal.pilihkelas',compact('kelas'));
+        $kurikulum = Kurikulum::all();
+        return view('jadwal.pilihkelas',compact('kelas','kurikulum'));
     }
     function isiJadwal(Kelas $kelas) {
         $periodeId= getPeriodeAktif()->id;
@@ -54,31 +56,42 @@ class JadwalController extends Controller
         $santri = $id->kelas->santri;
         return view('jadwal.nilai',compact('id','santri'));
     }
-    function jadwalNilaiSimpan(Request $request, Jadwal $jadwal) {
+    // function jadwalNilaiSimpan(Request $request, Jadwal $jadwal) {
         
-        try {
-            DB::beginTransaction();
-            $requestData = $request->all();
-            $requestData['jadwal_id']=$jadwal->id;
-            $nilai = new Nilai;
-            $nilai = Nilai::updateOrCreate(
-                ['santri_id'=>$request->santri_id,'jadwal_id'=>$jadwal->id],
-                [
-                    'uts'=>$request->uts,
-                    'uas'=>$request->uas,
-                    'harian'=>$request->harian,
-                    'akhlak'=>$request->akhlak,
-                    'kelas_id'=>$jadwal->kelas->id,
-                    'mapel_id'=>$jadwal->mapel->id,
-                    'periode_id'=>$jadwal->periode_id,
-                    ]
-            );
-            $nilai->save();
-            DB::commit();
-            return redirect()->back()->with('success','Nilai Berhasil Disimpan');
-        } catch (\Exception $ex) {
-            DB::rollback();
-            return redirect()->back()->with('error','Gagal. Pesan Error: '.$ex->getMessage());
-        }
+    //     try {
+    //         DB::beginTransaction();
+    //         $requestData = $request->all();
+    //         $requestData['jadwal_id']=$jadwal->id;
+    //         $nilai = new Nilai;
+    //         $nilai = Nilai::updateOrCreate(
+    //             ['santri_id'=>$request->santri_id,'jadwal_id'=>$jadwal->id],
+    //             [
+    //                 'uts'=>$request->uts,
+    //                 'uas'=>$request->uas,
+    //                 'harian'=>$request->harian,
+    //                 'akhlak'=>$request->akhlak,
+    //                 'kelas_id'=>$jadwal->kelas->id,
+    //                 'mapel_id'=>$jadwal->mapel->id,
+    //                 'periode_id'=>$jadwal->periode_id,
+    //                 ]
+    //         );
+    //         $nilai->save();
+    //         DB::commit();
+    //         return redirect()->back()->with('success','Nilai Berhasil Disimpan');
+    //     } catch (\Exception $ex) {
+    //         DB::rollback();
+    //         return redirect()->back()->with('error','Gagal. Pesan Error: '.$ex->getMessage());
+    //     }
+    // }
+    function pilihKurikulum(Request $request) {
+        $kelas = Kelas::findOrFail($request->kelas_id);
+        $kurikulumId=$request->kurikulum_id;
+        $periodeId=$request->periode_id;
+        $kelas->kurikulums()->newPivotQuery()->updateOrInsert(
+            ['kelas_id' => $request->kelas_id, 'periode_id' => $periodeId],
+            ['kurikulum_id' => $kurikulumId]
+        );
+        return redirect()->back()->with('success','Kurikulum Berhasil Disimpan');
+
     }
 }

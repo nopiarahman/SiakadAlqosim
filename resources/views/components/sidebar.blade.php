@@ -138,9 +138,15 @@
                         </a>
                     </li>
                     <li class="menu-item @yield('menuKD')">
-                        <a href="{{ url('/jadwal') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-calendar"></i>
+                        <a href="{{ url('/kd-guru') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-target-lock"></i>
                             <div data-i18n="Tables">Kompetensi Dasar</div>
+                        </a>
+                    </li>
+                    <li class="menu-item @yield('menuNilaiGuru')">
+                        <a href="{{ url('/nilai-guru') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-check-circle"></i>
+                            <div data-i18n="Tables">Nilai Santri</div>
                         </a>
                     </li>
                 @endrole
@@ -152,12 +158,6 @@
                         </a>
                     </li>
                 @endrole
-                <li class="menu-item @yield('menuJadwal')">
-                    <a href="{{ url('/jadwal') }}" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-calendar"></i>
-                        <div data-i18n="Tables">Jadwal Pelajaran</div>
-                    </a>
-                </li>
             @endrole
             @role('Super-Admin')
                 <li class="menu-item @yield('menuPeriode')">
@@ -168,21 +168,21 @@
                 </li>
                 <li class="menu-item @yield('menuKurikulum')">
                     <a href="{{ '/kurikulum' }}" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-time"></i>
+                        <i class="menu-icon tf-icons bx bxs-graduation"></i>
                         <div data-i18n="Tables">Kurikulum</div>
                     </a>
                 </li>
             @endrole
             @role('waliKelas')
+                <li class="menu-header small text-uppercase"><span class="menu-header-text">WALI KELAS</span></li>
                 <li class="menu-item @yield('menuRaportSantri')">
                     <a href="{{ '/raport-kelas' }}" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-time"></i>
+                        <i class="menu-icon tf-icons bx bx-task"></i>
                         <div data-i18n="Tables">Raport Santri</div>
                     </a>
                 </li>
             @endrole
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Laporan</span></li>
-            <li class="menu-item @yield('menuRaport')">
+            {{-- <li class="menu-item @yield('menuRaport')">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-task"></i>
                     <div data-i18n="Form Layouts">Raport Santri</div>
@@ -208,8 +208,8 @@
                         </a>
                     </li>
                 </ul>
-            </li>
-            <li class="menu-item @yield('menuNilai')">
+            </li> --}}
+            {{-- <li class="menu-item @yield('menuNilai')">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-select-multiple"></i>
                     <div data-i18n="Form Layouts">Test</div>
@@ -221,7 +221,7 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
             <!-- Misc -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
             <li class="menu-item">

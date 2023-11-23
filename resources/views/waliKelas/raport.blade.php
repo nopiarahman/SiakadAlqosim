@@ -1,6 +1,5 @@
 @extends('layouts.tema')
-@section('menuMarhalah', 'active open')
-@section('submenuMarhalah1', 'active')
+@section('menuRaportSantri', 'active open')
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">
@@ -27,7 +26,7 @@
                                     <strong>{{ $i->kelas->nama }}</strong>
                                 </td>
                                 <td>
-                                    <a type="button" href="{{ route('list-kelas-walikelas', ['kelas' => $i->id]) }}"
+                                    <a type="button" href="{{ route('list-kelas-walikelas', ['kelas' => $i->kelas->id]) }}"
                                         class="btn btn-primary">List Santri</a>
 
                                 </td>

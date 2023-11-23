@@ -213,14 +213,14 @@ button.list-group-item-primary.active {
 }
 .btn-primary:hover {
   color: #fff;
-  background-color: #5f61e6;
-  border-color: #5f61e6;
+  background-color: #fbcd00;
+  border-color: #fbcd00;
   transform: translateY(-1px);
 }
 .btn-check:focus + .btn-primary, .btn-primary:focus, .btn-primary.focus {
   color: #fff;
-  background-color: #5f61e6;
-  border-color: #5f61e6;
+  background-color: #057d1d;
+  border-color: #057d1d;
   transform: translateY(0);
   box-shadow: none;
 }
