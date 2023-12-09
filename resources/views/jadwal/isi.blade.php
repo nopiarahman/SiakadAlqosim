@@ -44,7 +44,7 @@
                         </script>
                         <div class="mt-3">
                             <label for="defaultSelect" class="form-label">Mata Pelajaran</label>
-                            <select id="defaultSelect" class="form-select" name="mapel_id">
+                            <select id="defaultSelect" class="form-select" name="mapel_id" required>
                                 <option>Pilih Mata Pelajaran..</option>
                                 @forelse ($mapel as $m)
                                     <option value="{{ $m->id }}">{{ $m->nama }} ({{ ucfirst($m->jenis) }})
@@ -56,7 +56,7 @@
                         </div>
                         <div class="mt-3">
                             <label for="defaultSelect" class="form-label">Hari</label>
-                            <select id="defaultSelect" class="form-select" name="hari">
+                            <select id="defaultSelect" class="form-select" name="hari" required>
                                 <option>Pilih Hari..</option>
                                 <option value="sabtu">Sabtu</option>
                                 <option value="ahad">Ahad</option>
@@ -70,12 +70,12 @@
                         <div class="mt-3">
                             <label class="form-label" for="basic-default-fullname">Jam Mulai</label>
                             <input type="time" class="form-control" id="basic-default-fullname" name="mulai"
-                                onfocus="this.showPicker()">
+                                onfocus="this.showPicker()" required>
                         </div>
                         <div class="mt-3">
                             <label class="form-label" for="basic-default-fullname">Jam Selesai</label>
                             <input type="time" class="form-control" id="basic-default-fullname" name="selesai"
-                                onfocus="this.showPicker()">
+                                onfocus="this.showPicker()" required>
                         </div>
                         <input type="hidden" name="kelas_id" value="{{ $kelas->id }}">
                         <input type="hidden" name="marhalah_id" value="{{ auth()->user()->marhalah_id }}">
