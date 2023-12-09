@@ -23,7 +23,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="basic-default-fullname">NIS</label>
-                                        <input type="text" class="form-control" name="nis">
+                                        <input type="text" class="form-control" name="nis" required>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="basic-default-fullname">NISN</label>

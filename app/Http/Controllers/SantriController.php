@@ -49,27 +49,26 @@ class SantriController extends Controller
             DB::beginTransaction();
             $validasi = $this->validate($request,[
                 'namaLengkap'=> 'string|required',
-                'nik'=> 'string|required',
                 'namaWali'=> 'string|required',
                 'tanggalLahir'=> 'required',
                 'tanggalLahirWali'=> 'required',
                 ]);
             // User Santri
-            $userSantri = new User;
-            $userSantri['name']=$request->namaLengkap;
-            $userSantri['username']='santri'.$request->nik;
-            $userSantri['marhalah_id']=auth()->user()->marhalah_id;
-            $userSantri['password']=Hash::make($password);
-            $userSantri->save();
-            $userSantri->assignRole('santri');
+            // $userSantri = new User;
+            // $userSantri['name']=$request->namaLengkap;
+            // $userSantri['username']='santri'.$request->nik;
+            // $userSantri['marhalah_id']=auth()->user()->marhalah_id;
+            // $userSantri['password']=Hash::make($password);
+            // $userSantri->save();
+            // $userSantri->assignRole('santri');
             
             
             // User Wali Santri
             $userWali = new User;
             $userWali['name']=$request->namaWali;
-            $userWali['username']='wali'.$request->nik;
+            $userWali['username']='wali'.$request->nis;
             $userWali['marhalah_id']=auth()->user()->marhalah_id;
-            $userWali['password']=Hash::make('wali'.$request->nik);
+            $userWali['password']=Hash::make('wali'.$request->nis);
             $userWali->save();
             $userWali->assignRole('waliSantri');
 
