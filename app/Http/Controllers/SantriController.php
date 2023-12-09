@@ -53,10 +53,10 @@ class SantriController extends Controller
                 'tanggalLahir'=> 'required',
                 'tanggalLahirWali'=> 'required',
                 ]);
-            User Santri
+            // User Santri
             $userSantri = new User;
             $userSantri['name']=$request->namaLengkap;
-            $userSantri['username']='santri'.$request->nik;
+            $userSantri['username']='santri'.$request->nis;
             $userSantri['marhalah_id']=auth()->user()->marhalah_id;
             $userSantri['password']=Hash::make($password);
             $userSantri->save();
