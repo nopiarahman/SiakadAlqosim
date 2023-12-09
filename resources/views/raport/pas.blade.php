@@ -249,7 +249,7 @@
                                 </td>
                             </tr>
                         @endforelse
-                        <tr height=17 style='height:13.0pt; margin-top: 12pt'>
+                        {{-- <tr height=17 style='height:13.0pt; margin-top: 12pt'>
                             <td height=17 class=xl67 width=28 style='height:13.0pt;width:21pt'>
                                 <font class="font8">No</font>
                             </td>
@@ -272,7 +272,7 @@
             border-left:none;width:346pt'>
                                 <font class="font8">Deskripsi</font>
                             </td>
-                        </tr>
+                        </tr> --}}
                         <tr height=17 style='mso-height-source:userset;height:13.0pt'>
                             <td colspan=8 height=17 class=xl108 width=799 style='height:13.0pt;
             width:599pt'>
