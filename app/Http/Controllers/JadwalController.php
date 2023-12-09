@@ -35,8 +35,8 @@ class JadwalController extends Controller
             $validasi = $this->validate($request,[
                 'guru_id'=> 'string|required',
                 'mapel_id'=> 'string|required',
-                'hari'=> 'string|required'
-                'mulai'=> 'required'
+                'hari'=> 'string|required',
+                'mulai'=> 'required',
                 'selesai'=> 'required'
                 ]);
             $requestData = $request->all();
