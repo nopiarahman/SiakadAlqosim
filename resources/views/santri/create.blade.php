@@ -19,7 +19,7 @@
                                     @csrf
                                     <div class="mb-3">
                                         <label class="form-label" for="basic-default-fullname">NIK</label>
-                                        <input type="text" class="form-control" name="nik" required>
+                                        <input type="text" class="form-control" name="nik">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="basic-default-fullname">NIS</label>
@@ -46,10 +46,6 @@
                                         <input type="date" class="form-control" name="tanggalLahir" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label" for="basic-default-fullname">Alamat Santri</label>
-                                        <input type="text" class="form-control" name="alamat">
-                                    </div>
-                                    <div class="mb-3">
                                         <label class="form-label" for="basic-default-fullname">Bahasa Keseharian</label>
                                         <input type="text" class="form-control" name="bahasaKeseharian">
                                     </div>
@@ -74,8 +70,8 @@
                                             <label class="form-check-label" for="inlineRadio2">S</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="baju"
-                                                id="inlineRadio2" value="M">
+                                            <input class="form-check-input" type="radio" name="baju" id="inlineRadio2"
+                                                value="M">
                                             <label class="form-check-label" for="inlineRadio2">M</label>
                                         </div>
                                         <div class="form-check form-check-inline">
