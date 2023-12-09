@@ -94,4 +94,9 @@ class JadwalController extends Controller
         return redirect()->back()->with('success','Kurikulum Berhasil Disimpan');
 
     }
+    function destroy(Jadwal $id) {
+        $id->delete();
+        return redirect()->back()->with('success','Jadwal Dihapus');
+
+    }
 }

@@ -171,7 +171,7 @@
                 var santri = button.data('santri')
                 var modal = $(this)
                 modal.find('.modal-text').text('Yakin ingin menghapus nama ' + nama + ' ?')
-                document.getElementById('formHapus').action = '/halaqoh/deleteSantri/' + id;
+                document.getElementById('formHapus').action = '/jadwal/delete/' + id;
                 $('#santriDelete').val(santri);
             })
         });
