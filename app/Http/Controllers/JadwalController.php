@@ -36,6 +36,8 @@ class JadwalController extends Controller
                 'guru_id'=> 'string|required',
                 'mapel_id'=> 'string|required',
                 'hari'=> 'string|required'
+                'mulai'=> 'required'
+                'selesai'=> 'required'
                 ]);
             $requestData = $request->all();
             $jadwal = new Jadwal;

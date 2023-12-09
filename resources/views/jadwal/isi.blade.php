@@ -44,7 +44,7 @@
                         </script>
                         <div class="mt-3">
                             <label for="defaultSelect" class="form-label">Mata Pelajaran</label>
-                            <select id="defaultSelect" class="form-select" name="mapel_id" required>
+                            <select id="defaultSelect" class="form-select" name="mapel_id" required`>
                                 <option>Pilih Mata Pelajaran..</option>
                                 @forelse ($mapel as $m)
                                     <option value="{{ $m->id }}">{{ $m->nama }} ({{ ucfirst($m->jenis) }})
