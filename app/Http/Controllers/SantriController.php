@@ -51,7 +51,6 @@ class SantriController extends Controller
                 'namaLengkap'=> 'string|required',
                 'namaWali'=> 'string|required',
                 'tanggalLahir'=> 'required',
-                'tanggalLahirWali'=> 'required',
                 ]);
             // User Santri
             $userSantri = new User;
