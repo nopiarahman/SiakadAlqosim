@@ -53,14 +53,14 @@ class SantriController extends Controller
                 'tanggalLahir'=> 'required',
                 'tanggalLahirWali'=> 'required',
                 ]);
-            // User Santri
-            // $userSantri = new User;
-            // $userSantri['name']=$request->namaLengkap;
-            // $userSantri['username']='santri'.$request->nik;
-            // $userSantri['marhalah_id']=auth()->user()->marhalah_id;
-            // $userSantri['password']=Hash::make($password);
-            // $userSantri->save();
-            // $userSantri->assignRole('santri');
+            User Santri
+            $userSantri = new User;
+            $userSantri['name']=$request->namaLengkap;
+            $userSantri['username']='santri'.$request->nik;
+            $userSantri['marhalah_id']=auth()->user()->marhalah_id;
+            $userSantri['password']=Hash::make($password);
+            $userSantri->save();
+            $userSantri->assignRole('santri');
             
             
             // User Wali Santri
@@ -68,7 +68,7 @@ class SantriController extends Controller
             $userWali['name']=$request->namaWali;
             $userWali['username']='wali'.$request->nis;
             $userWali['marhalah_id']=auth()->user()->marhalah_id;
-            $userWali['password']=Hash::make('wali'.$request->nis);
+            $userWali['password']=Hash::make($passwordWali);
             $userWali->save();
             $userWali->assignRole('waliSantri');
 
