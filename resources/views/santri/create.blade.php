@@ -22,6 +22,10 @@
                                         <input type="text" class="form-control" name="nik" required>
                                     </div>
                                     <div class="mb-3">
+                                        <label class="form-label" for="basic-default-fullname">NIS</label>
+                                        <input type="text" class="form-control" name="nis">
+                                    </div>
+                                    <div class="mb-3">
                                         <label class="form-label" for="basic-default-fullname">NISN</label>
                                         <input type="text" class="form-control" name="nisn">
                                     </div>
@@ -40,6 +44,10 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="basic-default-fullname">Tanggal Lahir</label>
                                         <input type="date" class="form-control" name="tanggalLahir" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="basic-default-fullname">Alamat Santri</label>
+                                        <input type="text" class="form-control" name="alamat">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="basic-default-fullname">Bahasa Keseharian</label>
@@ -66,13 +74,13 @@
                                             <label class="form-check-label" for="inlineRadio2">S</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="baju" id="inlineRadio2"
-                                                value="M">
+                                            <input class="form-check-input" type="radio" name="baju"
+                                                id="inlineRadio2" value="M">
                                             <label class="form-check-label" for="inlineRadio2">M</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="baju" id="inlineRadio2"
-                                                value="L">
+                                            <input class="form-check-input" type="radio" name="baju"
+                                                id="inlineRadio2" value="L">
                                             <label class="form-check-label" for="inlineRadio2">L</label>
                                         </div>
                                         <div class="form-check form-check-inline">
@@ -147,7 +155,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="basic-default-fullname">Tanggal Lahir</label>
-                                            <input type="date" class="form-control" name="tanggalLahirWali">
+                                            <input type="date" class="form-control" name="tanggalLahirWali" required>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="basic-default-fullname">Pendidikan</label>

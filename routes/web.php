@@ -53,6 +53,7 @@ Route::middleware([
             Route::get('/marhalah/kelas','kelas');
             Route::get('/marhalah/tambah','create');
             Route::post('/marhalah/simpan','store');
+            Route::post('/marhalah/kepsek/{id}','storeKepsek');
             Route::get('/marhalah/edit/{id}','edit')->name('edit-marhalah');
             Route::patch('/marhalah/update/{id}','update')->name('update-marhalah');
             Route::delete('/marhalah/delete/{id}','destroy');
@@ -172,7 +173,23 @@ Route::middleware([
     Route::group(['middleware'=>['role:waliKelas']],function(){
         Route::controller(WalikelasController::class)->group(function(){
             Route::get('/raport-kelas','raportKelas');
-            Route::get('/raport-kelas/{kelas}','isiKelas')->name('list-kelas-walikelas');
+            Route::get('/data-raport','dataRaport');
+            Route::post('/store-data-raport/absensi','absensiStore')->name('absensi-santri-store');
+            Route::post('/store-data-catatan','catatanStore')->name('catatan-santri-store');
+            Route::get('/data-raport/absensi/{kelas}','absensi')->name('absensi-santri');
+            Route::get('/data-raport/sikap/{kelas}','sikap')->name('nilai-sikap');
+            Route::post('/data-raport/sikap/{kelas}/store','sikapStore')->name('nilai-sikap-store');
+            Route::get('/data-raport/eks/{kelas}','eks')->name('eks-santri');
+            Route::get('/data-raport/prestasi/{kelas}','prestasi')->name('prestasi-santri');
+            Route::get('/data-raport/eks-detail/{kelas}/{santri}','eksSantri')->name('eks-santri-detail');
+            Route::get('/data-raport/prestasi-detail/{kelas}/{santri}','prestasiSantri')->name('prestasi-santri-detail');
+            Route::post('/data-raport/eks/store','eksSantriStore')->name('eks-simpan');
+            Route::post('/data-raport/prestasi/store','prestasiSantriStore')->name('prestasi-simpan');
+            Route::delete('/data-raport/eks/delete/{id}','eksDestroy')->name('eks-destroy');
+            Route::delete('/data-raport/prestasi/delete/{id}','prestasiDestroy')->name('prestasi-destroy');
+            Route::get('/data-raport/catatan/{kelas}','catatanWaliKelas')->name('catatan-wali-kelas');
+            Route::get('/list-raport-kelas/{kelas}','isiKelas')->name('list-kelas-walikelas');
+            Route::get('/data-raport-kelas/{kelas}','listDataRaport')->name('data-raport-kelas');
             Route::get('/raport-mid/{santri}/{kelas}','raportMid')->name('raport-mid');
         });
         Route::controller(RaportController::class)->group(function(){

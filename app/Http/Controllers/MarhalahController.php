@@ -46,6 +46,18 @@ class MarhalahController extends Controller
             return redirect()->back()->with('error','Gagal. Pesan Error: '.$ex->getMessage());
         }
     }
+    function storeKepsek(Request $request, Marhalah $id) {
+        try {
+            DB::beginTransaction();
+            $requestData=$request->all();
+            $id->update($requestData);
+            DB::commit();
+            return redirect()->back()->with('success','Kepala Sekolah Ditambahkan');
+        } catch (\Exception $ex) {
+            DB::rollback();
+            return redirect()->back()->with('error','Gagal. Pesan Error: '.$ex->getMessage());
+        }
+    }
     function destroy(Marhalah $id){
         $id->delete();
         return redirect('/marhalah')->with('success','Marhalah Berhasil Dihapus');

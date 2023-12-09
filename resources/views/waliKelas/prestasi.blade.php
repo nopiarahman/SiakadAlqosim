@@ -1,23 +1,24 @@
 @extends('layouts.tema')
-@section('menuRaportSantri', 'active open')
+@section('menuDataRaport', 'active open')
 @section('head')
     <link rel="stylesheet" href="{{ asset('template/css/vanilla-dataTables.min.css') }}">
 @endsection
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><a href="{{ url('/raport-kelas') }}"> Raport</a> /
-            </span>Kelas {{ $kelas->nama }}</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><a href="{{ url('/data-raport') }}"> Data Raport</a> /
+                <a href="{{ route('data-raport-kelas', ['kelas' => $kelas->id]) }}">Kelas {{ $kelas->nama }}</a> /
+            </span>Prestasi</h4>
         <x-alert />
         <!-- Basic Bootstrap Table -->
         <div class="card">
-            <h5 class="card-header">Daftar Santri Kelas {{ $kelas->nama }}</h5>
+            <h5 class="card-header ">Daftar Santri Kelas {{ $kelas->nama }}</h5>
             <div class="text-nowrap table-responsive">
-                <table class="table  m-3" id="table">
+                <table class="table m-3" id="table">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Raport</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -28,14 +29,9 @@
                                     <strong>{{ $i->namaLengkap }}</strong>
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary"
-                                        href="{{ route('raport-mid', ['santri' => $i->id, 'kelas' => $kelas->id]) }}"><i
-                                            class="bx bx-edit-alt me-1"></i>
-                                        Raport MID</a>
-                                    <a class="btn btn-primary"
-                                        href="{{ route('raport-semesterk13', ['santri' => $i->id, 'kelas' => $kelas->id]) }}"><i
-                                            class="bx bx-edit-alt me-1"></i>
-                                        Raport Semester</a>
+                                    <a type="button"
+                                        href="{{ route('prestasi-santri-detail', ['santri' => $i->id, 'kelas' => $kelas->id]) }}"
+                                        class="btn btn-primary">Data Prestasi</a>
                                 </td>
                             </tr>
                         @endforeach

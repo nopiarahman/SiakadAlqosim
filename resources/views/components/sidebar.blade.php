@@ -175,10 +175,16 @@
             @endrole
             @role('waliKelas')
                 <li class="menu-header small text-uppercase"><span class="menu-header-text">WALI KELAS</span></li>
-                <li class="menu-item @yield('menuRaportSantri')">
+                <li class="menu-item @yield('menuDataRaport')">
+                    <a href="{{ '/data-raport' }}" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-food-menu"></i>
+                        <div data-i18n="Tables">Data Raport</div>
+                    </a>
+                </li>
+                <li class="menu-item @yield('menu')">
                     <a href="{{ '/raport-kelas' }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-task"></i>
-                        <div data-i18n="Tables">Raport Santri</div>
+                        <div data-i18n="Tables">Cetak Raport Santri</div>
                     </a>
                 </li>
             @endrole

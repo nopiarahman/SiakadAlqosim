@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Santri;
 use App\Models\NilaiK13;
 use Illuminate\Http\Request;
+use App\Models\DataRaportK13;
 
 class RaportController extends Controller
 {
@@ -14,11 +15,12 @@ class RaportController extends Controller
         ->where('kelas_id',$kelas)
         ->where('periode_id',getPeriodeAktif()->id)
         ->get();
-        $nilaiKeterampilan = NilaiK13::select('id', 'mapel_id', 'k1', 'k2', 'k3', 'k4', 'k5', 'k6', 'k7', 'k8')
+        $nilaiKeterampilan = NilaiK13::select('id', 'mapel_id', 'k1', 'k2', 'k3', 'k4', 'k5', 'k6', 'k7', 'k8','kelas_id','periode_id')
         ->where('santri_id',$santri->id)
         ->where('kelas_id',$kelas)
         ->where('periode_id',getPeriodeAktif()->id)
         ->get();
-        return view('raport.pas',compact('santri','nilaiPengetahuan','nilaiKeterampilan'));
+        $dataRaport=DataRaportK13::where('santri_id',$santri->id)->where('periode_id',getPeriodeAktif()->id)->first();
+        return view('raport.pas',compact('santri','nilaiPengetahuan','nilaiKeterampilan','dataRaport'));
     }
 }

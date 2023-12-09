@@ -11,13 +11,11 @@
                     {{ $santri->kelas->first()->nama }}</a>/ </span> Semester {{ ucfirst($santri->namaLengkap) }}
         </h4>
         <x-alert />
-        <!-- Basic Bootstrap Table -->
-        <div class="card d-flex justify-content-center">
-            <div class="card-body ms-3 mt-3">
-                <div class="text-center table-responsive">
+        <div class="card d-flex justify-content-center table-responsive">
+            <div class="card-body mx-auto mt-3">
+                <div class="text-center ">
                     {{-- Raport Semester --}}
-                    <table border=0 cellpadding=0 cellspacing=0 width=859
-                        style='border-collapse:collapse;table-layout:fixed;width:644pt'>
+                    <table cellpadding=0 cellspacing=0 style='border-collapse:collapse;table-layout:fixed;width:644pt'>
                         <col width=28 style='mso-width-source:userset;mso-width-alt:1075;width:21pt'>
                         <col width=93 style='mso-width-source:userset;mso-width-alt:3584;width:70pt'>
                         <col width=71 style='mso-width-source:userset;mso-width-alt:2713;width:53pt'>
@@ -27,12 +25,14 @@
                         <col width=83 style='mso-width-source:userset;mso-width-alt:3174;width:62pt'>
                         <col width=379 style='mso-width-source:userset;mso-width-alt:14540;width:284pt'>
                         <col width=60 style='width:45pt'>
+                        <tr height=40></tr>
                         <tr height=25 style='mso-height-source:userset;height:19.5pt'>
                             <td colspan=8 height=25 class=xl75 width=799 style='height:19.5pt;width:599pt'>
                                 <font class="font5">PENCAPAIAN KOMPETENSI PESERTA DIDIK</font>
                             </td>
                             <td width=60 style='width:45pt'></td>
                         </tr>
+                        <tr height=20></tr>
                         <tr height=76 style='mso-height-source:userset;height:70.0pt'>
                             <td colspan=7 height=76 class=xl76 width=420 style='height:57.0pt;width:315pt'>
                                 <font class="font7">Nama Sekolah<span style='mso-spacerun:yes'>       </span></font>
@@ -44,7 +44,7 @@
                                 <font class="font7">Alamat<span style='mso-spacerun:yes'>                 </span>
                                 </font>
                                 <font class="font6">:
-                                    ????<br>
+                                    Jl. Sungai Beluru, RT 01, Muaro Jambi<br>
                                 </font>
                                 <font class="font7">Nama<span style='mso-spacerun:yes'>                   </span>
                                 </font>
@@ -52,7 +52,7 @@
                                     {{ $santri->namaLengkap }}<br>
                                 </font>
                                 <font class="font7">NIS / NISN<span style='mso-spacerun:yes'>           </span></font>
-                                <font class="font6">: ???
+                                <font class="font6">: {{ $santri->nis }}
                                     / {{ $santri->nisn }}</font>
                             </td>
                             <td class=xl65 width=379 style='width:284pt'>
@@ -92,14 +92,15 @@
                         <tr height=104 style='mso-height-source:userset;height:78.0pt'>
                             <td colspan=2 height=104 class=xl80 width=121
                                 style='border-right:.5pt solid black;height:78.0pt;width:91pt'>
-                                <font class="font7">Sangat Baik</font>
+                                <font class="font7">
+                                    {{ sikapWaliKelas($santri->id, getPeriodeAktif()->id, $key = 'predikat_spiritual') }}
+                                </font>
                             </td>
                             <td colspan=6 class=xl82 width=678
                                 style='border-right:.5pt solid black;border-left:none;width:508pt'>
-                                <font class="font7">Selalu berdoa sebelum dan
-                                    sesudah melakukan kegiatan; memberi salam pada saat awal dan akhir kegiatan
-                                    dan sikap bersyukur atas nikmat dan karunia Tuhan Yang Maha Esa mulai
-                                    berkembang</font>
+                                <font class="font7">
+                                    {{ sikapWaliKelas($santri->id, getPeriodeAktif()->id, $key = 'deskripsi_spiritual') }}
+                                </font>
                             </td>
 
                         </tr>
@@ -125,12 +126,15 @@
                         <tr height=104 style='mso-height-source:userset;height:78.0pt'>
                             <td colspan=2 height=104 class=xl80 width=121
                                 style='border-right:.5pt solid black; height:78.0pt;width:91pt'>
-                                <font class="font7">Baik</font>
+                                <font class="font7">
+                                    {{ sikapWaliKelas($santri->id, getPeriodeAktif()->id, $key = 'predikat_sosial') }}
+                                </font>
                             </td>
                             <td colspan=6 class=xl82 width=678
                                 style='border-right:.5pt solid black; border-left:none;width:508pt'>
-                                <font class="font7">Menunjukkan sikap jujur,
-                                    disiplin, gotong royong, santun dan percaya diri dengan baik</font>
+                                <font class="font7">
+                                    {{ sikapWaliKelas($santri->id, getPeriodeAktif()->id, $key = 'deskripsi_sosial') }}
+                                </font>
                             </td>
 
                         </tr>
@@ -167,7 +171,8 @@
                         {{-- Nilai Pengetahuan --}}
                         @forelse ($nilaiPengetahuan as $i)
                             <tr height=40 style='mso-height-source:userset; height:30pt'>
-                                <td height=45 class=xl69 style='height:34.25pt;border-top:none'>{{ $loop->iteration }}</td>
+                                <td height=45 class=xl69 style='height:34.25pt;border-top:none'>{{ $loop->iteration }}
+                                </td>
                                 <td colspan=2 class=xl93 width=164
                                     style='border-right:.5pt solid black;border-left:none;width:123pt'>
                                     <font class="font11">{{ $i->mapel->nama }}</font>
@@ -178,8 +183,8 @@
                                     <font class="font7">{{ $i->getPredikatNilai() }}</font>
                                 </td>
                                 <td colspan=2 class=xl95 width=46
-                                    style='border-right:.5pt solid black;border-left:none;width:346pt'>
-                                    <font class="font13">Alhamdulillah ananda {{ $i->getDeskripsiKD() }}</font>
+                                    style='border-right:.5pt solid black;border-left:none;width:346pt;padding:0 12pt;'>
+                                    <font class="font13">{{ $i->getDeskripsiKD() }}</font>
                                 </td>
                             </tr>
                         @empty
@@ -227,13 +232,14 @@
                                     <font class="font11">{{ $i->mapel->nama }}</font>
                                 </td>
                                 <td class=xl70 style='border-top:none;border-left:none'>{{ $i->mapel->kkm }}</td>
-                                <td class=xl69 style='border-top:none;border-left:none'>{{ $i->hitungNilaiAkhir() }}</td>
+                                <td class=xl69 style='border-top:none;border-left:none'>
+                                    {{ $i->hitungNilaiAkhirKeterampilan() }}</td>
                                 <td class=xl71 width=64 style='border-top:none;border-left:none;width:48pt'>
-                                    <font class="font7">{{ $i->getPredikatNilai() }}</font>
+                                    <font class="font7">{{ $i->getPredikatNilaiKeterampilan() }}</font>
                                 </td>
                                 <td colspan=2 class=xl95 width=46
-                                    style='border-right:.5pt solid black;border-left:none;width:346pt'>
-                                    <font class="font13">{{ $i->getDeskripsiKD() }}</font>
+                                    style='border-right:.5pt solid black;border-left:none;width:346pt;padding:0 12pt;'>
+                                    <font class="font13">{{ $i->getDeskripsiKDKeterampilan() }}</font>
                                 </td>
                             </tr>
                         @empty
@@ -243,6 +249,30 @@
                                 </td>
                             </tr>
                         @endforelse
+                        <tr height=17 style='height:13.0pt; margin-top: 12pt'>
+                            <td height=17 class=xl67 width=28 style='height:13.0pt;width:21pt'>
+                                <font class="font8">No</font>
+                            </td>
+                            <td colspan=2 class=xl85 width=164
+                                style='border-right:.5pt solid black;
+            border-left:none;width:123pt'>
+                                <font class="font8">Mata Pelajaran</font>
+                            </td>
+                            <td class=xl67 width=41 style='border-left:none;width:31pt'>
+                                <font class="font8">KKM</font>
+                            </td>
+                            <td class=xl67 width=40 style='border-left:none;width:30pt'>
+                                <font class="font8">Nilai</font>
+                            </td>
+                            <td class=xl68 width=64 style='border-left:none;width:48pt'>
+                                <font class="font9">Predikat</font>
+                            </td>
+                            <td colspan=2 class=xl87 width=462
+                                style='border-right:.5pt solid black;
+            border-left:none;width:346pt'>
+                                <font class="font8">Deskripsi</font>
+                            </td>
+                        </tr>
                         <tr height=17 style='mso-height-source:userset;height:13.0pt'>
                             <td colspan=8 height=17 class=xl108 width=799 style='height:13.0pt;
             width:599pt'>
@@ -272,35 +302,52 @@
                             </td>
 
                         </tr>
-                        <tr height=17 style='mso-height-source:userset;height:13.0pt'>
-                            <td height=17 class=xl72 style='height:13.0pt;border-top:none'>1</td>
-                            <td colspan=4 class=xl89 width=245
-                                style='border-right:.5pt solid black;
-            border-left:none;width:184pt'>
-                                <font class="font11">Pendidikan Kepramukaan</font>
-                            </td>
-                            <td class=xl73 width=64 style='border-top:none;border-left:none;width:48pt'>
-                                <font class="font11">SB</font>
-                            </td>
-                            <td colspan=2 class=xl89 width=462
-                                style='border-right:.5pt solid black;
-            border-left:none;width:346pt'>
-                                <font class="font11">Juara 1 LT tk. Kabupaten</font>
-                            </td>
+                        {{-- Ekstrakurikuler --}}
+                        @if ($dataRaport)
+                            @foreach ($dataRaport->ekstrakurikuler as $i)
+                                <tr height=17 style='mso-height-source:userset;height:13.0pt'>
+                                    <td height=17 class=xl72 style='height:13.0pt;border-top:none'>{{ $loop->iteration }}
+                                    </td>
+                                    <td colspan=4 class=xl89 width=245
+                                        style='border-right:.5pt solid black;border-left:none;width:184pt'>
+                                        <font class="font11">{{ $i->nama }}</font>
+                                    </td>
+                                    <td class=xl73 width=64 style='border-top:none;border-left:none;width:48pt'>
+                                        <font class="font11">{{ $i->nilai }}</font>
+                                    </td>
+                                    <td colspan=2 class=xl89 width=462
+                                        style='border-right:.5pt solid black;border-left:none;width:346pt'>
+                                        <font class="font11">    {{ $i->keterangan }}</font>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr height=17 style='mso-height-source:userset;height:13.0pt'>
+                                <td height=17 class=xl72 style='height:13.0pt;border-top:none'>
+                                </td>
+                                <td colspan=4 class=xl89 width=245
+                                    style='border-right:.5pt solid black;border-left:none;width:184pt'>
+                                    <font class="font11"></font>
+                                </td>
+                                <td class=xl73 width=64 style='border-top:none;border-left:none;width:48pt'>
+                                    <font class="font11"></font>
+                                </td>
+                                <td colspan=2 class=xl89 width=462
+                                    style='border-right:.5pt solid black;border-left:none;width:346pt'>
+                                    <font class="font11">    </font>
+                                </td>
+                            </tr>
+                        @endif
 
-                        </tr>
                         <tr height=17 style='mso-height-source:userset;height:13.0pt'>
-                            <td colspan=8 height=17 class=xl108 width=799 style='height:13.0pt;
-            width:599pt'>
+                            <td colspan=8 height=17 class=xl108 width=799 style='height:13.0pt;width:599pt'>
                                 <font class="font6">E.<span style='mso-spacerun:yes'>
                                     </span>PRESTASI</font>
                             </td>
                             <td class=xl100 width=60 style='width:45pt'></td>
                         </tr>
                         <tr class=xl97 height=37 style='height:28.0pt'>
-                            <td height=37 class=xl101 width=28
-                                style='height:28.0pt;border-top:none;
-            width:21pt'>
+                            <td height=37 class=xl101 width=28 style='height:28.0pt;border-top:none;width:21pt'>
                                 <font class="font6">No.</font>
                             </td>
                             <td colspan=4 class=xl102 width=245
@@ -315,21 +362,33 @@
                             </td>
 
                         </tr>
-                        <tr height=17 style='mso-height-source:userset;height:13.0pt'>
-                            <td height=17 class=xl74 style='height:13.0pt;border-top:none'>1,</td>
-                            <td colspan=4 class=xl82 width=245
-                                style='border-right:.5pt solid black;
-            border-left:none;width:184pt'>
-                                <font class="font7">Kesenian</font>
-                            </td>
-                            <td colspan=3 class=xl82 width=526
-                                style='border-right:.5pt solid black;
-            border-left:none;width:394pt'>
-                                <font class="font7">Juara I Lomba Menyanyi
-                                    antar kelas</font>
-                            </td>
-
-                        </tr>
+                        @if ($dataRaport)
+                            @foreach ($dataRaport->prestasi as $i)
+                                <tr height=17 style='mso-height-source:userset;height:13.0pt'>
+                                    <td height=17 class=xl74 style='height:13.0pt;border-top:none'>1,</td>
+                                    <td colspan=4 class=xl82 width=245
+                                        style='border-right:.5pt solid black;border-left:none;width:184pt'>
+                                        <font class="font7">{{ $i->nama }}</font>
+                                    </td>
+                                    <td colspan=3 class=xl82 width=526
+                                        style='border-right:.5pt solid black;border-left:none;width:394pt'>
+                                        <font class="font7">    {{ $i->keterangan }}</font>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr height=17 style='mso-height-source:userset;height:13.0pt'>
+                                <td height=17 class=xl74 style='height:13.0pt;border-top:none'>1,</td>
+                                <td colspan=4 class=xl82 width=245
+                                    style='border-right:.5pt solid black;border-left:none;width:184pt'>
+                                    <font class="font7"></font>
+                                </td>
+                                <td colspan=3 class=xl82 width=526
+                                    style='border-right:.5pt solid black;border-left:none;width:394pt'>
+                                    <font class="font7">    </font>
+                                </td>
+                            </tr>
+                        @endif
                         <tr height=17 style='mso-height-source:userset;height:13.0pt'>
                             <td colspan=8 height=17 class=xl112 width=799 style='height:13.0pt;
             width:599pt'>
@@ -343,9 +402,9 @@
             width:205pt'>
                                 <font class="font7">Sakit</font>
                             </td>
-                            <td class=xl111 style='border-left:none'>5</td>
+                            <td class=xl111 style='border-left:none'>{{ $dataRaport ? $dataRaport->s : '' }}</td>
                             <td class=xl66 width=83 style='width:62pt'>
-                                <font class="font7">hari</font>
+                                <font class="font7">   hari</font>
                             </td>
                             <td colspan=2 style='mso-ignore:colspan'></td>
                         </tr>
@@ -354,9 +413,10 @@
             width:205pt'>
                                 <font class="font7">Izin</font>
                             </td>
-                            <td class=xl111 style='border-top:none;border-left:none'>1</td>
+                            <td class=xl111 style='border-top:none;border-left:none'>
+                                {{ $dataRaport ? $dataRaport->i : '' }}</td>
                             <td class=xl66 width=83 style='border-top:none;width:62pt'>
-                                <font class="font7">hari</font>
+                                <font class="font7">   hari</font>
                             </td>
                             <td colspan=2 style='mso-ignore:colspan'></td>
                         </tr>
@@ -365,9 +425,10 @@
             width:205pt'>
                                 <font class="font7">Tanpa Keterangan</font>
                             </td>
-                            <td class=xl111 style='border-top:none;border-left:none'>2</td>
+                            <td class=xl111 style='border-top:none;border-left:none'>
+                                {{ $dataRaport ? $dataRaport->a : '' }}</td>
                             <td class=xl66 width=83 style='border-top:none;width:62pt'>
-                                <font class="font7">hari</font>
+                                <font class="font7">   hari</font>
                             </td>
                             <td colspan=2 style='mso-ignore:colspan'></td>
                         </tr>
@@ -381,10 +442,7 @@
                         <tr class=xl97 height=64 style='mso-height-source:userset;height:48.0pt'>
                             <td colspan=8 height=64 class=xl114 width=799 style='height:48.0pt;
             width:599pt'>
-                                <font class="font7">Selalu berusaha untuk mematuhi tata tertib
-                                    sekolah dan patuh terhadap Guru. Mempunyai kemampuan dan motivasi yang tinggi
-                                    untuk menggunakan waktu secara efisien. Masih perlu memperbanyak teman
-                                    bergaul dan teman diskusi, kurangi aktifitas menyendiri.</font>
+                                <font class="font7">{{ $dataRaport ? $dataRaport->catatan : '' }}</font>
                             </td>
 
                         </tr>
@@ -423,29 +481,45 @@
                                 <td colspan=2 style='mso-ignore:colspan'></td>
                             </tr>
                         @endif
+                        <tr height=40></tr>
                         <tr height=132 style='mso-height-source:userset;height:99.0pt'>
-                            <td colspan=4 height=132 class=xl120 width=233 style='height:99.0pt;
-            width:175pt'>
-                                Mengetahui: Orang
-                                Tua/Wali,<br>
+                            <td colspan="3" height=150 class=xl121 width=233 style='height:99.0pt;width:175pt'>
+                                Mengetahui: Orang Tua/Wali,<br>
                             </td>
-                            <td class=xl116 width=40 style='width:30pt'></td>
-                            <td class=xl116 width=64 style='width:48pt'></td>
-                            <td colspan=2 class=xl121 width=462 style='width:346pt'>Jakarta, 11 June
-                                2016<br>
-                                Wali Kelas<span style='mso-spacerun:yes'>
-                                </span>Kepala Sekolah<br>
-                                Srikandi<span style='mso-spacerun:yes'>
-                                </span>Drs. Gatotkaca<br>
-                                NIP. 10000909 199702 1 001<span style='mso-spacerun:yes'>
-                                </span>NIP.
-                                19630411
-                                199003 1 005</td>
-
+                            <td colspan="4" class=xl121 width=233 style='width:175pt;text-align:center'>Wali Kelas</td>
+                            <td colspan="" class=xl121 width=233 style='width:175pt'>            Mekar Jaya, <span
+                                    id="currentDate"></span><br>
+                                <span style='mso-spacerun:yes'></span>            Kepala Sekolah<br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" height=150 class=xl121 width=233 style='height:99.0pt;width:175pt'>
+                                ........................................
+                            </td>
+                            <td colspan="4" class=xl121 style="text-align:center">
+                                {{ $santri->kelas->first()->waliKelas->guru->nama }}
+                            </td>
+                            <td class=xl121></span>            {{ $santri->marhalah->kepsek }}
+                            </td>
                         </tr>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        // Fungsi untuk mendapatkan tanggal saat ini dalam format Bahasa Indonesia
+        function getCurrentDate() {
+            const options = {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            };
+            const currentDate = new Date().toLocaleDateString('id-ID', options);
+            return currentDate;
+        }
+
+        // Mengganti nilai pada elemen dengan id "currentDate" dengan tanggal saat ini
+        document.getElementById('currentDate').innerText = getCurrentDate();
+    </script>
 @endsection

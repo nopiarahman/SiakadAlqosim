@@ -25,6 +25,11 @@
                                             name="nik" required>
                                     </div>
                                     <div class="mb-3">
+                                        <label class="form-label" for="basic-default-fullname">NIS</label>
+                                        <input type="text" class="form-control" value="{{ $id->nis }}"
+                                            name="nis">
+                                    </div>
+                                    <div class="mb-3">
                                         <label class="form-label" for="basic-default-fullname">NISN</label>
                                         <input type="text" class="form-control" value="{{ $id->nisn }}"
                                             name="nisn">
@@ -50,6 +55,11 @@
                                             name="tanggalLahir" required>
                                     </div>
                                     <div class="mb-3">
+                                        <label class="form-label" for="basic-default-fullname">Alamat Santri</label>
+                                        <input type="text" class="form-control" value="{{ $id->alamat }}"
+                                            name="alamat">
+                                    </div>
+                                    <div class="mb-3">
                                         <label class="form-label" for="basic-default-fullname">Bahasa Keseharian</label>
                                         <input type="text" class="form-control" value="{{ $id->bahasaKeseharian }}"
                                             name="bahasaKeseharian">
@@ -72,13 +82,15 @@
                                             <label class="form-check-label" for="inlineRadio1">XS</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="baju" id="inlineRadio2"
-                                                value="S" @if ($id->baju == 'S') checked @endif>
+                                            <input class="form-check-input" type="radio" name="baju"
+                                                id="inlineRadio2" value="S"
+                                                @if ($id->baju == 'S') checked @endif>
                                             <label class="form-check-label" for="inlineRadio2">S</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="baju" id="inlineRadio2"
-                                                value="M" @if ($id->baju == 'M') checked @endif>
+                                            <input class="form-check-input" type="radio" name="baju"
+                                                id="inlineRadio2" value="M"
+                                                @if ($id->baju == 'M') checked @endif>
                                             <label class="form-check-label" for="inlineRadio2">M</label>
                                         </div>
                                         <div class="form-check form-check-inline">
@@ -169,8 +181,8 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="basic-default-fullname">Tanggal Lahir</label>
-                                            <input type="text" class="form-control"
-                                                value="{{ $id->tanggalLahirWali }}" name="tanggalLahirWali">
+                                            <input type="date" class="form-control"
+                                                value="{{ $id->tanggalLahirWali }}" name="tanggalLahirWali" required>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="basic-default-fullname">Pendidikan</label>

@@ -3,19 +3,22 @@
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">
-                Cetak Raport </span></h4>
+                Data Raport </span></h4>
+        <x-alert />
+        </span>
+        {{-- Kelas {{ $kelas->nama }}</h4> --}}
         <x-alert />
 
         <!-- Basic Bootstrap Table -->
         <div class="card">
-            <h5 class="card-header">Daftar Kelas</h5>
+            <h5 class="card-header">Daftar Data Raport</h5>
             <div class="text-nowrap table-responsive">
                 <table class="table ">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Kelas</th>
-                            <th>Isi Kelas</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -26,8 +29,8 @@
                                     <strong>{{ $i->kelas->nama }}</strong>
                                 </td>
                                 <td>
-                                    <a type="button" href="{{ route('list-kelas-walikelas', ['kelas' => $i->kelas->id]) }}"
-                                        class="btn btn-primary">List Santri</a>
+                                    <a type="button" href="{{ route('data-raport-kelas', ['kelas' => $i->kelas->id]) }}"
+                                        class="btn btn-primary">Data Raport</a>
 
                                 </td>
                             </tr>

@@ -3,7 +3,6 @@
 @section('head')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('template/css/vanilla-dataTables.min.css') }}">
-
 @endsection
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">

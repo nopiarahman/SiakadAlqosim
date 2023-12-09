@@ -48,9 +48,36 @@ class NilaiK13 extends Model
 
         return round($nilaiAkhir,0,PHP_ROUND_HALF_UP);
     }
+    public function hitungNilaiAkhirKeterampilan()
+    {
+        // Menghitung rata-rata nilai H yang tidak null
+        $nilaiK = array_filter([$this->k1, $this->k2, $this->k3, $this->k4, $this->k5, $this->k6, $this->k7, $this->k8], function ($nilai) {
+            return $nilai !== null;
+        });
+        // Menghitung nilai akhir sesuai rumus
+        $rataRataK = empty($nilaiK) ? 0 : array_sum($nilaiK) / count($nilaiK);
+
+        return round($rataRataK,0,PHP_ROUND_HALF_UP);
+    }
     public function getPredikatNilai()
     {
         $nilaiAkhir = $this->hitungNilaiAkhir();
+
+        if ($nilaiAkhir <= 60) {
+            return 'K';
+        } elseif ($nilaiAkhir <= 70) {
+            return 'C';
+        } elseif ($nilaiAkhir <= 84) {
+            return 'B';
+        } elseif ($nilaiAkhir <= 100) {
+            return 'A';
+        } else {
+            return 'Nilai tidak valid';
+        }
+    }
+    public function getPredikatNilaiKeterampilan()
+    {
+        $nilaiAkhir = $this->hitungNilaiAkhirKeterampilan();
 
         if ($nilaiAkhir <= 60) {
             return 'K';
@@ -83,8 +110,38 @@ class NilaiK13 extends Model
         if ($kd) {
             $deskripsiTerbesar = $kd->getDeskripsiKDByNilai($kunciTertinggi);
             $deskripsiTerkecil = $kd->getDeskripsiKDByNilai($kunciTerendah);
-            
-            $deskripsi = 'Alhamdulillah ananda '.$this->getPredikatKD($data[$kunciTertinggi]).' dalam '.$deskripsiTerbesar.' dan '.$this->getPredikatKD($data[$kunciTerendah]).' dalam '.$deskripsiTerkecil;
+            if(count($hValues)>1){
+                $deskripsi = 'Alhamdulillah ananda '.$this->getPredikatKD($data[$kunciTertinggi]).' dalam '.$deskripsiTerbesar.' dan '.$this->getPredikatKD($data[$kunciTerendah]).' dalam '.$deskripsiTerkecil;
+            }else{
+                $deskripsi = 'Alhamdulillah ananda '.$this->getPredikatKD($data[$kunciTertinggi]).' dalam '.$deskripsiTerbesar;
+            }
+            return $deskripsi;
+        } else {
+            return 'Data KD atau Nilai tidak ditemukan'; // Atau nilai default lain sesuai kebutuhan Anda
+        }
+    }
+    public function getDeskripsiKDKeterampilan()
+    {
+        // Ambil nilai-nilai h dari tabel NilaiK13 dan kelompokkan berdasarkan KD
+        $data = $this->select('k1', 'k2', 'k3', 'k4', 'k5', 'k6', 'k7', 'k8')
+        ->first()->toArray();
+
+        // Hapus nilai null dari array
+        $kValues = array_filter($data, fn($value) => $value !== null);
+        $kunciTertinggi = array_search(max($kValues), $kValues);
+        $kunciTerendah = array_search(min($kValues), $kValues);
+        $kd = KDK13::where('mapel_id', $this->mapel_id)
+        ->where('kelas_id',$this->kelas_id)
+        ->where('periode_id',$this->periode_id)
+        ->first();
+        if ($kd) {
+            $deskripsiTerbesar = $kd->getDeskripsiKDByNilai($kunciTertinggi);
+            $deskripsiTerkecil = $kd->getDeskripsiKDByNilai($kunciTerendah);
+            if(count($kValues)>1){
+                $deskripsi = 'Alhamdulillah ananda '.$this->getPredikatKD($data[$kunciTertinggi]).' dalam '.$deskripsiTerbesar.' dan '.$this->getPredikatKD($data[$kunciTerendah]).' dalam '.$deskripsiTerkecil;
+            }else{
+                $deskripsi = 'Alhamdulillah ananda '.$this->getPredikatKD($data[$kunciTertinggi]).' dalam '.$deskripsiTerbesar;
+            }
             return $deskripsi;
         } else {
             return 'Data KD atau Nilai tidak ditemukan'; // Atau nilai default lain sesuai kebutuhan Anda

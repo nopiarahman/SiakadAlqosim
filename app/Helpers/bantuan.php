@@ -2,6 +2,7 @@
 
 use App\Models\Periode;
 use App\Models\NilaiK13;
+use App\Models\DataRaportK13;
 
 function getPeriodeAktif() {
     $periode = Periode::where('status','aktif')->first();
@@ -117,4 +118,28 @@ function rataRataKelas($jadwal) {
         $rataRataKelas = 0;
     }
     return round($rataRataKelas,2);
+}
+function absensi(string $key,$santriId,$periodeId) {
+    $absensi = DataRaportK13::where('santri_id',$santriId)->where('periode_id',$periodeId)->first();
+
+    if($absensi){
+        return $absensi->$key;
+    }
+    return "";
+}
+function catatanWaliKelas($santriId,$periodeId) {
+    $absensi = DataRaportK13::where('santri_id',$santriId)->where('periode_id',$periodeId)->first();
+
+    if($absensi){
+        return $absensi->catatan;
+    }
+    return "";
+}
+function sikapWaliKelas($santriId,$periodeId,$key) {
+    $data = DataRaportK13::where('santri_id',$santriId)->where('periode_id',$periodeId)->first();
+
+    if($data){
+        return $data->sikap->first()->$key;
+    }
+    return "";
 }
