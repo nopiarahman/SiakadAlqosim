@@ -191,9 +191,11 @@ Route::middleware([
             Route::get('/list-raport-kelas/{kelas}','isiKelas')->name('list-kelas-walikelas');
             Route::get('/data-raport-kelas/{kelas}','listDataRaport')->name('data-raport-kelas');
             Route::get('/raport-mid/{santri}/{kelas}','raportMid')->name('raport-mid');
+            Route::get('/raport-mid/{santri}/{kelas}','raportMid')->name('raport-mid');
         });
         Route::controller(RaportController::class)->group(function(){
             Route::get('/raport-semesterk13/{santri}/{kelas}','semesterk13')->name('raport-semesterk13');
+            Route::get('/raport-pas-print/{santri}/{kelas}','printPasK13')->name('print-pas-k13');
         });
     });
     Route::controller(UserController::class)->group(function(){

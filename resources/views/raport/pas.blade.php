@@ -5,12 +5,14 @@
 @endsection
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4">
+        <h4 class="fw-bold py-3">
             <span class="text-muted fw-light"><a href="{{ url('/raport-kelas') }}"> Raport</a> /
                 <a href="{{ route('list-kelas-walikelas', ['kelas' => $santri->kelas->first()->id]) }}">Kelas
                     {{ $santri->kelas->first()->nama }}</a>/ </span> Semester {{ ucfirst($santri->namaLengkap) }}
         </h4>
         <x-alert />
+        <a href="{{ route('print-pas-k13', ['santri' => $santri->id, 'kelas' => $santri->kelas->first()->id]) }}"
+            class="btn btn-primary mb-4"> <i class="bx bx-printer"></i> Print</a>
         <div class="card d-flex justify-content-center table-responsive">
             <div class="card-body mx-auto mt-3">
                 <div class="text-center ">
