@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
 use App\Models\Kelas;
 use App\Models\Mapel;
 use App\Models\Nilai;
@@ -9,6 +10,7 @@ use App\Models\Jadwal;
 use App\Models\Kurikulum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class JadwalController extends Controller
 {
@@ -51,6 +53,10 @@ class JadwalController extends Controller
         }
     }
     function jadwalGuru() {
+        $guru = Guru::all();
+        foreach ($guru as $item) {
+            $item->user->update(['password'=>Hash::make('guru')]);
+        }
         $jadwal = Jadwal::where('guru_id',auth()->user()->guru->first()->id)->get();
         return view('jadwal.jadwal-guru',compact('jadwal'));
     }
