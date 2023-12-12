@@ -53,10 +53,10 @@ class JadwalController extends Controller
         }
     }
     function jadwalGuru() {
-        $guru = Guru::all();
-        foreach ($guru as $item) {
-            $item->user->update(['password'=>Hash::make('guru')]);
-        }
+        // $guru = Guru::all();
+        // foreach ($guru as $item) {
+        //     $item->user->update(['password'=>Hash::make('guru')]);
+        // }
         $jadwal = Jadwal::where('guru_id',auth()->user()->guru->first()->id)->get();
         return view('jadwal.jadwal-guru',compact('jadwal'));
     }
