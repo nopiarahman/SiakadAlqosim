@@ -188,6 +188,13 @@
                     </a>
                 </li>
             @endrole
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">PETUNJUK</span></li>
+            <li class="menu-item @yield('menuDataRaport')">
+                <a href="{{ '/tutorial' }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bxs-videos"></i>
+                    <div data-i18n="Tables">Tutorial</div>
+                </a>
+            </li>
             {{-- <li class="menu-item @yield('menuRaport')">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-task"></i>

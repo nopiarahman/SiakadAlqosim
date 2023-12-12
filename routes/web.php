@@ -34,6 +34,9 @@ Route::get('/', function () {
 Route::get('/pendaftaran', function () {
     return view('pendaftaran');
 });
+Route::get('/tutorial', function () {
+    return view('tutorial');
+});
 Route::controller(PendaftaranController::class)->group(function(){
     Route::get('/formulir','form')->name('form-pendaftaran');
 });
