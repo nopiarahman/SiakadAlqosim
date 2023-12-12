@@ -28,7 +28,7 @@ class DataRaportK13 extends Model
      */
     public function prestasi(): HasMany
     {
-        return $this->hasMany(prestasi::class);
+        return $this->hasMany(Prestasi::class);
     }
     /**
      * Get all of the sikap for the DataRaportK13
