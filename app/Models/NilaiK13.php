@@ -91,29 +91,100 @@ class NilaiK13 extends Model
             return 'Nilai tidak valid';
         }
     }
+    public function countNonNullValuesH()
+    {
+        $attributes = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8'];
+        
+        return count(array_filter($this->only($attributes), function($value) {
+            return !is_null($value);
+        }));
+    }
+    public function countNonNullValuesK()
+    {
+        $attributes = ['k1', 'k2', 'k3', 'k4', 'k5', 'k6', 'k7', 'k8'];
+        
+        return count(array_filter($this->only($attributes), function($value) {
+            return !is_null($value);
+        }));
+    }
+    public function keyOfHighestValueH()
+    {
+        $attributes = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8'];
+        $highestKey = null;
+        $highestValue = null;
+
+        foreach ($attributes as $attribute) {
+            $value = $this->$attribute;
+            if (!is_null($value) && ($highestValue === null || $value > $highestValue)) {
+                $highestValue = $value;
+                $highestKey = $attribute;
+            }
+        }
+
+        return $highestKey;
+    }
+    public function keyOfLowestValueH()
+    {
+        $attributes = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8'];
+        $lowestKey = null;
+        $lowestValue = null;
+
+        foreach ($attributes as $attribute) {
+            $value = $this->$attribute;
+            if (!is_null($value) && ($lowestValue === null || $value < $lowestValue)) {
+                $lowestValue = $value;
+                $lowestKey = $attribute;
+            }
+        }
+
+        return $lowestKey;
+    }
+    public function keyOfHighestValueK()
+    {
+        $attributes = ['k1', 'k2', 'k3', 'k4', 'k5', 'k6', 'k7', 'k8'];
+        $highestKey = null;
+        $highestValue = null;
+
+        foreach ($attributes as $attribute) {
+            $value = $this->$attribute;
+            if (!is_null($value) && ($highestValue === null || $value > $highestValue)) {
+                $highestValue = $value;
+                $highestKey = $attribute;
+            }
+        }
+
+        return $highestKey;
+    }
+    public function keyOfLowestValueK()
+    {
+        $attributes = ['k1', 'k2', 'k3', 'k4', 'k5', 'k6', 'k7', 'k8'];
+        $lowestKey = null;
+        $lowestValue = null;
+
+        foreach ($attributes as $attribute) {
+            $value = $this->$attribute;
+            if (!is_null($value) && ($lowestValue === null || $value < $lowestValue)) {
+                $lowestValue = $value;
+                $lowestKey = $attribute;
+            }
+        }
+
+        return $lowestKey;
+    }
     public function getDeskripsiKD()
     {
-        // Ambil nilai-nilai h dari tabel NilaiK13 dan kelompokkan berdasarkan KD
-        $data = $this->select('h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8')
-        ->first()->toArray();
-
-        // Hapus nilai null dari array
-        $hValues = array_filter($data, fn($value) => $value !== null);
-
-        $kunciTertinggi = array_search(max($hValues), $hValues);
-        $kunciTerendah = array_search(min($hValues), $hValues);
-        
         $kd = KDK13::where('mapel_id', $this->mapel_id)
         ->where('kelas_id',$this->kelas_id)
         ->where('periode_id',$this->periode_id)
         ->first();
+        // dd($kd);
         if ($kd) {
-            $deskripsiTerbesar = $kd->getDeskripsiKDByNilai($kunciTertinggi);
-            $deskripsiTerkecil = $kd->getDeskripsiKDByNilai($kunciTerendah);
-            if(count($hValues)>1){
-                $deskripsi = 'Alhamdulillah ananda '.$this->getPredikatKD($data[$kunciTertinggi]).' dalam '.$deskripsiTerbesar.' dan '.$this->getPredikatKD($data[$kunciTerendah]).' dalam '.$deskripsiTerkecil;
+            $deskripsiTerbesar = $kd->getDeskripsiKDByNilai($this->keyOfHighestValueH());
+            $deskripsiTerkecil = $kd->getDeskripsiKDByNilai($this->keyOfLowestValueH());
+            if($this->countNonNullValuesH()>1){
+                $deskripsi = 'Alhamdulillah ananda '.$this->getPredikatKD($this[$this->keyOfHighestValueH()]).' dalam '.$deskripsiTerbesar.' dan '.$this->getPredikatKD($this[$this->keyOfLowestValueH()]).' dalam '.$deskripsiTerkecil;
             }else{
-                $deskripsi = 'Alhamdulillah ananda '.$this->getPredikatKD($data[$kunciTertinggi]).' dalam '.$deskripsiTerbesar;
+                $deskripsi = 'Alhamdulillah ananda '.$this->getPredikatKD($this[$this->keyOfHighestValueH()]).' dalam '.$deskripsiTerbesar;
             }
             return $deskripsi;
         } else {
@@ -122,25 +193,17 @@ class NilaiK13 extends Model
     }
     public function getDeskripsiKDKeterampilan()
     {
-        // Ambil nilai-nilai h dari tabel NilaiK13 dan kelompokkan berdasarkan KD
-        $data = $this->select('k1', 'k2', 'k3', 'k4', 'k5', 'k6', 'k7', 'k8')
-        ->first()->toArray();
-
-        // Hapus nilai null dari array
-        $kValues = array_filter($data, fn($value) => $value !== null);
-        $kunciTertinggi = array_search(max($kValues), $kValues);
-        $kunciTerendah = array_search(min($kValues), $kValues);
         $kd = KDK13::where('mapel_id', $this->mapel_id)
         ->where('kelas_id',$this->kelas_id)
         ->where('periode_id',$this->periode_id)
         ->first();
         if ($kd) {
-            $deskripsiTerbesar = $kd->getDeskripsiKDByNilai($kunciTertinggi);
-            $deskripsiTerkecil = $kd->getDeskripsiKDByNilai($kunciTerendah);
-            if(count($kValues)>1){
-                $deskripsi = 'Alhamdulillah ananda '.$this->getPredikatKD($data[$kunciTertinggi]).' dalam '.$deskripsiTerbesar.' dan '.$this->getPredikatKD($data[$kunciTerendah]).' dalam '.$deskripsiTerkecil;
+            $deskripsiTerbesar = $kd->getDeskripsiKDByNilai($this->keyOfHighestValueK());
+            $deskripsiTerkecil = $kd->getDeskripsiKDByNilai($this->keyOfLowestValueK());
+            if($this->countNonNullValuesK()>1){
+                $deskripsi = 'Alhamdulillah ananda '.$this->getPredikatKD($this[$this->keyOfHighestValueK()]).' dalam '.$deskripsiTerbesar.' dan '.$this->getPredikatKD($this[$this->keyOfLowestValueK()]).' dalam '.$deskripsiTerkecil;
             }else{
-                $deskripsi = 'Alhamdulillah ananda '.$this->getPredikatKD($data[$kunciTertinggi]).' dalam '.$deskripsiTerbesar;
+                $deskripsi = 'Alhamdulillah ananda '.$this->getPredikatKD($this[$this->keyOfHighestValueK()]).' dalam '.$deskripsiTerbesar;
             }
             return $deskripsi;
         } else {
