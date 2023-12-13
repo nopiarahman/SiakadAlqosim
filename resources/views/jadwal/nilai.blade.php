@@ -18,7 +18,6 @@
                     </div>
                     <div class="col-md-6">
                         <span class="card-text fw-bold text-primary">KKM: {{ $id->mapel->kkm }}</span> <br>
-                        <span class="card-text fw-bold text-primary">Rata-rata kelas: {{ rataRataKelas($id) }}</span>
                     </div>
                 </div>
             </div>

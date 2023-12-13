@@ -18,7 +18,6 @@
                     </div>
                     <div class="col-md-6">
                         <span class="card-text fw-bold text-primary">KKM: {{ $mapel->kkm }}</span> <br>
-                        <span class="card-text fw-bold text-primary">Rata-rata kelas: </span>
                     </div>
                 </div>
             </div>

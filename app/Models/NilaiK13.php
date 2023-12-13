@@ -219,11 +219,15 @@ class NilaiK13 extends Model
         }
     }
     public function getPredikatKD($nilai){
-        if ($nilai <= 60) {
+        if ($nilai <= 57) {
+            return 'kurang';
+        } elseif ($nilai <= 66) {
             return 'perlu dimaksimalkan';
-        } elseif ($nilai <= 70) {
+        }elseif ($nilai <= 74) {
+            return 'belum cukup';
+        } elseif ($nilai <= 83) {
             return 'cukup';
-        } elseif ($nilai <= 84) {
+        } elseif ($nilai <= 91) {
             return 'baik';
         } elseif ($nilai <= 100) {
             return 'sangat baik';
