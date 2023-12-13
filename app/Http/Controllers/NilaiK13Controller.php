@@ -6,6 +6,7 @@ use App\Models\KDK13;
 use App\Models\Kelas;
 use App\Models\Mapel;
 use App\Models\Jadwal;
+use App\Models\Santri;
 use App\Models\NilaiK13;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,29 +24,58 @@ class NilaiK13Controller extends Controller
         return view('nilaiK13.index',compact('list'));
     }
     function pengetahuan(Kelas $kelas, Mapel $mapel) {
-        $santri = $kelas->santri;
+        // Get the IDs of santri associated with the kelas
+        $santriIds = $kelas->santri->pluck('id');
+    
+        // Query the Santri model directly, ordering by namaLengkap
+        $santri = Santri::whereIn('id', $santriIds)
+                        ->orderBy('namaLengkap')
+                        ->get();
+    
         $kdPengetahuan = KDK13::select('id', 'mapel_id', 'kelas_id', 'periode_id', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8')
-            ->where('kelas_id',$kelas->id)->where('mapel_id',$mapel->id)
+            ->where('kelas_id', $kelas->id)
+            ->where('mapel_id', $mapel->id)
             ->get();
-        return view('nilaiK13.pengetahuan',compact('santri','kelas','mapel','kdPengetahuan'));
+    
+        return view('nilaiK13.pengetahuan', compact('santri', 'kelas', 'mapel', 'kdPengetahuan'));
     }
     function keterampilan(Kelas $kelas, Mapel $mapel) {
-        $santri = $kelas->santri;
+        $santriIds = $kelas->santri->pluck('id');
+        $santri = Santri::whereIn('id', $santriIds)
+                        ->orderBy('namaLengkap')
+                        ->get();
+    
         $kdKeterampilan = KDK13::select('id', 'mapel_id', 'kelas_id', 'periode_id', 'k1', 'k2', 'k3', 'k4', 'k5', 'k6', 'k7', 'k8')
-            ->where('kelas_id',$kelas->id)->where('mapel_id',$mapel->id)->get();
-        return view('nilaiK13.keterampilan',compact('santri','kelas','mapel','kdKeterampilan'));
+            ->where('kelas_id', $kelas->id)
+            ->where('mapel_id', $mapel->id)
+            ->get();
+    
+        return view('nilaiK13.keterampilan', compact('santri', 'kelas', 'mapel', 'kdKeterampilan'));
     }
+    
     function pts(Kelas $kelas, Mapel $mapel) {
-        $santri = $kelas->santri;
-        return view('nilaiK13.pts',compact('santri','kelas','mapel'));
+        $santriIds = $kelas->santri->pluck('id');
+        $santri = Santri::whereIn('id', $santriIds)
+                        ->orderBy('namaLengkap')
+                        ->get();
+    
+        return view('nilaiK13.pts', compact('santri', 'kelas', 'mapel'));
     }
     function pas(Kelas $kelas, Mapel $mapel) {
-        $santri = $kelas->santri;
-        return view('nilaiK13.pas',compact('santri','kelas','mapel'));
+        $santriIds = $kelas->santri->pluck('id');
+        $santri = Santri::whereIn('id', $santriIds)
+                        ->orderBy('namaLengkap')
+                        ->get();
+    
+        return view('nilaiK13.pas', compact('santri', 'kelas', 'mapel'));
     }
     function lihatNilaiK13(Kelas $kelas, Mapel $mapel) {
-        $santri = $kelas->santri;
-        return view('nilaiK13.nilaiRaport',compact('santri','kelas','mapel'));
+        $santriIds = $kelas->santri->pluck('id');
+        $santri = Santri::whereIn('id', $santriIds)
+                        ->orderBy('namaLengkap')
+                        ->get();
+    
+        return view('nilaiK13.nilaiRaport', compact('santri', 'kelas', 'mapel'));
     }
     function store(Request $request) {
         try {
