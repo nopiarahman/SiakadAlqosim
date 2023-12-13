@@ -63,11 +63,15 @@ class NilaiK13 extends Model
     {
         $nilaiAkhir = $this->hitungNilaiAkhir();
 
-        if ($nilaiAkhir <= 60) {
+        if ($nilaiAkhir <= 57) {
             return 'K';
-        } elseif ($nilaiAkhir <= 70) {
+        } elseif ($nilaiAkhir <= 66) {
+            return 'E';
+        }elseif ($nilaiAkhir <= 74) {
+            return 'D';
+        } elseif ($nilaiAkhir <= 83) {
             return 'C';
-        } elseif ($nilaiAkhir <= 84) {
+        } elseif ($nilaiAkhir <= 91) {
             return 'B';
         } elseif ($nilaiAkhir <= 100) {
             return 'A';
@@ -79,11 +83,15 @@ class NilaiK13 extends Model
     {
         $nilaiAkhir = $this->hitungNilaiAkhirKeterampilan();
 
-        if ($nilaiAkhir <= 60) {
+        if ($nilaiAkhir <= 57) {
             return 'K';
-        } elseif ($nilaiAkhir <= 70) {
+        } elseif ($nilaiAkhir <= 66) {
+            return 'E';
+        }elseif ($nilaiAkhir <= 74) {
+            return 'D';
+        } elseif ($nilaiAkhir <= 83) {
             return 'C';
-        } elseif ($nilaiAkhir <= 84) {
+        } elseif ($nilaiAkhir <= 91) {
             return 'B';
         } elseif ($nilaiAkhir <= 100) {
             return 'A';
