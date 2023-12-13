@@ -21,6 +21,7 @@
                             <th>Nilai Harian</th>
                             <th>Nilai PTS</th>
                             <th>Nilai PAS</th>
+                            <th>Nilai Raport</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -47,6 +48,9 @@
                                 <td><a class="btn btn-primary me-1"
                                         href="{{ route('isi-nilai-pas', ['kelas' => $i->kelas_id, 'mapel' => $i->mapel_id]) }}">
                                         Nilai PAS</a></td>
+                                <td><a class="btn btn-primary me-1"
+                                        href="{{ route('lihat-nilai-k13', ['kelas' => $i->kelas_id, 'mapel' => $i->mapel_id]) }}">
+                                        Lihat Nilai</a></td>
                             </tr>
                         @endforeach
                     </tbody>

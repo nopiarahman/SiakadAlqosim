@@ -195,62 +195,6 @@
                     <div data-i18n="Tables">Tutorial</div>
                 </a>
             </li>
-            {{-- <li class="menu-item @yield('menuRaport')">
-                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="menu-icon tf-icons bx bx-task"></i>
-                    <div data-i18n="Form Layouts">Raport Santri</div>
-                </a>
-                <ul class="menu-sub">
-                    <li class="menu-item @yield('subMenuGuru1')">
-                        <a href="{{ url('/guru') }}" class="menu-link">
-                            <div data-i18n="Vertical Form">Raport MID</div>
-                        </a>
-                    </li>
-                </ul>
-                <ul class="menu-sub">
-                    <li class="menu-item @yield('subMenuGuru1')">
-                        <a href="{{ url('/guru') }}" class="menu-link">
-                            <div data-i18n="Vertical Form">Raport Semester</div>
-                        </a>
-                    </li>
-                </ul>
-                <ul class="menu-sub">
-                    <li class="menu-item @yield('subMenuGuru1')">
-                        <a href="{{ url('/guru') }}" class="menu-link">
-                            <div data-i18n="Vertical Form">Raport Tahfidz</div>
-                        </a>
-                    </li>
-                </ul>
-            </li> --}}
-            {{-- <li class="menu-item @yield('menuNilai')">
-                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="menu-icon tf-icons bx bx-select-multiple"></i>
-                    <div data-i18n="Form Layouts">Test</div>
-                </a>
-                <ul class="menu-sub">
-                    <li class="menu-item @yield('subMenuGuru1')">
-                        <a href="{{ url('/test') }}" class="menu-link">
-                            <div data-i18n="Vertical Form">test</div>
-                        </a>
-                    </li>
-                </ul>
-            </li> --}}
-            <!-- Misc -->
-            {{-- <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
-            <li class="menu-item">
-                <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank"
-                    class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-support"></i>
-                    <div data-i18n="Support">Support</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                    target="_blank" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-file"></i>
-                    <div data-i18n="Documentation">Documentation</div>
-                </a>
-            </li> --}}
         </ul>
     </aside>
     <!-- / Menu -->

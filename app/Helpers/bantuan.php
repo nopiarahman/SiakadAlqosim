@@ -13,31 +13,28 @@ function nilaiSantriHarianK13($santriId,$kelasId,$mapelId,$periodeId,$kurikulumI
                         ->where('kelas_id',$kelasId)
                         ->where('mapel_id',$mapelId)
                         ->where('periode_id',$periodeId)
-                        ->where('kurikulum_id',$kurikulumId)
                         ->first();
     if ($nilai) {
         return $nilai->$key;
     }
     return "";
 }
-function nilaiSantriPTSK13($santriId,$kelasId,$mapelId,$periodeId,$kurikulumId) {
+function nilaiSantriPTSK13($santriId,$kelasId,$mapelId,$periodeId,) {
     $nilai = NilaiK13::where('santri_id',$santriId)
                         ->where('kelas_id',$kelasId)
                         ->where('mapel_id',$mapelId)
                         ->where('periode_id',$periodeId)
-                        ->where('kurikulum_id',$kurikulumId)
                         ->first();
     if ($nilai) {
         return $nilai->PTS;
     }
     return "";
 }
-function nilaiSantriPASK13($santriId,$kelasId,$mapelId,$periodeId,$kurikulumId) {
+function nilaiSantriPASK13($santriId,$kelasId,$mapelId,$periodeId) {
     $nilai = NilaiK13::where('santri_id',$santriId)
                         ->where('kelas_id',$kelasId)
                         ->where('mapel_id',$mapelId)
                         ->where('periode_id',$periodeId)
-                        ->where('kurikulum_id',$kurikulumId)
                         ->first();
     if ($nilai) {
         return $nilai->PAS;
@@ -142,4 +139,14 @@ function sikapWaliKelas($santriId,$periodeId,$key) {
         return $data->sikap->first()->$key;
     }
     return "";
+}
+function getNilaiPSantri($santri, $kelas, $mapel) {
+    $nilaiP=NilaiK13::where('santri_id',$santri)
+    ->where('kelas_id',$kelas)
+    ->where('mapel_id',$mapel)
+    ->where('periode_id',getPeriodeAktif()->id)
+    ->first();
+    if($nilaiP){
+        return $nilaiP->hitungNilaiAkhir();
+    }return 0;
 }

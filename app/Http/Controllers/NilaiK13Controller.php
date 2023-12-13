@@ -43,6 +43,10 @@ class NilaiK13Controller extends Controller
         $santri = $kelas->santri;
         return view('nilaiK13.pas',compact('santri','kelas','mapel'));
     }
+    function lihatNilaiK13(Kelas $kelas, Mapel $mapel) {
+        $santri = $kelas->santri;
+        return view('nilaiK13.nilaiRaport',compact('santri','kelas','mapel'));
+    }
     function store(Request $request) {
         try {
             DB::beginTransaction();

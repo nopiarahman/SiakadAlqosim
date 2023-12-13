@@ -167,6 +167,7 @@ Route::middleware([
             Route::get('/nilai-keterampilan/{kelas}/{mapel}','keterampilan')->name('isi-nilai-keterampilan');
             Route::get('/nilai-pts/{kelas}/{mapel}','pts')->name('isi-nilai-pts');
             Route::get('/nilai-pas/{kelas}/{mapel}','pas')->name('isi-nilai-pas');
+            Route::get('/nilai-raport/{kelas}/{mapel}','lihatNilaiK13')->name('lihat-nilai-k13');
             Route::post('/nilai-harian/simpan','store')->name('nilaiK13-harian-simpan');
             Route::post('/nilai-keterampilan/simpan','storeKeterampilan')->name('nilaiK13-keterampilan-simpan');
             Route::post('/nilai-pts/simpan','storePTS')->name('nilaiK13-pts-simpan');
