@@ -188,6 +188,17 @@
                                     style='border-right:.5pt solid black;border-left:none;width:346pt;padding:0 12pt;'>
                                     <font class="font13">{{ $i->getDeskripsiKD() }}</font>
                                 </td>
+                                <td>
+                                    @if ($i->PTS == null)
+                                        <span class="badge bg-danger">belum input nilai PTS </span><br>
+                                    @endif
+                                    @if ($i->PAS == null)
+                                        <span class="badge bg-danger">belum input nilai PAS </span><br>
+                                    @endif
+                                    @if ($i->keyOfHighestValueH() == null)
+                                        <span class="badge bg-danger">belum mengisi nilai Pengetahuan </span>
+                                    @endif
+                                </td>
                             </tr>
                         @empty
                             <tr>
@@ -242,6 +253,11 @@
                                 <td colspan=2 class=xl95 width=46
                                     style='border-right:.5pt solid black;border-left:none;width:346pt;padding:0 12pt;'>
                                     <font class="font13">{{ $i->getDeskripsiKDKeterampilan() }}</font>
+                                </td>
+                                <td>
+                                    @if ($i->keyOfHighestValueK() == null)
+                                        <span class="badge bg-danger">belum mengisi nilai keterampilan</span>
+                                    @endif
                                 </td>
                             </tr>
                         @empty
