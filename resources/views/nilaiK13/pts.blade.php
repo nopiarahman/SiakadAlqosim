@@ -57,7 +57,7 @@
                                         <td>
                                             <input type="number" class="form-control form-control-sm" name="pts"
                                                 style="width: 70px !important"
-                                                value="{{ nilaiSantriPTSK13($i->id, $kelas->id, $mapel->id, getPeriodeAktif()->id, $kelas->kurikulums()->first()->id) }}"
+                                                value="{{ nilaiSantriPTSK13($i->id, $kelas->id, $mapel->id, getPeriodeAktif()->id) }}"
                                                 max="100" min="0">
                                         </td>
                                         <td>

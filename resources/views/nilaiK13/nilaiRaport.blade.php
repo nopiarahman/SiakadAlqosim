@@ -26,9 +26,6 @@
         <div class="card">
             <h5 class="card-header">Daftar Santri Kelas {{ $kelas->nama }}</h5>
             <div class="card-body">
-                <small class="text-light fw-semibold d-block">Untuk menyimpan nilai, silahkan simpan per-nama santri satu
-                    per
-                    satu</small>
                 <div class="text-nowrap table-responsive">
                     <table class="table m-3">
                         <thead>
@@ -43,29 +40,36 @@
                         <tbody class="table-border-bottom-0">
                             @foreach ($santri as $i)
                                 <tr>
-                                    <form action="{{ route('nilaiK13-pas-simpan') }}" enctype="multipart/form-data"
-                                        method="POST">
-                                        @csrf
-                                        <input type="hidden" name="santri_id" value="{{ $i->id }}">
-                                        <input type="hidden" name="mapel_id" value="{{ $mapel->id }}">
-                                        <input type="hidden" name="kelas_id" value="{{ $kelas->id }}">
-                                        <input type="hidden" name="kurikulum_id"
-                                            value="{{ $kelas->kurikulums()->first()->id }}">
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td><i class="fab fa-angular fa-lg text-danger"></i>
-                                            <strong>{{ $i->namaLengkap }}</strong>
-                                        </td>
-                                        <td>{{ getNilaiPSantri($i->id, $kelas->id, $mapel->id) }}</td>
-                                        <td>
-                                            <input type="number" class="form-control form-control-sm" name="pas"
-                                                style="width: 70px !important"
-                                                value="{{ nilaiSantriPASK13($i->id, $kelas->id, $mapel->id, getPeriodeAktif()->id, $kelas->kurikulums()->first()->id) }}"
-                                                max="100" min="0">
-                                        </td>
-                                        <td>
-                                            <button type="submit" class="btn btn-primary">Simpan</button>
-                                        </td>
-                                    </form>
+                                    <input type="hidden" name="santri_id" value="{{ $i->id }}">
+                                    <input type="hidden" name="mapel_id" value="{{ $mapel->id }}">
+                                    <input type="hidden" name="kelas_id" value="{{ $kelas->id }}">
+                                    <input type="hidden" name="kurikulum_id"
+                                        value="{{ $kelas->kurikulums()->first()->id }}">
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td><i class="fab fa-angular fa-lg text-danger"></i>
+                                        <strong>{{ $i->namaLengkap }}</strong>
+                                    </td>
+                                    <td>
+                                        @if (getNilaiPSantri($i->id, $kelas->id, $mapel->id) < $mapel->kkm)
+                                            <strong
+                                                class="text-danger fw-bold">{{ getNilaiPSantri($i->id, $kelas->id, $mapel->id) }}</strong>
+                                        @else
+                                            <strong
+                                                class="text-success fw-bold">{{ getNilaiPSantri($i->id, $kelas->id, $mapel->id) }}</strong>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if (getNilaiKSantri($i->id, $kelas->id, $mapel->id) < $mapel->kkm)
+                                            <strong
+                                                class="text-danger fw-bold">{{ getNilaiKSantri($i->id, $kelas->id, $mapel->id) }}</strong>
+                                        @else
+                                            <strong
+                                                class="text-success fw-bold">{{ getNilaiKSantri($i->id, $kelas->id, $mapel->id) }}</strong>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn btn-primary">Remedial</button>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -150,3 +150,13 @@ function getNilaiPSantri($santri, $kelas, $mapel) {
         return $nilaiP->hitungNilaiAkhir();
     }return 0;
 }
+function getNilaiKSantri($santri, $kelas, $mapel) {
+    $nilaiP=NilaiK13::where('santri_id',$santri)
+    ->where('kelas_id',$kelas)
+    ->where('mapel_id',$mapel)
+    ->where('periode_id',getPeriodeAktif()->id)
+    ->first();
+    if($nilaiP){
+        return $nilaiP->hitungNilaiAkhirKeterampilan();
+    }return 0;
+}
