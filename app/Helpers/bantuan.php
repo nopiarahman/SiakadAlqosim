@@ -133,10 +133,13 @@ function catatanWaliKelas($santriId,$periodeId) {
     return "";
 }
 function sikapWaliKelas($santriId,$periodeId,$key) {
-    $data = DataRaportK13::where('santri_id',$santriId)->where('periode_id',$periodeId)->first();
-
-    if($data){
-        return $data->sikap->first()->$key;
+    $data = DataRaportK13::firstOrCreate([
+        'santri_id' => $santriId,
+        'periode_id' => $periodeId,
+    ]);
+    $sikap = $data->sikap()->first();
+    if ($sikap && isset($sikap->$key)) {
+        return $sikap->$key;
     }
     return "";
 }

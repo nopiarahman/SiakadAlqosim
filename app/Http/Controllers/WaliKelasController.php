@@ -131,11 +131,20 @@ class WaliKelasController extends Controller
         return view('waliKelas.prestasi',compact('kelas'));
     }
     function eksSantri( Kelas $kelas,Santri $santri) {
-        $data = DataRaportK13::where('santri_id',$santri->id)->where('periode_id',getPeriodeAktif()->id)->first();
+        
+        $data = DataRaportK13::firstOrCreate([
+            'santri_id' => $santri->id,
+            'periode_id' => getPeriodeAktif()->id
+        ]);
+        
         return view('waliKelas.eksSantri',compact('data','santri','kelas'));
     }
     function prestasiSantri( Kelas $kelas,Santri $santri) {
-        $data = DataRaportK13::where('santri_id',$santri->id)->where('periode_id',getPeriodeAktif()->id)->first();
+        $data = DataRaportK13::firstOrCreate([
+            'santri_id' => $santri->id,
+            'periode_id' => getPeriodeAktif()->id
+        ]);
+        
         return view('waliKelas.prestasiSantri',compact('data','santri','kelas'));
     }
     function eksSantriStore(Request $request) {
