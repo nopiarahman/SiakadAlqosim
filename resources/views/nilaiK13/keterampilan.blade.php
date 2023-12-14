@@ -44,9 +44,6 @@
         <div class="card">
             <h5 class="card-header">Daftar Santri Kelas {{ $kelas->nama }}</h5>
             <div class="card-body">
-                <small class="text-light fw-semibold d-block">Untuk menyimpan nilai, silahkan simpan per-nama santri satu
-                    per
-                    satu</small>
                 <div class="text-nowrap table-responsive">
                     <table class="table m-3">
                         <thead>
@@ -65,15 +62,15 @@
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            @foreach ($santri as $i)
-                                <tr>
-                                    <form action="{{ route('nilaiK13-keterampilan-simpan') }}"
-                                        enctype="multipart/form-data" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="santri_id" value="{{ $i->id }}">
-                                        <input type="hidden" name="mapel_id" value="{{ $mapel->id }}">
-                                        <input type="hidden" name="kelas_id" value="{{ $kelas->id }}">
-                                        <input type="hidden" name="kurikulum_id"
+                            <form action="{{ route('nilaiK13-keterampilan-simpan') }}" enctype="multipart/form-data"
+                                method="POST">
+                                @csrf
+                                @foreach ($santri as $i)
+                                    <tr>
+                                        <input type="hidden" name="santri_id[]" value="{{ $i->id }}">
+                                        <input type="hidden" name="mapel_id[]" value="{{ $mapel->id }}">
+                                        <input type="hidden" name="kelas_id[]" value="{{ $kelas->id }}">
+                                        <input type="hidden" name="kurikulum_id[]"
                                             value="{{ $kelas->kurikulums()->first()->id }}">
                                         <td>{{ $loop->iteration }}</td>
                                         <td><i class="fab fa-angular fa-lg text-danger"></i>
@@ -85,7 +82,7 @@
                                                 @if (Str::startsWith($key, 'k') && !is_null($value))
                                                     <td>
                                                         <input type="number" class="form-control form-control-sm"
-                                                            name="{{ $key }}" style="width: 70px !important"
+                                                            name="{{ $key }}[]" style="width: 70px !important"
                                                             value="{{ nilaiSantriHarianK13($i->id, $kelas->id, $mapel->id, getPeriodeAktif()->id, $kelas->kurikulums()->first()->id, $key) }}"
                                                             max="100" min="0">
                                                     </td>
@@ -95,12 +92,17 @@
                                         <td class="fw-bold text-primary">
                                             {{ nilaiRPHKeterampilan($i->id, $kelas->id, $mapel->id, getPeriodeAktif()->id, $kelas->kurikulums()->first()->id) }}
                                         </td>
-                                        <td>
-                                            <button type="submit" class="btn btn-primary">Simpan</button>
-                                        </td>
-                                    </form>
+                                    </tr>
+                                @endforeach
+                                <tr>
+                                    <td colspan="4">
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-primary">Simpan Semua</button>
+                                        </div>
+
+                                    </td>
                                 </tr>
-                            @endforeach
+                            </form>
                         </tbody>
                     </table>
                 </div>

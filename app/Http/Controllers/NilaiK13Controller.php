@@ -80,107 +80,134 @@ class NilaiK13Controller extends Controller
     function store(Request $request) {
         try {
             DB::beginTransaction();
-            $requestData = [
-                'santri_id' => $request->santri_id,
-                'mapel_id' => $request->mapel_id,  // Sesuaikan dengan mapel_id yang sesuai
-                'kelas_id' => $request->kelas_id,  // Sesuaikan dengan kelas_id yang sesuai
-                'periode_id' => getPeriodeAktif()->id,  // Sesuaikan dengan periode_id yang sesuai
-                'kurikulum_id' => $request->kurikulum_id,  // Sesuaikan dengan kurikulum_id yang sesuai
-                'h1' => $request->h1,
-                'h2' => $request->h2,
-                'h3' => $request->h3,
-                'h4' => $request->h4,
-                'h5' => $request->h5,
-                'h6' => $request->h6,
-                'h7' => $request->h7,
-                'h8' => $request->h8,
-            ];
-            // Memperbarui atau membuat data berdasarkan santri_id, mapel_id, kelas_id, dan periode_id
-            NilaiK13::updateOrCreate(
-                ['santri_id' => $requestData['santri_id'], 'mapel_id' => $requestData['mapel_id'], 'kelas_id' => $requestData['kelas_id'], 'periode_id' => $requestData['periode_id']],
-                $requestData
-            );
+            foreach ($request->santri_id as $index => $santriId) {
+                $requestData = [
+                    'santri_id' => $santriId,
+                    'mapel_id' => $request->mapel_id[$index],
+                    'kelas_id' => $request->kelas_id[$index],
+                    'periode_id' => getPeriodeAktif()->id,
+                    'kurikulum_id' => $request->kurikulum_id[$index],
+                    'h1' => $request->h1[$index]?? null,
+                    'h2' => $request->h2[$index]?? null,
+                    'h3' => $request->h3[$index]?? null,
+                    'h4' => $request->h4[$index]?? null,
+                    'h5' => $request->h5[$index]?? null,
+                    'h6' => $request->h6[$index]?? null,
+                    'h7' => $request->h7[$index]?? null,
+                    'h8' => $request->h8[$index]?? null,
+                ];
+    
+                NilaiK13::updateOrCreate(
+                    ['santri_id' => $requestData['santri_id'], 'mapel_id' => $requestData['mapel_id'], 'kelas_id' => $requestData['kelas_id'], 'periode_id' => $requestData['periode_id']],
+                    $requestData
+                );
+            }
+    
             DB::commit();
-            return redirect()->back()->with('success','Nilai Berhasil ditambahkan');
+            return redirect()->back()->with('success', 'Nilai Berhasil ditambahkan');
         } catch (\Exception $ex) {
             DB::rollback();
-            return redirect()->back()->with('error','Gagal. Pesan Error: '.$ex->getMessage());
+            return redirect()->back()->with('error', 'Gagal. Pesan Error: '.$ex->getMessage());
         }
     }
     function storeKeterampilan(Request $request) {
+        // dd($request);
         try {
             DB::beginTransaction();
-            $requestData = [
-                'santri_id' => $request->santri_id,
-                'mapel_id' => $request->mapel_id,  // Sesuaikan dengan mapel_id yang sesuai
-                'kelas_id' => $request->kelas_id,  // Sesuaikan dengan kelas_id yang sesuai
-                'periode_id' => getPeriodeAktif()->id,  // Sesuaikan dengan periode_id yang sesuai
-                'kurikulum_id' => $request->kurikulum_id,  // Sesuaikan dengan kurikulum_id yang sesuai
-                'k1' => $request->k1,
-                'k2' => $request->k2,
-                'k3' => $request->k3,
-                'k4' => $request->k4,
-                'k5' => $request->k5,
-                'k6' => $request->k6,
-                'k7' => $request->k7,
-                'k8' => $request->k8,
-            ];
-            // Memperbarui atau membuat data berdasarkan santri_id, mapel_id, kelas_id, dan periode_id
-            NilaiK13::updateOrCreate(
-                ['santri_id' => $requestData['santri_id'], 'mapel_id' => $requestData['mapel_id'], 'kelas_id' => $requestData['kelas_id'], 'periode_id' => $requestData['periode_id']],
-                $requestData
-            );
+            foreach ($request->santri_id as $index => $santriId) {
+                $requestData = [
+                    'santri_id' => $santriId,
+                    'mapel_id' => $request->mapel_id[$index],
+                    'kelas_id' => $request->kelas_id[$index],
+                    'periode_id' => getPeriodeAktif()->id,
+                    'kurikulum_id' => $request->kurikulum_id[$index],
+                    'k1' => $request->k1[$index]?? null,
+                    'k2' => $request->k2[$index]?? null,
+                    'k3' => $request->k3[$index]?? null,
+                    'k4' => $request->k4[$index]?? null,
+                    'k5' => $request->k5[$index]?? null,
+                    'k6' => $request->k6[$index]?? null,
+                    'k7' => $request->k7[$index]?? null,
+                    'k8' => $request->k8[$index]?? null,
+                ];
+    
+                NilaiK13::updateOrCreate(
+                    ['santri_id' => $requestData['santri_id'], 'mapel_id' => $requestData['mapel_id'], 'kelas_id' => $requestData['kelas_id'], 'periode_id' => $requestData['periode_id']],
+                    $requestData
+                );
+            }
+    
             DB::commit();
-            return redirect()->back()->with('success','Nilai Berhasil ditambahkan');
+            return redirect()->back()->with('success', 'Nilai Berhasil ditambahkan');
         } catch (\Exception $ex) {
             DB::rollback();
-            return redirect()->back()->with('error','Gagal. Pesan Error: '.$ex->getMessage());
+            return redirect()->back()->with('error', 'Gagal. Pesan Error: '.$ex->getMessage());
         }
     }
     function storePTS(Request $request) {
         try {
             DB::beginTransaction();
-            $requestData = [
-                'santri_id' => $request->santri_id,
-                'mapel_id' => $request->mapel_id,  // Sesuaikan dengan mapel_id yang sesuai
-                'kelas_id' => $request->kelas_id,  // Sesuaikan dengan kelas_id yang sesuai
-                'periode_id' => getPeriodeAktif()->id,  // Sesuaikan dengan periode_id yang sesuai
-                'kurikulum_id' => $request->kurikulum_id,  // Sesuaikan dengan kurikulum_id yang sesuai
-                'pts' => $request->pts,
-            ];
-            // Memperbarui atau membuat data berdasarkan santri_id, mapel_id, kelas_id, dan periode_id
-            NilaiK13::updateOrCreate(
-                ['santri_id' => $requestData['santri_id'], 'mapel_id' => $requestData['mapel_id'], 'kelas_id' => $requestData['kelas_id'], 'periode_id' => $requestData['periode_id']],
-                ['PTS'=>$requestData['pts']]
-            );
+    
+            foreach ($request->santri_id as $index => $santriId) {
+                $pts = $request->pts[$index] ?? null;  // Menggunakan null coalescing untuk nilai opsional
+                $requestData = [
+                    'santri_id' => $santriId,
+                    'mapel_id' => $request->mapel_id[$index],
+                    'kelas_id' => $request->kelas_id[$index],
+                    'periode_id' => getPeriodeAktif()->id,
+                    'kurikulum_id' => $request->kurikulum_id[$index],
+                    'PTS' => $pts,
+                ];
+    
+                NilaiK13::updateOrCreate(
+                    [
+                        'santri_id' => $santriId, 
+                        'mapel_id' => $request->mapel_id[$index], 
+                        'kelas_id' => $request->kelas_id[$index], 
+                        'periode_id' => getPeriodeAktif()->id
+                    ],
+                    $requestData
+                );
+            }
+    
             DB::commit();
-            return redirect()->back()->with('success','Nilai PTS Berhasil ditambahkan');
+            return redirect()->back()->with('success', 'Nilai PTS Berhasil ditambahkan');
         } catch (\Exception $ex) {
             DB::rollback();
-            return redirect()->back()->with('error','Gagal. Pesan Error: '.$ex->getMessage());
+            return redirect()->back()->with('error', 'Gagal. Pesan Error: ' . $ex->getMessage());
         }
     }
     function storePAS(Request $request) {
         try {
             DB::beginTransaction();
-            $requestData = [
-                'santri_id' => $request->santri_id,
-                'mapel_id' => $request->mapel_id,  // Sesuaikan dengan mapel_id yang sesuai
-                'kelas_id' => $request->kelas_id,  // Sesuaikan dengan kelas_id yang sesuai
-                'periode_id' => getPeriodeAktif()->id,  // Sesuaikan dengan periode_id yang sesuai
-                'kurikulum_id' => $request->kurikulum_id,  // Sesuaikan dengan kurikulum_id yang sesuai
-                'pas' => $request->pas,
-            ];
-            // Memperbarui atau membuat data berdasarkan santri_id, mapel_id, kelas_id, dan periode_id
-            NilaiK13::updateOrCreate(
-                ['santri_id' => $requestData['santri_id'], 'mapel_id' => $requestData['mapel_id'], 'kelas_id' => $requestData['kelas_id'], 'periode_id' => $requestData['periode_id']],
-                ['PAS'=>$requestData['pas']]
-            );
+    
+            foreach ($request->santri_id as $index => $santriId) {
+                $pas = $request->pas[$index] ?? null;  // Menggunakan null coalescing untuk nilai opsional
+                $requestData = [
+                    'santri_id' => $santriId,
+                    'mapel_id' => $request->mapel_id[$index],
+                    'kelas_id' => $request->kelas_id[$index],
+                    'periode_id' => getPeriodeAktif()->id,
+                    'kurikulum_id' => $request->kurikulum_id[$index],
+                    'PAS' => $pas,
+                ];
+    
+                NilaiK13::updateOrCreate(
+                    [
+                        'santri_id' => $santriId, 
+                        'mapel_id' => $request->mapel_id[$index], 
+                        'kelas_id' => $request->kelas_id[$index], 
+                        'periode_id' => getPeriodeAktif()->id
+                    ],
+                    $requestData
+                );
+            }
+    
             DB::commit();
-            return redirect()->back()->with('success','Nilai PAS Berhasil ditambahkan');
+            return redirect()->back()->with('success', 'Nilai PAS Berhasil ditambahkan');
         } catch (\Exception $ex) {
             DB::rollback();
-            return redirect()->back()->with('error','Gagal. Pesan Error: '.$ex->getMessage());
+            return redirect()->back()->with('error', 'Gagal. Pesan Error: ' . $ex->getMessage());
         }
-    }
+    }    
 }

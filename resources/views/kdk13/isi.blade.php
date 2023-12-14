@@ -23,11 +23,6 @@
                 function tampilForm2() {
                     document.getElementById('formPengetahuan').classList.add('d-none');
                     document.getElementById('formKeterampilan').classList.remove('d-none');
-                    // var formRAB = document.querySelector('.formRAB');
-                    // formRAB.className = 'row formRAB d-none';
-
-                    // var formBiayaUnit = document.querySelector('.formBiayaUnit');
-                    // formBiayaUnit.className = 'row formBiayaUnit';
                     // Menonaktifkan tombol KD Keterampilan dan mengubah warnanya menjadi abu-abu
                     document.getElementById('btnKeterampilan').classList.remove('btn-secondary');
                     document.getElementById('btnKeterampilan').classList.add('btn-primary');

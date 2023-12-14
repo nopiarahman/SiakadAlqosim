@@ -58,6 +58,7 @@ class JadwalController extends Controller
         //     $item->user->update(['password'=>Hash::make('guru')]);
         // }
         $jadwal = Jadwal::where('guru_id',auth()->user()->guru->first()->id)->get();
+        // dd($jadwal);
         return view('jadwal.jadwal-guru',compact('jadwal'));
     }
     function isiNilai(Jadwal $id) {

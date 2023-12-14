@@ -49,6 +49,7 @@ class MapelController extends Controller
         }
     }
     function destroy(Mapel $id) {
+        // TODO: tidak menghapus jadwal, dan lainnya
         $id->delete();
         return redirect()->back()->with('success','Mapel Dihapus');
         
