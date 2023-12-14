@@ -59,10 +59,8 @@ class NilaiK13 extends Model
 
         return round($rataRataK,0,PHP_ROUND_HALF_UP);
     }
-    public function getPredikatNilai()
+    public function getPredikatNilai($nilaiAkhir)
     {
-        $nilaiAkhir = $this->hitungNilaiAkhir();
-
         if ($nilaiAkhir <= 57) {
             return 'K';
         } elseif ($nilaiAkhir <= 66) {
@@ -79,10 +77,8 @@ class NilaiK13 extends Model
             return 'Nilai tidak valid';
         }
     }
-    public function getPredikatNilaiKeterampilan()
+    public function getPredikatNilaiKeterampilan($nilaiAkhir)
     {
-        $nilaiAkhir = $this->hitungNilaiAkhirKeterampilan();
-
         if ($nilaiAkhir <= 57) {
             return 'K';
         } elseif ($nilaiAkhir <= 66) {
