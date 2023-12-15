@@ -168,20 +168,22 @@
                 <td colspan=2 class=xl93 width=164 style='border-right:.5pt solid black;border-left:none;width:123pt'>
                     <font class="font11">{{ $i->mapel->nama }}</font>
                 </td>
-                <td class=xl70 style='border-top:none;border-left:none'>{{ $i->mapel->kkm }}</td>
+                <td class=xl70 style='border-top:none;border-left:none'>
+                    {{ kkm($i) }}
+                </td>
                 <td class=xl69 style='border-top:none;border-left:none'>
                     @if($i->PTS==null || $i->PAS==null||$i->keyOfHighestValueH()==null)
                         {{$i->hitungNilaiAkhir()}}
-                    @elseif($i->hitungNilaiAkhir()<75)
-                        {{$i->mapel->kkm}}
+                    @elseif($i->hitungNilaiAkhir()< kkm($i))
+                        {{ kkm($i) }}
                     @else
                         {{$i->hitungNilaiAkhir()}}
                     @endif
                 </td>
                 <td class=xl71 width=64 style='border-top:none;border-left:none;width:48pt'>
                     <font class="font7">
-                        @if($i->hitungNilaiAkhir()<$i->mapel->kkm)
-                            {{$i->getPredikatNilai($i->mapel->kkm)}}
+                        @if($i->hitungNilaiAkhir()<kkm($i))
+                            {{$i->getPredikatNilai(kkm($i))}}
                         @else
                             {{$i->getPredikatNilai($i->hitungNilaiAkhir())}}
                         @endif
@@ -239,19 +241,19 @@
                 <td class=xl69 style='border-top:none;border-left:none'>
                     @if($i->keyOfHighestValueK() == null)
                         {{ $i->hitungNilaiAkhirKeterampilan() }}
-                    @elseif($i->hitungNilaiAkhirKeterampilan()<$i->mapel->kkm)
-                        {{$i->mapel->kkm}}
+                    @elseif($i->hitungNilaiAkhirKeterampilan()<kkm($i))
+                        {{kkm($i)}}
                     @else
                         {{ $i->hitungNilaiAkhirKeterampilan() }}
                     @endif
                 </td>
                 <td class=xl71 width=64 style='border-top:none;border-left:none;width:48pt'>
                     <font class="font7">
-                        @if($i->hitungNilaiAkhirKeterampilan()<$i->mapel->kkm)
-                            {{$i->getPredikatNilaiKeterampilan($i->mapel->kkm)}}
-                        @else
-                            {{ $i->getPredikatNilaiKeterampilan($i->hitungNilaiAkhirKeterampilan()) }}
-                        @endif
+                    @if($i->hitungNilaiAkhirKeterampilan()<kkm($i))
+                        {{$i->getPredikatNilaiKeterampilan(kkm($i))}}
+                    @else
+                        {{ $i->getPredikatNilaiKeterampilan($i->hitungNilaiAkhirKeterampilan()) }}
+                    @endif
                     </font>
                 </td>
                 <td colspan=2 class=xl95 width=46

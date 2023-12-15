@@ -271,9 +271,9 @@
                                 <td class=xl71 width=64 style='border-top:none;border-left:none;width:48pt'>
                                     <font class="font7">
                                         @if($i->hitungNilaiAkhirKeterampilan()<$i->mapel->kkm)
-                                            {{$i->getPredikatNilaiKeterampilan($i->mapel->kkm)}}
+                                            {{$i->getPredikatNilai($i->mapel->kkm)}}
                                         @else
-                                            {{ $i->getPredikatNilaiKeterampilan($i->hitungNilaiAkhirKeterampilan()) }}
+                                            {{ $i->getPredikatNilai($i->hitungNilaiAkhirKeterampilan()) }}
                                         @endif
                                     </font>
                                 </td>

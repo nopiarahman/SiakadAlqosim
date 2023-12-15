@@ -47,7 +47,7 @@
                             <select id="defaultSelect" class="form-select" name="mapel_id" required`>
                                 <option>Pilih Mata Pelajaran..</option>
                                 @forelse ($mapel as $m)
-                                    <option value="{{ $m->id }}">{{ $m->nama }} ({{ ucfirst($m->jenis) }})
+                                    <option value="{{ $m->id }}">{{ $m->nama }} ({{ ucfirst($m->jenis) }}) KKM: {{$m->kkm}}
                                     </option>
                                 @empty
                                     Belum ada Mata Pelajaran

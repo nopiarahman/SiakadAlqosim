@@ -61,40 +61,41 @@ class NilaiK13 extends Model
     }
     public function getPredikatNilai($nilaiAkhir)
     {
-        if ($nilaiAkhir <= 57) {
-            return 'K';
-        } elseif ($nilaiAkhir <= 66) {
-            return 'E';
-        }elseif ($nilaiAkhir <= 74) {
-            return 'D';
-        } elseif ($nilaiAkhir <= 83) {
-            return 'C';
-        } elseif ($nilaiAkhir <= 91) {
-            return 'B';
-        } elseif ($nilaiAkhir <= 100) {
-            return 'A';
-        } else {
-            return 'Nilai tidak valid';
+        if($this->mapel->kkm==75){
+            if ($nilaiAkhir <= 57) {
+                return 'K';
+            } elseif ($nilaiAkhir <= 66) {
+                return 'E';
+            }elseif ($nilaiAkhir <= 74) {
+                return 'D';
+            } elseif ($nilaiAkhir <= 83) {
+                return 'C';
+            } elseif ($nilaiAkhir <= 91) {
+                return 'B';
+            } elseif ($nilaiAkhir <= 100) {
+                return 'A';
+            } else {
+                return 'Nilai tidak valid';
+            }
+        }elseif($this->mapel->kkm==70){
+            if ($nilaiAkhir <= 40) {
+                return 'K';
+            } elseif ($nilaiAkhir <= 50) {
+                return 'E';
+            }elseif ($nilaiAkhir < 70) {
+                return 'D';
+            } elseif ($nilaiAkhir < 80) {
+                return 'C';
+            } elseif ($nilaiAkhir < 90) {
+                return 'B';
+            } elseif ($nilaiAkhir <= 100) {
+                return 'A';
+            } else {
+                return 'Nilai tidak valid';
+            }
         }
     }
-    public function getPredikatNilaiKeterampilan($nilaiAkhir)
-    {
-        if ($nilaiAkhir <= 57) {
-            return 'K';
-        } elseif ($nilaiAkhir <= 66) {
-            return 'E';
-        }elseif ($nilaiAkhir <= 74) {
-            return 'D';
-        } elseif ($nilaiAkhir <= 83) {
-            return 'C';
-        } elseif ($nilaiAkhir <= 91) {
-            return 'B';
-        } elseif ($nilaiAkhir <= 100) {
-            return 'A';
-        } else {
-            return 'Nilai tidak valid';
-        }
-    }
+    
     public function countNonNullValuesH()
     {
         $attributes = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8'];
@@ -215,20 +216,38 @@ class NilaiK13 extends Model
         }
     }
     public function getPredikatKD($nilai){
-        if ($nilai <= 57) {
-            return 'kurang';
-        } elseif ($nilai <= 66) {
-            return 'perlu dimaksimalkan';
-        }elseif ($nilai <= 74) {
-            return 'belum cukup';
-        } elseif ($nilai <= 83) {
-            return 'cukup';
-        } elseif ($nilai <= 91) {
-            return 'baik';
-        } elseif ($nilai <= 100) {
-            return 'sangat baik';
-        } else {
-            return 'Nilai tidak valid';
+        if($this->mapel->kkm==75){
+            if ($nilai <= 57) {
+                return 'kurang';
+            } elseif ($nilai <= 66) {
+                return 'perlu dimaksimalkan';
+            }elseif ($nilai <= 74) {
+                return 'belum cukup';
+            } elseif ($nilai <= 83) {
+                return 'cukup';
+            } elseif ($nilai <= 91) {
+                return 'baik';
+            } elseif ($nilai <= 100) {
+                return 'sangat baik';
+            } else {
+                return 'Nilai tidak valid';
+            }
+        }elseif($this->mapel->kkm==70){
+            if ($nilai < 50) {
+                return 'kurang';
+            } elseif ($nilai < 60) {
+                return 'perlu dimaksimalkan';
+            }elseif ($nilai < 70) {
+                return 'belum cukup';
+            } elseif ($nilai < 80) {
+                return 'cukup';
+            } elseif ($nilai < 90) {
+                return 'baik';
+            } elseif ($nilai < 100) {
+                return 'sangat baik';
+            } else {
+                return 'Nilai tidak valid';
+            }
         }
     }
 }
