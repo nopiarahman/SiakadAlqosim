@@ -522,6 +522,19 @@
     </div>
 </body>
 <script>
+    // Fungsi untuk mendapatkan tanggal saat ini dalam format Bahasa Indonesia
+    function getCurrentDate() {
+            const options = {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            };
+            const currentDate = new Date().toLocaleDateString('id-ID', options);
+            return currentDate;
+        }
+
+        // Mengganti nilai pada elemen dengan id "currentDate" dengan tanggal saat ini
+        document.getElementById('currentDate').innerText = getCurrentDate();
     // Use window.onload to ensure the entire page is loaded before printing
     window.onload = function() {
         // Use the print() function to trigger the print dialog
