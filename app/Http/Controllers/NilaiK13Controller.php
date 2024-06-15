@@ -35,6 +35,7 @@ class NilaiK13Controller extends Controller
         $kdPengetahuan = KDK13::select('id', 'mapel_id', 'kelas_id', 'periode_id', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8')
             ->where('kelas_id', $kelas->id)
             ->where('mapel_id', $mapel->id)
+            ->where('periode_id', getPeriodeAktif()->id)
             ->get();
     
         return view('nilaiK13.pengetahuan', compact('santri', 'kelas', 'mapel', 'kdPengetahuan'));
@@ -48,6 +49,7 @@ class NilaiK13Controller extends Controller
         $kdKeterampilan = KDK13::select('id', 'mapel_id', 'kelas_id', 'periode_id', 'k1', 'k2', 'k3', 'k4', 'k5', 'k6', 'k7', 'k8')
             ->where('kelas_id', $kelas->id)
             ->where('mapel_id', $mapel->id)
+            ->where('periode_id', getPeriodeAktif()->id)
             ->get();
     
         return view('nilaiK13.keterampilan', compact('santri', 'kelas', 'mapel', 'kdKeterampilan'));
