@@ -33,7 +33,7 @@ class GuruController extends Controller
             $user['name']=$request->nama;
             $user['username']=$string;
             $user['marhalah_id']=auth()->user()->marhalah_id;
-            $user['password']=Hash::make('asdf');
+            $user['password']=Hash::make('guru');
             $user->save();
             // Data Guru
             $guru = new Guru;

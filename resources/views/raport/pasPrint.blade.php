@@ -475,25 +475,28 @@
 
         </tr>
         @if (getPeriodeAktif()->semester === 'genap')
-            <tr height=136 style='mso-height-source:userset;height:102.0pt'>
-                <td colspan=7 height=136 class=xl118 width=420 style='height:102.0pt;
-            width:315pt'>
-                    <font class="font6">Keputusan:<br>
-                    </font>
-                    <font class="font7">Berdasarkan pencapaian kompetensi pada semester
-                        ke-1 dan ke-2, peserta didik ditetapkan *)<br>
-                    </font>
-                    <font class="font7">naik ke kelas<span style='mso-spacerun:yes'>
-                        </span>IX<span style='mso-spacerun:yes'>  </span>( sembilan )<br>
-                    </font>
-                    <font class="font7">tinggal di kelas<span style='mso-spacerun:yes'>
-                        </span>VIII<span style='mso-spacerun:yes'>  </span>( delapan )<br>
-                    </font>
-                    <font class="font13">*)Coret yang tidak perlu.</font>
-                </td>
-                <td colspan=2 style='mso-ignore:colspan'></td>
-            </tr>
-        @endif
+        <tr height=136 style='mso-height-source:userset;height:102.0pt'>
+            <td colspan=7 height=136 class=xl118 width=420
+                style='height:102.0pt;
+width:315pt'>
+                <font class="font6">Keputusan:<br>
+                </font>
+                <font class="font7">Berdasarkan pencapaian kompetensi pada semester
+                    ke-1 dan ke-2, peserta didik ditetapkan *)<br>
+                </font>
+                @if($dataRaport->status=="naik")
+                <font class="font7">naik ke kelas<span style='mso-spacerun:yes'>
+                    </span>{{$dataRaport->tujuan}}<br>
+                </font>
+                @elseif($dataRaport->status=="tinggal")
+                <font class="font7">tinggal di kelas<span style='mso-spacerun:yes'>
+                </span>{{$dataRaport->tujuan}}<br>
+                </font>
+                @endif
+            </td>
+            <td colspan=2 style='mso-ignore:colspan'></td>
+        </tr>
+    @endif
         <tr height=40></tr>
         <tr height=132 style='mso-height-source:userset;height:99.0pt'>
             <td colspan="3" height=150 class=xl121 width=233 style='height:99.0pt;width:175pt'>

@@ -10,7 +10,7 @@
 
         <!-- Basic Bootstrap Table -->
         <div class="card">
-            <h5 class="card-header">Daftar Jadwal</h5>
+            <h5 class="card-header">Daftar Jadwal Semester {{ucfirst(getPeriodeAktif()->semester)}} TA {{getPeriodeAktif()->tahun}}</h5>
             <div class="text-nowrap table-responsive">
                 <table class="table " id="table">
                     <thead>
@@ -20,7 +20,6 @@
                             <th>Kelas</th>
                             <th>Mapel</th>
                             <th>Jam</th>
-                            {{-- <th>Nilai</th> --}}
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -34,9 +33,6 @@
                                 <td>{{ $i->mapel->nama }}</td>
                                 <td><span class="text-primary">{{ substr($i->mulai, 0, 5) }} -
                                         {{ substr($i->selesai, 0, 5) }}</span></td>
-                                {{-- <td><a href="{{ route('isi-nilai', ['id' => $i->id]) }}"><span
-                                            class="badge bg-label-primary me-1">Isi
-                                            Nilai</span></a></td> --}}
                             </tr>
                         @endforeach
                     </tbody>

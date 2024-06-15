@@ -163,3 +163,10 @@ function getNilaiKSantri($santri, $kelas, $mapel) {
         return $nilaiP->hitungNilaiAkhirKeterampilan();
     }return 0;
 }
+function getStatusKenaikanSantri($santri_id,$periodeId) {
+    $data = DataRaportK13::where('santri_id',$santri_id)->where('periode_id',$periodeId,)->first();
+    if($data){
+        return $data;
+    }
+    return false;
+}

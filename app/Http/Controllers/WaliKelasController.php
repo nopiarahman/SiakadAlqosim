@@ -181,7 +181,6 @@ class WaliKelasController extends Controller
         return view('waliKelas.sikap',compact('kelas'));
     }
     function sikapStore(Request $request) {
-        // dd($request);
         try {
             DB::beginTransaction();
             $data = DataRaportK13::firstOrCreate(
@@ -193,6 +192,23 @@ class WaliKelasController extends Controller
             );
             DB::commit();
             return redirect()->back()->with('success','Catatan Berhasil ditambahkan');
+        } catch (\Exception $ex) {
+            DB::rollback();
+            return redirect()->back()->with('error','Gagal. Pesan Error: '.$ex->getMessage());
+        }
+    }
+    function kenaikan(Kelas $kelas) {
+        return view('waliKelas.kenaikan',compact('kelas'));
+    }
+    function kenaikanUpdate(Kelas $kelas, Santri $santri,Request $request) {
+        try {
+            DB::beginTransaction();
+            DataRaportK13::updateOrCreate(
+                ['santri_id'=>$santri->id,'periode_id'=>getPeriodeAktif()->id],
+                ['status'=>$request->status,'tujuan'=>$request->tujuan]
+            );
+            DB::commit();
+            return redirect()->back()->with('success','Informasi Kenaikan Kelas Berhasil Disimpan');
         } catch (\Exception $ex) {
             DB::rollback();
             return redirect()->back()->with('error','Gagal. Pesan Error: '.$ex->getMessage());

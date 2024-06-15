@@ -73,6 +73,8 @@ Route::middleware([
         Route::controller(UserController::class)->group(function(){
             Route::get('/user/admin','admin');
             Route::post('/admin/simpan','store');
+            Route::delete('/admin/delete/{id}','destroy');
+            Route::patch('/admin/update/{id}','update');
             Route::post('/test','testSimpan')->name('test-simpan');
         });
         // Santri
@@ -196,6 +198,10 @@ Route::middleware([
             Route::get('/data-raport-kelas/{kelas}','listDataRaport')->name('data-raport-kelas');
             Route::get('/raport-mid/{santri}/{kelas}','raportMid')->name('raport-mid');
             Route::get('/raport-mid/{santri}/{kelas}','raportMid')->name('raport-mid');
+            
+            Route::get('/data-raport/kenaikan/{kelas}','kenaikan')->name('kenaikan-kelas');
+            Route::patch('/data-raport/kenaikan/{kelas}/{santri}','kenaikanUpdate');
+
         });
         Route::controller(RaportController::class)->group(function(){
             Route::get('/raport-semesterk13/{santri}/{kelas}','semesterk13')->name('raport-semesterk13');

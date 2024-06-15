@@ -51,4 +51,20 @@ class UserController extends Controller
             'pesan'=>'Tugas berhasil dikirim', 
             'data'=>$dataAudio],200);
     }
+    function destroy(User $id) {
+        $id->delete();
+        return redirect()->back()->with('success','Admin berhasil Dihapus');
+    }
+    function update(Request $request, User $id) {
+        try {
+            DB::beginTransaction();
+            $requestData=$request->all();
+            $id->update($requestData);
+            DB::commit();
+            return redirect()->back()->with('success','User Diedit');
+        } catch (\Exception $ex) {
+            DB::rollback();
+            return redirect()->back()->with('error','Gagal. Pesan Error: '.$ex->getMessage());
+        }
+    }
 }

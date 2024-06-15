@@ -47,6 +47,16 @@
                     </div>
                 </div>
                 <div class="row">
+                    @if (getPeriodeAktif()->semester === 'genap')
+                    <div class="card mb-3 custom-card-1 col-md-6">
+                        <a href="{{ route('kenaikan-kelas', ['kelas' => $kelas->id]) }}">
+                            <div class="card-body">
+                                <h5 class="card-title">Kenaikan Kelas</h5>
+                                <h6 class="card-subtitle mb-2 text-white fw-bold">Isi Keterangan Status Kenaikan Santri Disini</h6>
+                            </div>
+                        </a>
+                    </div>
+                    @endif
                     <div class="card mb-3 custom-card-1 col-md-6">
                         <a href="{{ route('catatan-wali-kelas', ['kelas' => $kelas->id]) }}">
                             <div class="card-body">

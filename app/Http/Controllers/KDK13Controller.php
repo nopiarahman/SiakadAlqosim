@@ -23,11 +23,11 @@ class KDK13Controller extends Controller
     }
     function isi(Kelas $kelas,Mapel $mapel) {
         $kdPengetahuan = KDK13::select('id', 'mapel_id', 'kelas_id', 'periode_id', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8')
-            ->where('kelas_id',$kelas->id)->where('mapel_id',$mapel->id)
+            ->where('kelas_id',$kelas->id)->where('mapel_id',$mapel->id)->where('periode_id', getPeriodeAktif()->id)
             ->get();
 
         $kdKeterampilan = KDK13::select('id', 'mapel_id', 'kelas_id', 'periode_id', 'k1', 'k2', 'k3', 'k4', 'k5', 'k6', 'k7', 'k8')
-            ->where('kelas_id',$kelas->id)->where('mapel_id',$mapel->id)->get();
+            ->where('kelas_id',$kelas->id)->where('mapel_id',$mapel->id)->where('periode_id', getPeriodeAktif()->id)->get();
         return view('kdk13.isi',compact('kelas','mapel','kdPengetahuan','kdKeterampilan'));        
     }
     public function store(Request $request)

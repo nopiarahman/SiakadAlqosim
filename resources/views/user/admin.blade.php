@@ -75,12 +75,12 @@
                                         <div class="dropdown-menu">
                                             <button class="dropdown-item" type="button" class="btn btn-primary"
                                                 data-bs-toggle="modal" data-bs-target="#modalEdit"
-                                                data-nama="{{ $i->nama }}" data-id="{{ $i->id }}"><i
+                                                data-nama="{{ $i->name }}" data-id="{{ $i->id }}"><i
                                                     class="bx bx-edit-alt me-1"></i>
                                                 Edit</button>
                                             <button class="dropdown-item " data-bs-toggle="modal"
                                                 data-bs-target="#exampleModalCenter" data-id="{{ $i->id }}"
-                                                data-nama="{{ $i->nama }}">
+                                                data-nama="{{ $i->name }}">
                                                 <i class="bx bx-trash me-1" aria-hidden="true"></i> Hapus</button>
                                         </div>
                                     </div>
@@ -98,7 +98,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Hapus Kelas </h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Hapus Admin </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -124,8 +124,8 @@
                 var id = button.data('id') // Extract info from data-bs-* attributes
                 var nama = button.data('nama')
                 var modal = $(this)
-                modal.find('.modal-text').text('Yakin ingin menghapus kelas ' + nama + ' ?')
-                document.getElementById('formHapus').action = '/kelas/delete/' + id;
+                modal.find('.modal-text').text('Yakin ingin menghapus admin ' + nama + ' ?')
+                document.getElementById('formHapus').action = '/admin/delete/' + id;
             })
         });
     </script>
@@ -133,7 +133,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalCenterTitle">Edit Kelas</h5>
+                    <h5 class="modal-title" id="modalCenterTitle">Edit Admin</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="" method="POST" id="formEdit">
@@ -143,7 +143,7 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="nameWithTitle" class="form-label">Nama</label>
-                                <input type="text" name="nama" id="namaEdit" class="form-control"
+                                <input type="text" name="name" id="namaEdit" class="form-control"
                                     placeholder="Enter Name" />
                             </div>
                         </div>
@@ -164,7 +164,7 @@
                 var button = $(event.relatedTarget) // Button that triggered the modal
                 var id = button.data('id') // Extract info from data-bs-* attributes
                 var nama = button.data('nama')
-                document.getElementById('formEdit').action = '/kelas/update/' + id;
+                document.getElementById('formEdit').action = '/admin/update/' + id;
                 $('#namaEdit').val(nama);
             })
         });

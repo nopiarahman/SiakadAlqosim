@@ -515,13 +515,15 @@
                                     <font class="font7">Berdasarkan pencapaian kompetensi pada semester
                                         ke-1 dan ke-2, peserta didik ditetapkan *)<br>
                                     </font>
+                                    @if($dataRaport->status=="naik")
                                     <font class="font7">naik ke kelas<span style='mso-spacerun:yes'>
-                                        </span>IX<span style='mso-spacerun:yes'>  </span>( sembilan )<br>
+                                        </span>{{$dataRaport->tujuan}}<br>
                                     </font>
+                                    @elseif($dataRaport->status=="tinggal")
                                     <font class="font7">tinggal di kelas<span style='mso-spacerun:yes'>
-                                        </span>VIII<span style='mso-spacerun:yes'>  </span>( delapan )<br>
+                                    </span>{{$dataRaport->tujuan}}<br>
                                     </font>
-                                    <font class="font13">*)Coret yang tidak perlu.</font>
+                                    @endif
                                 </td>
                                 <td colspan=2 style='mso-ignore:colspan'></td>
                             </tr>
