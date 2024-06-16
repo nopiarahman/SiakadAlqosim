@@ -505,7 +505,7 @@
                             </td>
 
                         </tr>
-                        @if (getPeriodeAktif()->semester === 'genap')
+                        @if ($dataRaport->status != null && getPeriodeAktif()->semester === 'genap')
                             <tr height=136 style='mso-height-source:userset;height:102.0pt'>
                                 <td colspan=7 height=136 class=xl118 width=420
                                     style='height:102.0pt;
