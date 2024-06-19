@@ -18,6 +18,7 @@
                             <th>No</th>
                             <th>Nama</th>
                             <th>Raport</th>
+                            <th>Total Nilai Semester</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -36,6 +37,9 @@
                                         href="{{ route('raport-semesterk13', ['santri' => $i->id, 'kelas' => $kelas->id]) }}"><i
                                             class="bx bx-edit-alt me-1"></i>
                                         Raport Semester</a>
+                                </td>
+                                <td>
+                                    {{hitungTotalNilaiSemester($i->id,$kelas->id,getPeriodeAktif()->id)}}
                                 </td>
                             </tr>
                         @endforeach

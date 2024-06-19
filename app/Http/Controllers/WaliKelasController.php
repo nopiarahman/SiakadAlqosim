@@ -8,6 +8,7 @@ use App\Models\Kelas;
 use App\Models\Nilai;
 use App\Models\Jadwal;
 use App\Models\Santri;
+use App\Models\NilaiK13;
 use App\Models\Prestasi;
 use App\Models\WaliKelas;
 use Illuminate\Http\Request;
@@ -73,6 +74,18 @@ class WaliKelasController extends Controller
         return view('waliKelas.raport',compact('listKelas'));
     }
     function isiKelas(Kelas $kelas) {
+        // $nilaiPengetahuanAll = NilaiK13::select('PTS','PAS', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8','k1', 'k2', 'k3', 'k4', 'k5', 'k6', 'k7', 'k8')
+        // ->where('kelas_id',$kelas->id)
+        // ->where('periode_id',getPeriodeAktif()->id)
+        // ->first();
+        // if ($nilaiPengetahuanAll) {
+        //     $attributes = ['PTS','PAS', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8','k1', 'k2', 'k3', 'k4', 'k5', 'k6', 'k7', 'k8'];
+        
+        //     $total = collect($attributes)->sum(function ($attribute) use ($nilaiPengetahuanAll) {
+        //         return $nilaiPengetahuanAll->$attribute ?? 0;
+        //     });
+        // } 
+        // dd($total);
         return view('waliKelas.isiKelas',compact('kelas'));
     }
     function raportMid(Santri $santri, Kelas $kelas) {

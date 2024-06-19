@@ -170,3 +170,15 @@ function getStatusKenaikanSantri($santri_id,$periodeId) {
     }
     return false;
 }
+function hitungTotalNilaiSemester($santri_id,$kelas_id,$periode_id){
+    $nilai = NilaiK13::where('kelas_id',$kelas_id)
+    ->where('periode_id',getPeriodeAktif()->id)
+    ->where('santri_id',$santri_id)
+    ->get();
+    $total=0;
+    foreach ($nilai as $n) {
+        $total+=$n->hitungNilaiAkhir();
+        $total+=$n->hitungNilaiAkhirKeterampilan();
+    }
+    return $total;
+}
