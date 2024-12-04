@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Guru;
 use App\Models\User;
+use App\Models\WaliKelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -54,6 +55,10 @@ class GuruController extends Controller
             DB::beginTransaction();
             $id->user->delete();
             $id->delete();
+            $cekWaliKelas=WaliKelas::where('guru_id',$id->id)->first();
+            if($cekWaliKelas){
+                $cekWaliKelas->delete();
+            }
             DB::commit();
             return redirect()->route('guru')->with('success','Guru Dihapus');
         } catch (\Exception $ex) {
