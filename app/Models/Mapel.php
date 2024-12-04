@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Mapel extends Model
 {
+    use SoftDeletes;
     use HasFactory;
     protected $table = "mapel";
-    protected $guarded =['id','created_at','updated_at'];
+    protected $guarded =['id','created_at','updated_at','deleted_at'];
 
     /**
      * Get all of the jadwal for the Mapel
