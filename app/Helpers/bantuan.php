@@ -1,8 +1,10 @@
 <?php
 
+use App\Models\User;
 use App\Models\Periode;
 use App\Models\NilaiK13;
 use App\Models\DataRaportK13;
+use Illuminate\Support\Facades\DB;
 
 function getPeriodeAktif() {
     $periode = Periode::where('status','aktif')->first();

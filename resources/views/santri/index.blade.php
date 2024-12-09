@@ -41,10 +41,10 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="{{ route('edit-santri', ['id' => $i->id]) }}"><i
                                                     class="bx bx-edit-alt me-1"></i> Edit</a>
-                                            <button class="dropdown-item " data-bs-toggle="modal"
+                                            {{-- <button class="dropdown-item " data-bs-toggle="modal"
                                                 data-bs-target="#exampleModalCenter" data-id="{{ $i->id }}"
                                                 data-nama="{{ $i->nama }}">
-                                                <i class="bx bx-trash me-1" aria-hidden="true"></i> Hapus</button>
+                                                <i class="bx bx-trash me-1" aria-hidden="true"></i> Hapus</button> --}}
                                         </div>
                                     </div>
                                 </td>

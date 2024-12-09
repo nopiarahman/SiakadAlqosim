@@ -80,7 +80,11 @@ Route::middleware([
         // Santri
         Route::controller(SantriController::class)->group(function(){
             Route::get('/santri','all');
+            Route::get('/santri-tidak-aktif','santriTidakAktif');
             Route::get('/santri/{id}','edit')->name('edit-santri');
+            Route::post('/santri/{id}/keluarkan','keluarkanSantri')->name('santri.keluarkan');
+            Route::post('/santri/naikKelas/{id}','naikKelas');
+            Route::post('/santri/pindahSekolah/{id}','pindahSekolah');
             Route::patch('/santri/{id}','update')->name('update-santri');
             Route::delete('/santri/{id}','destroy');
             Route::get('/santri/tambah/{kelas}','create')->name('santri-kelas-tambah');

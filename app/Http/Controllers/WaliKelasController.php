@@ -51,24 +51,41 @@ class WaliKelasController extends Controller
     }
     function update(Request $request, Kelas $kelas) {
         try {
-            $guru = Guru::findOrFail($request->guru_id);
+            // Validasi input
+            $this->validate($request, [
+                'guru_id' => 'required|string',
+                'id_wali_sebelum' => 'required|exists:users,id', // Pastikan id_wali_sebelum valid
+            ]);
+    
             DB::beginTransaction();
-            $validasi = $this->validate($request,[
-                'guru_id'=> 'string|required',
-                ]);
+    
+            // Temukan guru baru berdasarkan guru_id
+            $guru = Guru::findOrFail($request->guru_id);
+            
+            // Hapus role waliKelas dari wali kelas sebelumnya (jika ada)
+            if ($request->has('id_wali_sebelum')) {
+                $waliKelasSebelumnya = User::findOrFail($request->id_wali_sebelum);
+                $waliKelasSebelumnya->removeRole('waliKelas'); // Hapus role waliKelas
+            }
+    
+            // Update atau buat wali kelas baru untuk kelas tersebut
             $waliKelas = WaliKelas::updateOrCreate(
-                ['kelas_id'=>$kelas->id],
-                ['user_id'=>$guru->user_id,'guru_id'=>$guru->id]
+                ['kelas_id' => $kelas->id],
+                ['user_id' => $guru->user_id, 'guru_id' => $guru->id]
             );
-            // Data Wali Kelas
+    
+            // Assign role waliKelas kepada guru baru
             $guru->user->assignRole('waliKelas');
+    
             DB::commit();
-            return redirect()->route('list-kelas')->with('success','Wali Kelas Berhasil Disimpan');
+    
+            return redirect()->route('list-kelas')->with('success', 'Wali Kelas Berhasil Disimpan');
         } catch (\Exception $ex) {
             DB::rollback();
-            return redirect()->back()->with('error','Gagal. Pesan Error: '.$ex->getMessage());
+            return redirect()->back()->with('error', 'Gagal. Pesan Error: ' . $ex->getMessage());
         }
     }
+    
     function raportKelas() {
         $listKelas = WaliKelas::where('guru_id',auth()->user()->waliKelas->guru->id)->get();
         return view('waliKelas.raport',compact('listKelas'));

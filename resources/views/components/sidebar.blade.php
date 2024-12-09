@@ -88,9 +88,14 @@
                                 </a>
                             </li>
                         @endrole
-                        <li class="menu-item @yield('subMenuSantri1')">
+                        {{-- <li class="menu-item @yield('subMenuSantri1')">
                             <a href="{{ url('/santri') }}" class="menu-link">
                                 <div data-i18n="Input groups">Alumni</div>
+                            </a>
+                        </li> --}}
+                        <li class="menu-item @yield('subMenuSantri3')">
+                            <a href="{{ url('/santri-tidak-aktif') }}" class="menu-link">
+                                <div data-i18n="Input groups">Santri Tidak Aktif</div>
                             </a>
                         </li>
                     </ul>
@@ -181,7 +186,7 @@
                         <div data-i18n="Tables">Data Raport</div>
                     </a>
                 </li>
-                <li class="menu-item @yield('menu')">
+                <li class="menu-item @yield('menuCetakRaport')">
                     <a href="{{ '/raport-kelas' }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-task"></i>
                         <div data-i18n="Tables">Cetak Raport Santri</div>

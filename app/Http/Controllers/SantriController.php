@@ -8,9 +8,12 @@ use App\Models\Kelas;
 use App\Models\Santri;
 use App\Models\Marhalah;
 use Illuminate\Http\Request;
+use App\Models\PindahSekolah;
+use App\Models\SantriDikeluarkan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class SantriController extends Controller
 {
@@ -22,6 +25,25 @@ class SantriController extends Controller
         }
         return view('santri.index',compact('santri'));
     }
+    public function santriTidakAktif()
+    {
+        // Ambil data santri yang pindah sekolah di marhalah yang sama dengan user
+        $santriPindah = PindahSekolah::with('santri', 'kelasSebelum')
+        ->whereHas('santri', function($query) {
+            $query->where('marhalah_id', auth()->user()->marhalah_id);
+        })
+        ->get();
+
+        // Ambil data santri yang dikeluarkan di marhalah yang sama dengan user
+        $santriDikeluarkan = SantriDikeluarkan::with('santri', 'kelasSebelum')
+        ->whereHas('santri', function($query) {
+            $query->where('marhalah_id', auth()->user()->marhalah_id);
+        })
+        ->get();
+        // Return ke view
+        return view('santri.santriTidakAktif', compact('santriPindah', 'santriDikeluarkan'));
+    }
+    
     function kelasSantri() {
         $kelas = Kelas::where('marhalah_id',auth()->user()->marhalah_id)->get();
         return view('santri.kelasSantri',compact('kelas'));
@@ -35,7 +57,8 @@ class SantriController extends Controller
         return view('santri.isiKelasMarhalah',compact('santri','id'));
     }
     function isiKelas(Kelas $id) {
-        return view('santri.isiKelas',compact('id'));
+        $kelasMarhalah=Kelas::where('marhalah_id',$id->marhalah_id)->get();
+        return view('santri.isiKelas',compact('id','kelasMarhalah'));
     }
     function create(Kelas $kelas) {
         return view('santri.create',compact('kelas'));
@@ -151,6 +174,94 @@ class SantriController extends Controller
             return response()->json($dataKelas);
         }
     }
+    function naikKelas(Request $request, Santri $id) {
+        // Validasi input
+        $request->validate([
+            'kelasTujuan' => 'required|exists:kelas,id',
+        ]);
+    
+        // Ambil ID kelas tujuan
+        $kelasTujuan = $request->input('kelasTujuan');
+    
+        // Validasi tambahan: apakah santri sudah berada di kelas tujuan
+        if ($id->kelas->contains($kelasTujuan)) {
+            return redirect()->back()->with('error', 'Santri sudah berada di kelas yang dipilih.');
+        }
+    
+        // Perbarui pivot dengan ID kelas tujuan
+        $id->kelas()->sync([$kelasTujuan]);
+    
+        // Feedback atau redirect
+        return redirect()->back()->with('success', 'Santri berhasil dipindahkan ke kelas baru!');
+    }
+    public function pindahSekolah(Request $request, Santri $id)
+    {
+        // Validasi input
+        $request->validate([
+            'kelas_sebelum_id' => 'required|exists:kelas,id',
+            'sekolah_tujuan' => 'required|string|max:255',
+            'tanggal_pindah' => 'required|date',
+            'alasan_pindah' => 'required|string|max:1000',
+        ]);
+    
+        // Periksa apakah santri benar-benar ada di kelas yang disebutkan
+        if (!$id->kelas->contains($request->kelas_sebelum_id)) {
+            return redirect()->back()->with('error', 'Santri tidak berada di kelas yang dipilih.');
+        }
+    
+        // Masukkan data ke tabel `pindah_sekolah`
+        DB::table('pindah_sekolah')->insert([
+            'santri_id' => $id->id,
+            'kelas_sebelum_id' => $request->kelas_sebelum_id,
+            'sekolah_tujuan' => $request->sekolah_tujuan,
+            'tanggal_pindah' => $request->tanggal_pindah,
+            'alasan_pindah' => $request->alasan_pindah,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+    
+        // Hapus santri dari kelas sekarang
+        $id->kelas()->detach($request->kelas_sebelum_id);
+    
+        // Feedback atau redirect
+        return redirect()->back()->with('success', 'Santri berhasil dipindahkan ke sekolah tujuan!');
+    }    
+
+    public function keluarkanSantri(Request $request, Santri $id)
+    {
+        $request->validate([
+            'kelas_sebelum_id' => 'required|exists:kelas,id',
+            'tanggal_dikeluarkan' => 'required|date',
+            'alasan_dikeluarkan' => 'required|string|max:255',
+            // 'file_pendukung' => 'nullable|file|mimes:pdf,jpg,png|max:2048',
+        ]);
+    
+        // Simpan data santri dikeluarkan
+        $santriDikeluarkan = SantriDikeluarkan::create([
+            'santri_id' => $id->id,
+            'kelas_sebelum_id' => $request->input('kelas_sebelum_id'),
+            'tanggal_dikeluarkan' => $request->input('tanggal_dikeluarkan'),
+            'alasan_dikeluarkan' => $request->input('alasan_dikeluarkan'),
+        ]);
+    
+        // Tangani file unggahan
+        if ($request->hasFile('file_pendukung')) {
+            $file = $request->file('file_pendukung');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('uploads/santri_dikeluarkan', $fileName, 'public');
+    
+            // Simpan path file di database
+            $santriDikeluarkan->file_pendukung = $filePath;
+            $santriDikeluarkan->save();
+        }
+    
+        // Hapus santri dari kelas sekarang
+        $id->kelas()->detach();
+    
+        return redirect()->back()->with('success', 'Santri berhasil dikeluarkan.');
+    }
+    
+
     function destroy(Santri $id) {
         try {
             DB::beginTransaction();

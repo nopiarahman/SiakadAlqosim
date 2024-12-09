@@ -33,6 +33,7 @@ class RaportController extends Controller
         //     return $nilaiK13->mapel->nama;
         // });
         $dataRaport=DataRaportK13::where('santri_id',$santri->id)->where('periode_id',getPeriodeAktif()->id)->first();
+        // dd($dataRaport);
         return view('raport.pas',compact('santri','nilaiPengetahuan','nilaiKeterampilan','dataRaport'));
     }
     public function printPasK13(Santri $santri, $kelas)

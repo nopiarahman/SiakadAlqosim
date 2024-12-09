@@ -91,4 +91,9 @@ class Santri extends Model implements HasMedia
     {
         return $this->belongsTo(Marhalah::class);
     }
+    public function pindahSekolah()
+    {
+        return $this->hasMany(PindahSekolah::class);
+    }
+
 }

@@ -1,5 +1,5 @@
 @extends('layouts.tema')
-@section('menuJadwal', 'active open')
+@section('menuKelas', 'active open')
 @section('head')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('template/css/vanilla-dataTables.min.css') }}">
@@ -11,7 +11,7 @@
             Wali Kelas {{ $kelas->nama }}</h4>
         <x-alert />
         <div class="card mb-4">
-            <h5 class="card-header">Edit Wali Kelas</h5>
+            <h5 class="card-header">Edit Wali Kelas </h5>
             <div class="card-body">
                 <div>
                     <form enctype="multipart/form-data" action="{{ route('waliKelas-update', ['kelas' => $kelas->id]) }}"
@@ -44,6 +44,7 @@
                                 }
                             });
                         </script>
+                        <input type="hidden" name="id_wali_sebelum" value="{{ $kelas->waliKelas->guru->user_id }}">
                         <input type="hidden" name="kelas_id" value="{{ $kelas->id }}">
                         <input type="hidden" name="periode_id" value="{{ getPeriodeAktif()->id }}">
                         <button type="submit" class="btn btn-primary mt-3">Edit</button>
