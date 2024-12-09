@@ -21,11 +21,17 @@ class RaportController extends Controller
         ->where('periode_id',getPeriodeAktif()->id)
         ->get();
         $nilaiPengetahuan = $nilaiPengetahuanAll->sortBy(function ($nilaiK13) {
-            return $nilaiK13->mapel->nama;
+            return $nilaiK13->mapel ? $nilaiK13->mapel->nama : ''; // Ganti nama dengan string kosong jika mapel null
         });
         $nilaiKeterampilan = $nilaiKeterampilanAll->sortBy(function ($nilaiK13) {
-            return $nilaiK13->mapel->nama;
+            return $nilaiK13->mapel ? $nilaiK13->mapel->nama : ''; // Ganti nama dengan string kosong jika mapel null
         });
+        // $nilaiPengetahuan = $nilaiPengetahuanAll->sortBy(function ($nilaiK13) {
+        //     return $nilaiK13->mapel->nama;
+        // });
+        // $nilaiKeterampilan = $nilaiKeterampilanAll->sortBy(function ($nilaiK13) {
+        //     return $nilaiK13->mapel->nama;
+        // });
         $dataRaport=DataRaportK13::where('santri_id',$santri->id)->where('periode_id',getPeriodeAktif()->id)->first();
         return view('raport.pas',compact('santri','nilaiPengetahuan','nilaiKeterampilan','dataRaport'));
     }
