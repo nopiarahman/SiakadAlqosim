@@ -26,7 +26,7 @@
                                 <td>
                                     <a class="btn btn-primary me-1"
                                         href="#">
-                                        Lihat Santri</a>
+                                        Lihat Santri`</a>
                                 </td>
                             </tr>
                         @endforeach

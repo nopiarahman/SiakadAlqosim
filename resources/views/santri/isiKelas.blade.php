@@ -169,7 +169,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post" id="formNaik">
+                    <form action="" method="post" id="formPindah">
                         @csrf
                         <p class="modal-text"></p>
                         <input type="hidden" name="kelas_sebelum_id" value="{{$id->id}}">
@@ -205,7 +205,7 @@
                 var nama = button.data('nama')
                 var modal = $(this)
                 modal.find('.modal-text').text('Santri atas nama ' + nama + ' pindah ke?')
-                document.getElementById('formNaik').action = '/santri/pindahSekolah/' + id;
+                document.getElementById('formPindah').action = '/santri/pindahSekolah/' + id;
             })
         });
     </script>
