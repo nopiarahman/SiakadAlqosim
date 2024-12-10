@@ -156,6 +156,10 @@ Route::middleware([
             Route::patch('/kurikulum/{id}','update')->name('kurikulum-update');
             Route::delete('/kurikulum/delete/{id}','destroy')->name('kurikulum-delete');
         });
+        Route::controller(RaportController::class)->group(function(){
+            Route::get('/nilai-santri','nilaiSantri');
+
+        });
     });
     Route::group(['middleware'=>['role:guru']],function(){
         Route::controller(JadwalController::class)->group(function(){

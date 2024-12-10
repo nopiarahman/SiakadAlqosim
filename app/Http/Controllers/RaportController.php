@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use App\Models\Santri;
+use App\Models\Periode;
+use App\Models\Marhalah;
 use App\Models\NilaiK13;
 use Illuminate\Http\Request;
 use App\Models\DataRaportK13;
+use Illuminate\Support\Facades\DB;
 
 class RaportController extends Controller
 {
@@ -51,4 +55,31 @@ class RaportController extends Controller
         $dataRaport=DataRaportK13::where('santri_id',$santri->id)->where('periode_id',getPeriodeAktif()->id)->first();
         return view('raport.pasPrint',compact('santri','nilaiPengetahuan','nilaiKeterampilan','dataRaport'));
     }
+
+    function nilaiSantri() {
+        // Ambil data marhalah berdasarkan marhalah_id dari user yang sedang login
+        $marhalah = Marhalah::find(auth()->user()->marhalah_id);
+    
+        // Ambil kelas berdasarkan marhalah_id yang sama
+        $kelas = Kelas::where('marhalah_id', $marhalah->id)->get();
+    
+        // Cek apakah data user sudah ada di tabel temp
+        $temp = DB::table('temp')->where('user_id', auth()->user()->id)->first();
+    
+        // Jika belum ada, buat data baru dengan user_id dan periode_id
+        if (!$temp) {
+            $periode_id = getPeriodeAktif()->id; // Dapatkan periode aktif
+            DB::table('temp')->insert([
+                'user_id' => auth()->user()->id,
+                'periode_id' => $periode_id,
+            ]);
+            $periode = Periode::find($periode_id);; // Ambil periode baru
+        } else {
+            // Jika sudah ada, ambil periode yang ada di tabel temp
+            $periode = Periode::find($temp->periode_id);
+        }
+        // Return view dengan data kelas, marhalah, dan periode yang relevan
+        return view('nilaiK13.nilaiSantri', compact('kelas', 'marhalah', 'periode'));
+    }
+    
 }

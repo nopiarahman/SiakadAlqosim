@@ -162,6 +162,12 @@
                             <div data-i18n="Tables">Jadwal Pelajaran</div>
                         </a>
                     </li>
+                    <li class="menu-item @yield('menuNilaiSantri')">
+                        <a href="{{ url('/nilai-santri') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-book-bookmark"></i>
+                            <div data-i18n="Tables">Nilai Santri</div>
+                        </a>
+                    </li>
                 @endrole
             @endrole
             @role('Super-Admin')
